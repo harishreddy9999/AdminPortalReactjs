@@ -1,0 +1,36 @@
+.collapse-sidebar-deskop {
+    width: 50px;
+    height: 100%;
+    background-color: #fff;
+    position: fixed;
+    z-index: 1;
+    box-shadow: 1px 1px 5px #d3d3d3;
+}
+
+.collapse-sidebar-deskop-expand {
+    width: 200px;
+    height: 100%;
+    background-color: #fff;
+    position: fixed;
+    z-index: 1;
+    box-shadow: 1px 1px 5px #d3d3d3;
+}
+
+.mainContent {
+
+    height: auto;
+    width: 100%;
+    padding: 0px;
+    padding-top: 55px;
+    padding-left: 45px;
+    z-index: 0;
+}
+
+.mainContent-expand {
+    padding-top: 55px;
+    padding-left: 200px;
+}
+
+.dashboard-mainContent {
+    display: flex;
+}

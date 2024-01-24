@@ -1,0 +1,45 @@
+.labLogo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #0b8591;
+}
+
+.labName {
+    font-size: 15px;
+    text-transform: capitalize;
+
+    font-weight: 500;
+    padding-top: 5%;
+}
+
+.accountStatus {
+    color: orange;
+    padding-top: 5pX;
+}
+
+label {
+    font-size: 15px;
+    font-weight: 600;
+    padding: 5% 0;
+}
+
+.details {
+    font-size: 14px;
+    word-wrap: break-word
+}
+
+.space {
+    padding: 1rem !important;
+}
+
+.provider-submit-btn {
+    background-color: #9A7FF5;
+    color: #fff !important;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 100px;
+    height: 30px;
+    border: none;
+}

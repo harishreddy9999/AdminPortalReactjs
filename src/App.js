@@ -1,33 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-import AppRoutes from './Routing/Routes';
+import 'bootstrap/dist/css/bootstrap.css';
+import LoginForm from './components/Login';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Dashboard from './components/dashboard';
+import AdminUserRoutes from './Routing/AdminUserRoutes';
+import AdminDashboard from './components/Admin/Admin';
 
 function App() {
   return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/services">Services</Link>
-            </li>
-            <li>
-              <Link to="/products">Products</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-          </ul>
-        </nav>
-        <AppRoutes />
 
-      </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/Admin/*" element={<AdminUserRoutes />} />
+        <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
+      </Routes>
     </Router>
   );
 }

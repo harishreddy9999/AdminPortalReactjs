@@ -1,0 +1,309 @@
+.space {
+    padding-top: 20px !important;
+}
+
+.deskopmenu {
+    display: block;
+    background-color: yellow;
+}
+
+.sidebarMenu {
+    background-color: #3C678C;
+    height: 100vh;
+}
+
+.sidebarMenu .verfications,
+.sidebarMenu .users,
+.sidebarMenu .customdrugs,
+.sidebarMenu .subscriptions {
+    background-repeat: no-repeat;
+    background-size: 22px !important;
+    background-position: 10px center;
+    cursor: pointer;
+}
+
+.sidebarMenu .verficationsActive,
+.sidebarMenu .users-active,
+.sidebarMenu .customdrugs-active,
+.sidebarMenu .subscriptions-active {
+    background-repeat: no-repeat;
+    background-size: 22px !important;
+    cursor: pointer;
+}
+
+.sidebarMenu .verficationsActive {
+    border-radius: 4px;
+    color: #FF817F !important;
+}
+
+.sidebarMenu .users-active,
+.sidebarMenu .customdrugs-active {
+    border-radius: 4px 0px 0px 4px;
+    color: #FF817F !important;
+}
+
+.sidebarMenu .activeicon {
+    background-color: #FFFFFF !important;
+}
+
+.sidebarMenu .changepassword {
+    padding: 10px 0px 0px 7px;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.sidebarMenu .iconsize,
+.sidebarMenu .iconsizeactive {
+    width: 22px;
+}
+
+.sidebarMenu .sideMenuList {
+    padding: 0px;
+}
+
+.sidebarMenu .menuRow {
+    padding: 2px 6px 6px 6px;
+    transition: all .2s linear;
+}
+
+.sidebarMenu a {
+    padding: 10px 0px;
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.sidebarMenu a::after {
+    right: auto;
+}
+
+.sidebarMenu a::before {
+    content: "";
+    left: auto;
+    width: 10px;
+    height: 10px;
+    right: 7px;
+    transform: rotate(45deg);
+    border: 1px solid transparent;
+    border-width: 2px 2px 0 0;
+}
+
+.sidebarMenu a.active-route {
+    color: #E06452;
+}
+
+.sidebarMenu .collapse-btn {
+    padding: 0 15px 0 11px;
+}
+
+.sidebarMenu .navbar-toggle .icon-bar {
+    display: block;
+    height: 3px;
+    width: 28px;
+    margin: 3px 0px;
+    border-radius: 5px;
+    transition: all .2s linear;
+}
+
+.sidebarMenu .navbar-toggle.open .icon-bar:nth-child(1) {
+    transform: translate(0px, 9px) rotate(45deg);
+}
+
+.sidebarMenu .navbar-toggle.open .icon-bar:nth-child(2) {
+    transform: rotate(-45deg);
+}
+
+.sidebarMenu .navbar-toggle.open .icon-bar:nth-child(3) {
+    opacity: 0;
+}
+
+
+
+
+
+.sidebarMenu-mobile {
+    height: 100vh;
+
+    .sideMenuList {
+        padding: 0px;
+
+        .menuRow {
+            padding: 3px 0 6px 3px;
+            transition: all .2s linear;
+            @include transition($transition-set2);
+
+            &.user-image {
+                img {
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                }
+            }
+
+            a {
+                padding: 10px 0px;
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 13px;
+                font-weight: 500;
+
+                &::after {
+                    right: auto;
+                }
+
+                &::before {
+                    content: "";
+                    left: auto;
+                    width: 10px;
+                    height: 10px;
+                    right: 7px;
+                    @include transform(rotate(45deg));
+                    border: 1px solid transparent;
+                    border-width: 2px 2px 0 0;
+                }
+
+                &.active-route {
+                    color: #E06452;
+                    ;
+
+                    &::before {
+                        border-color: #28A9E0;
+                        ;
+                    }
+                }
+
+
+
+            }
+
+            &.collapse-btn {
+                padding: 0 15px 0 11px;
+            }
+
+            .navbar-toggle {
+                >.icon-bar {
+                    display: block;
+                    height: 3px;
+                    width: 28px;
+                    margin: 3px 0px;
+                    border-radius: 5px;
+                    @include transition($transition-set2);
+
+
+                }
+
+                &.open>.icon-bar {
+                    &:nth-child(1) {
+                        @include transform(translate(0px, 9px) rotate(45deg));
+                    }
+
+                    &:nth-child(2) {
+                        @include transform(rotate(-45deg));
+                    }
+
+                    &:nth-child(3) {
+                        opacity: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.icon-10 {
+    background-repeat: no-repeat;
+    background-size: 33px !important;
+}
+
+.icon-10-active {
+    background-repeat: no-repeat;
+    background-size: 31px !important;
+    background-color: white;
+    color: #14636A !important;
+    background-position-x: 5px;
+    background-position-y: 4px;
+}
+
+
+.icon-AddPatients {
+    background-repeat: no-repeat;
+    background-size: 31px !important;
+}
+
+.hder {
+    padding: 10px 20px;
+}
+
+
+#menu-cal:hover .ctooltip,
+#menu-dash:hover+.ctooltip {
+    display: block;
+}
+
+.menuRow {
+    position: relative;
+    cursor: pointer;
+
+    &:hover .ctooltip {
+        display: block;
+        margin-left: 12px;
+    }
+}
+
+.ctooltip {
+    position: absolute;
+    left: 55px;
+    top: 12px;
+    background-color: #000;
+    border: 5px solid black;
+    color: #fff;
+    width: auto;
+    padding: 2px 8px;
+    display: none;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+
+.tooltip-right::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0px;
+    right: 0;
+    top: 50%;
+    border: 15px solid transparent;
+    border-right: 0;
+    border-left: 15px solid #5494db;
+    transform: translate(calc(100% + 5px), -50%);
+}
+
+.tooltip-bottom::before {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0px;
+    left: 50%;
+    bottom: 0;
+    border: 15px solid transparent;
+    border-bottom: 0;
+    border-top: 15px solid #5494db;
+    transform: translate(-50%, calc(100% + 5px));
+}
+
+
+.icon-20 {
+    background-repeat: no-repeat;
+    background-size: 31px !important;
+}
+
+.icon-20-active {
+    background-repeat: no-repeat;
+    background-size: 31px !important;
+    background-color: white;
+    color: #14636A !important;
+    background-position-x: 5px;
+    background-position-y: 4px;
+}

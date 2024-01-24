@@ -1,0 +1,388 @@
+/* @import "../../../../assets/css/variables";
+@import "../../../../assets/css/mixins"; */
+.totalContainerBox {
+    background-color: red;
+}
+
+.ds {
+    display: block;
+    padding-left: 5px;
+}
+
+.ms {
+    display: none;
+}
+
+.icon-bar {
+    width: 22px;
+    height: 2px;
+    background-color: #14636a;
+    display: block;
+    margin: 6px 0;
+    cursor: pointer;
+}
+
+.open .icon-bar:nth-child(1) {
+    transform: translate(0px, 8px) rotate(42deg);
+}
+
+.open .icon-bar:nth-child(2) {
+    transform: rotate(-44deg);
+}
+
+.open .icon-bar:nth-child(3) {
+    opacity: 0;
+}
+
+
+@media (max-width:600px) {
+    .ms {
+        display: block;
+    }
+
+    .ds {
+        display: none;
+    }
+}
+
+
+
+button,
+select {
+    text-transform: none;
+    background-color: white;
+    border: none;
+}
+
+.chat-icon {
+    text-align: center;
+    padding: 0 10px;
+    margin: 10px 10px 5px 10px;
+}
+
+.notification-icon {
+    text-align: center;
+    padding: 0 10px;
+    margin: 10px 10px 5px 0px;
+}
+
+
+.user-details p:nth-child(1) {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+.user-details p:nth-child(2) {
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+
+.user-auth-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.user-pic img {
+    height: 35px;
+    border-radius: 50%;
+    width: 35px;
+}
+
+.user-details {
+    padding: 5px 8px 0px 8px;
+}
+
+.user-auth-icon {
+    cursor: pointer;
+}
+
+.dropDown {
+    color: #E21313;
+    position: relative;
+    cursor: pointer;
+    padding-right: 12px;
+    padding-top: 4px;
+}
+
+
+.menu {
+    position: absolute;
+    right: 0;
+    z-index: 999;
+    margin-top: 59px;
+    background-color: #235065;
+    width: 100px;
+    padding: 10px;
+    color: white;
+
+}
+
+.borderleft {
+    border-right: 1px solid #DCDCDC !important;
+    padding: 0px;
+}
+
+@media (max-width : 425px) {
+    .icon-bar {
+        width: 20px;
+    }
+
+    .archentsLogo {
+        width: 106px !important;
+    }
+
+    .chat-icon img {
+        width: 18px;
+    }
+
+    .notification-icon {
+        padding: 0px !important;
+
+    }
+
+    .chat-icon {
+        padding: 0px 11px;
+    }
+
+    .notification-icon {
+        padding: 0px 11px;
+    }
+
+    .notification-icon img {
+        width: 15px;
+    }
+
+    .user-details {
+        display: none;
+    }
+
+
+}
+
+@media (min-width : 425px) and (max-width: 678px) {
+    .user-details {
+        display: none;
+    }
+}
+
+
+@media (min-width : 728px) and (max-width: 767px) {
+    .details-content {
+        padding-left: 46%;
+    }
+}
+
+
+@media (min-width : 425px) and (max-width: 768px) {
+    .chat-icon img {
+        width: 30px;
+    }
+
+    .chat-icon {
+        padding: 0px 11px;
+    }
+
+    .notification-icon {
+        padding: 0px 11px;
+    }
+
+    .notification-icon img {
+        width: 30px;
+    }
+
+
+}
+
+
+@media (min-width:320px) and (max-width :375px) {
+    .details-content {
+        padding-left: 19%;
+    }
+}
+
+
+@media (min-width: 375px) and (max-width : 425px) {
+    .details-content {
+        padding-left: 33%;
+    }
+}
+
+
+@media (min-width: 425px) and (max-width : 728px) {
+    .details-content {
+        padding-left: 42%;
+    }
+}
+
+.admin-header-mat-card {
+    padding: 8px 5px;
+    position: fixed;
+    top: 0px;
+    z-index: 100;
+    border-radius: 0px !important;
+    width: 100%;
+}
+
+.user-icon {
+    padding-left: 15px;
+}
+
+.user-icon img {
+    padding-right: 28px;
+}
+
+.chat-icon-img {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.notificationsp {
+    position: relative;
+}
+
+.notBox {
+    background-color: #CBDFE1 !important;
+    position: absolute;
+    height: auto;
+    height: auto;
+    width: 400px;
+    top: 100%;
+    border: 1px solid #DCDCDC;
+    z-index: 99;
+    right: 10%;
+}
+
+.tabHeaders {
+    background-color: #FCFCFC;
+    border: 1px solid #CEDFE1;
+    font-size: 13px;
+    color: #000000;
+    padding: 5px 0px;
+    height: 3%;
+    cursor: pointer;
+}
+
+.tabHeaders div {
+    margin: 0px 5px;
+}
+
+.customCard {
+    background-color: #FFFFFF;
+    border: 1px solid #CBC9CF;
+    padding: 5px 5px;
+    margin: 5px 10px;
+    border-radius: 5px;
+}
+
+.clearall {
+    font-size: 10px;
+    padding: 3px 0px;
+    color: #0071FF;
+    font-weight: 500;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    cursor: pointer;
+
+}
+
+.Active {
+    color: #14636A;
+    border-bottom: 2px solid #CEDFE1;
+    font-size: 13px;
+}
+
+.emptyBox {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #EEEEEE;
+    margin-top: 10px;
+}
+
+.boldText {
+    font-size: 12px;
+    color: #000000;
+    font-weight: 600;
+    text-align: left;
+    padding-left: 15px;
+}
+
+.ntext {
+    font-size: 12px;
+    text-align: left;
+    padding-left: 15px;
+    line-height: 15px;
+}
+
+.cancel {
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.w-10 {
+    width: 15%;
+}
+
+.w-80 {
+    width: 85%;
+}
+
+.tabBody {
+    height: 400px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.archentsLogo {
+    width: 130px;
+    height: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #14636A;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #14636A;
+}
+
+.notCount {
+    background-color: #F9A825;
+    color: white;
+    font-size: 9px;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    padding: 3px;
+    line-height: 10px;
+    text-align: center;
+    bottom: 26px;
+    margin-left: 1%;
+}
+
+.lastSec {
+    margin-top: 6px;
+}
