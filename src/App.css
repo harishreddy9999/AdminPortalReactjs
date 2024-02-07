@@ -129,3 +129,8 @@
   font-size: 14px;
   font-weight: bold;
 }
+
+.css-1ex1afd-MuiTableCell-root,
+.css-1ygcj2i-MuiTableCell-root {
+  border-bottom: none !important;
+}

@@ -139,3 +139,73 @@ export async function verifyProfiles(obj) {
         throw error;
     }
 }
+
+export async function updateComplaintStatus(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/complaints/updateStatus', obj);
+        const updateComplaintStatusDate = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('updateComplaintStatusDate request failed');
+        }
+
+
+        // Handle the response data
+        console.log('updateComplaintStatusDate successful service', updateComplaintStatusDate);
+        // debugger;
+        return updateComplaintStatusDate;
+
+    } catch (error) {
+        console.error('updateComplaintStatusDate failed:', error);
+        throw error;
+    }
+}
+
+export async function getAllCouponsDataAPI(couponFilter, page, size, startDate, endDate, isActive) {
+
+
+    try {
+        const response = await adminAPIURL.get('/coupon/getCouponDetails?couponFor=' + couponFilter + '&page=' + page + '&size=' + size + '&startDate=' + startDate + '&endDate=' + endDate + '&isActive=' + isActive);
+        const updateComplaintStatusDate = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('updateComplaintStatusDate request failed');
+        }
+
+
+        // Handle the response data
+        console.log('updateComplaintStatusDate successful service', updateComplaintStatusDate);
+        // debugger;
+        return updateComplaintStatusDate;
+
+    } catch (error) {
+        console.error('updateComplaintStatusDate failed:', error);
+        throw error;
+    }
+}
+
+
+export async function createCouponAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/coupon/addCouponDetails', obj);
+        const createCouponRes = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('createCouponRes request failed');
+        }
+
+
+        // Handle the response data
+        console.log('createCouponRes successful service', createCouponRes);
+        // debugger;
+        return createCouponRes;
+
+    } catch (error) {
+        console.error('createCouponRes failed:', error);
+        throw error;
+    }
+}

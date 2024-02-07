@@ -6,6 +6,7 @@ import { getVerificationStats, getAllUnverifiedProfiles } from '../../services/a
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import AdminLabDetails from '../Admin/Admin-LabDetails';
+import AdminSelectedDoctorDetails from '../Admin/Admin-SelectedDoctorDetails';
 // import Modal from 'react-modal';
 
 
@@ -32,6 +33,8 @@ function Verifications() {
     const [pharmacyUnverifiedList, setPharmacyUnverifiedList] = useState([]);
     const [isLabDetailsOpen, setIsLabDetailsOpen] = useState(false);
     const [selectedLab, setSelectedLab] = useState(null);
+    const [isDoctorDetailsOpen, setIsDoctorDetailsOpen] = useState(false);
+    const [selectedDoctor, setSelectedDoctor] = useState(null);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -43,9 +46,18 @@ function Verifications() {
         setSelectedLab(lab);
         setIsLabDetailsOpen(true);
     }
-    const closeLabDetails = () => {
+
+    const viewDoctorDetails = (doctor) => {
+        // debugger;
+        console.log("doctordetails", doctor)
+        setSelectedDoctor(doctor);
+        setIsDoctorDetailsOpen(true);
+    }
+    const closeAllModals = () => {
         setIsLabDetailsOpen(false);
         setSelectedLab(null);
+        setSelectedDoctor(null);
+        setIsDoctorDetailsOpen(false);
         getStats();
         unverifiedProfiles();
         // debugger;
@@ -238,16 +250,18 @@ function Verifications() {
                     </div>
                 )}
 
-                {value === 0 && doctorsUnverifiedList.map((clinic, index) => (
+                {value === 0 && doctorsUnverifiedList.map((doctor, index) => (
                     <div key={index} className="row user-details d-flex card-body">
                         <div id="13952" className="col-2 d-flex">
-                            <div id="13954" className="user-name table-data-text">{clinic.firstName} {clinic.lastName}</div>
+                            <div id="13954" className="user-name table-data-text">{doctor.firstName} {doctor.lastName}</div>
                         </div>
-                        <div id="13956" className="col-2 user-mobile table-data-text">{clinic.specialization}</div>
-                        <div id="13957" className="col-2 user-email table-data-text">{clinic.phoneNumber}</div>
-                        <div id="13958" className="col-2 user-email table-data-text">{clinic.yearsOfExperience} yrs</div>
-                        <div id="13959" className="col-2 user-email table-data-text">{clinic.city}</div>
-                        <div id="13960" className="col-2 d-flex align-items-center"><button className="provider-submit-btn" id="det-btn">View Details</button></div>
+                        <div id="13956" className="col-2 user-mobile table-data-text">{doctor.specialization}</div>
+                        <div id="13957" className="col-2 user-email table-data-text">{doctor.phoneNumber}</div>
+                        <div id="13958" className="col-2 user-email table-data-text">{doctor.yearsOfExperience} yrs</div>
+                        <div id="13959" className="col-2 user-email table-data-text">{doctor.city}</div>
+                        <div id="13960" className="col-2 d-flex align-items-center">
+                            <button className="provider-submit-btn" id="det-btn" onClick={() => viewDoctorDetails(doctor)}>View Details</button>
+                        </div>
                     </div>
                 ))}
 
@@ -293,9 +307,9 @@ function Verifications() {
                         <div id="13984" className="col-2 user-mobile table-data-text">{lab.phoneNumber}</div>
                         <div id="13985" className="col-2 user-email table-data-text">{lab.pathologistName}</div>
                         <div id="13987" className="col-2 user-email table-data-text">{lab.email}</div>
-                        <div id="13988" className="col-2 d-flex align-items-center"><button onClick={() => viewLabDetails(lab)} className="provider-submit-btn" id="det-btn">View Details</button></div>
-
-
+                        <div id="13988" className="col-2 d-flex align-items-center">
+                            <button onClick={() => viewLabDetails(lab)} className="provider-submit-btn" id="det-btn">View Details</button>
+                        </div>
                     </div>
                 ))}
                 {value === 3 && (
@@ -321,7 +335,10 @@ function Verifications() {
                 ))}
             </div>
             {
-                selectedLab ? (<AdminLabDetails isOpen={isLabDetailsOpen} onClose={closeLabDetails} lab={selectedLab} />) : ''
+                selectedLab ? (<AdminLabDetails isOpen={isLabDetailsOpen} onClose={closeAllModals} lab={selectedLab} />) : ''
+            }
+            {
+                selectedDoctor ? (<AdminSelectedDoctorDetails isOpen={isDoctorDetailsOpen} onClose={closeAllModals} doctor={selectedDoctor} />) : ''
             }
         </div>
 

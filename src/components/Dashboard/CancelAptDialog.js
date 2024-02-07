@@ -5,7 +5,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import moment from 'moment';
-import { cancelAppointmentByProvider } from '../services/authService';
+import { cancelAppointmentByProvider } from '../../services/authService';
 
 const CancelDialog = ({ open, onCancel, appointment, handleCancelConfirmed }) => {
     const [selectedAppointment, setSelectedAppointment] = useState(appointment);

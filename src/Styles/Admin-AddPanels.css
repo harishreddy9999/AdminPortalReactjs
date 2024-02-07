@@ -1,0 +1,36 @@
+.page-header {
+    color: #37474F;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    text-transform: capitalize;
+    padding: 20px !important;
+}
+
+.add-panel-form-container {
+    padding: 0 20px !important;
+    /* border: 1px solid black; */
+}
+
+.formgroup-container {
+    border: 1px solid darkgray;
+    padding: 10px !important;
+}
+
+.add-panel-lbl {
+    padding: 3px 0 !important;
+}
+
+.remove-test-btn {
+    width: 20px;
+    cursor: pointer;
+}
+
+.add-test-btn {
+    width: 20px;
+    cursor: pointer;
+}
+
+.add-panel-btn {
+    width: auto;
+}

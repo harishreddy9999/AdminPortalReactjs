@@ -1,0 +1,131 @@
+.list {
+
+    padding: 2px;
+    height: 30px;
+}
+
+.heading {
+    color: var(--neutral-gray-600, #475569);
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.tab-head {
+    color: #212427;
+
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.tab-det {
+    color: var(--neutral-gray-900, #0F172A);
+
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    background: #FFF;
+}
+
+.br-b {
+    padding: 6px !important;
+    border-bottom: 0.404px solid rgba(65, 77, 85, 0.10);
+}
+
+.add-btn {
+    border-radius: 4px;
+    background: #1E6A71;
+    color: #F8FAFC;
+    text-align: center;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.card-body {
+    margin-top: 7px !important;
+}
+
+.deleteimg {
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+
+.table-data-text {
+    text-align: left;
+    font-size: 12px;
+    padding: 10px 0;
+    letter-spacing: 0px;
+    color: #000;
+    opacity: 1;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.editImg {
+    height: 15px;
+    width: 15px;
+}
+
+.hrow {
+    padding: 10px !important;
+}
+
+.trow {
+    padding: 14px !important;
+}
+
+.searchdiv {
+    padding-block-start: 10px;
+}
+
+.searchInput {
+
+    align-items: center;
+    padding-block: 3px;
+}
+
+.searchicon {
+    height: 20px;
+    width: 20px;
+}
+
+.input_search_tag {
+    border: none;
+    width: 100%;
+    outline: none;
+}
+
+.col-4 {
+    padding: 0 10px !important;
+}
+
+.add-panel-btn {
+    background-color: #9A7FF5;
+    color: #fff !important;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 100px;
+    height: 30px;
+    border: none;
+}
+
+.table-header-text {
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 0;
+}
+
+.screen-heading {
+    padding: 20px 0;
+}

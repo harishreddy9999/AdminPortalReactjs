@@ -43,3 +43,25 @@ label {
     height: 30px;
     border: none;
 }
+
+.canceldismiss {
+    background-color: lightgray;
+    color: #000 !important;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 100px;
+    height: 30px;
+    border: none;
+}
+
+.reject-btn {
+    background-color: #E5E5E5;
+    color: #000;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    border: none;
+}

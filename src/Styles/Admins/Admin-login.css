@@ -85,13 +85,13 @@
     padding: 0 15%;
 }
 
-.form-control {
+/* .form-control {
     border: 1px solid #767676 !important;
     background-color: #FFFFFF;
     border-radius: 5px;
     height: 44px;
     padding: 0px 10px !important;
-}
+} */
 
 .each-row {
     margin: 20px 0px 28px 0px;

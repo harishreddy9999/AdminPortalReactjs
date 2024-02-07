@@ -61,11 +61,27 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
                     </Link>
 
                 </li>
+                <li className="menuRow col-lg-12" id="menu-profile" >
+                    <Link className="d-block fs1  tduh text-nowrap complaints"
+                        id="a-verify" to="/admin-dashboard/Coupons" onClick={() => handleLinkClick('Coupons')}>
+                        <span className="changepassword"> <img id="1501347" src="../images/Admin-sidebar-icons/coupon-icon.svg"
+                            className="iconsize" alt='Coupons' /></span>
+                        {
+                            tooltipv ? (
+                                <span id="span-lbl" className="sidebartext">Coupons</span>
+                            ) : (
+                                <span className="ctooltip" id="s-tverify">Coupons</span>
+                            )
+                        }
+                    </Link>
 
-                <li className="menuRow col-lg-12" id="menu-panels" onClick={() => handleLinkClick('Verifications')}>
-                    <a href='/admin-dashboard/Verifications' className="d-block fs1  tduh text-nowrap panels" id="a-panels" >
-                        <span className="changepassword"> <img id="1501346" src="../images/Admin-sidebar-icons/panels-icon.svg"
-                            className="iconsizeactive" alt='panels' /></span>
+                </li>
+
+                <li className="menuRow col-lg-12" id="menu-profile" >
+                    <Link className="d-block fs1  tduh text-nowrap complaints"
+                        id="a-verify" to="/admin-dashboard/Panels" onClick={() => handleLinkClick('Panels')}>
+                        <span className="changepassword"> <img id="1501347" src="../images/Admin-sidebar-icons/panels-icon.svg"
+                            className="iconsize" alt='Panels' /></span>
                         {
                             tooltipv ? (
                                 <span id="span-lbl" className="sidebartext">Panels</span>
@@ -73,39 +89,25 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
                                 <span className="ctooltip" id="s-tverify">Panels</span>
                             )
                         }
-                    </a>
+                    </Link>
 
                 </li>
-                <li className="menuRow col-lg-12" id="menu-testsdatabase" onClick={() => handleLinkClick('Verifications')} >
-                    <a href='/admin-dashboard/Verifications' className="d-block fs1  tduh text-nowrap panels" id="a-panels">
-                        <span className="changepassword"> <img id="1501346" src="../images/Admin-sidebar-icons/testconfiguration.svg"
-                            className="iconsizeactive" alt='test-db' /></span>
+
+                <li className="menuRow col-lg-12" id="menu-profile" >
+                    <Link className="d-block fs1  tduh text-nowrap complaints"
+                        id="a-verify" to="/admin-dashboard/CustomDrugs" onClick={() => handleLinkClick('CustomDrugs')}>
+                        <span className="changepassword"> <img id="1501347" src="../images/Admin-sidebar-icons/customdrugs-icon.svg"
+                            className="iconsize" alt='Panels' /></span>
                         {
                             tooltipv ? (
-                                <span id="span-lbl" className="sidebartext">Test Database</span>
+                                <span id="span-lbl" className="sidebartext">Custom Drugs</span>
                             ) : (
-                                <span className="ctooltip" id="s-tverify">Test Database</span>
+                                <span className="ctooltip" id="s-tverify">Custom Drugs</span>
                             )
                         }
-                    </a>
+                    </Link>
 
                 </li>
-                <li className="menuRow col-lg-12" id="menu-testsdatabase" onClick={() => handleLinkClick('Verifications')}>
-                    <a href='/admin-dashboard/Verifications' className="d-block fs1  tduh text-nowrap panels" id="a-panels">
-                        <span className="changepassword"> <img id="1501346" src="../images/Admin-sidebar-icons/testconfiguration.svg"
-                            className="iconsizeactive" alt='radiology-test' /></span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl" className="sidebartext">Radiology Test</span>
-                            ) : (
-                                <span className="ctooltip" id="s-tverify">Radiology Test</span>
-                            )
-                        }
-                    </a>
-
-
-                </li>
-
 
 
             </ul>

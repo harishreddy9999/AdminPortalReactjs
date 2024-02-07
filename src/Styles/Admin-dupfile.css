@@ -1,0 +1,8 @@
+.innerpic {
+    top: 20% !important;
+    position: absolute !important;
+    left: 25% !important;
+    height: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+}

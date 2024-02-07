@@ -2,11 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-export function Sidebar({ handleComponentSelect }) {
+function Sidebar() {
     const navigate = useNavigate();
-    const handleLinkClick = (component) => {
-        handleComponentSelect(component);
-    };
+
     const handleLogout = () => {
         // Perform logout logic here
 
@@ -14,38 +12,35 @@ export function Sidebar({ handleComponentSelect }) {
         navigate('/');
     };
     return (
-        <div className="sidebar" style={{ width: '20%' }}>
+        <div className="row">
             <ul>
                 <li>
-                    <Link to="/dashboard/home" onClick={() => handleLinkClick('Home')}>
+                    <Link to="/user-dashboard/home" >
                         Dashboard
                     </Link>
                 </li>
                 <li>
-                    <Link to="/dashboard/about" onClick={() => handleLinkClick('About')}>
+                    <Link to="/user-dashboard/about" >
                         Profile
                     </Link>
                 </li>
                 <li>
                     <Link
-                        to="/dashboard/services"
-                        onClick={() => handleLinkClick('Services')}
+                        to="/user-dashboard/patients"
                     >
-                        Settings
+                        Patients
                     </Link>
                 </li>
                 <li>
                     <Link
-                        to="/dashboard/products"
-                        onClick={() => handleLinkClick('Products')}
+                        to="/user-dashboard/products"
                     >
                         Templates
                     </Link>
                 </li>
                 <li>
                     <Link
-                        to="/dashboard/contact"
-                        onClick={() => handleLinkClick('Contact')}
+                        to="/user-dashboard/contact"
                     >
                         Customer Support
                     </Link>
@@ -57,3 +52,5 @@ export function Sidebar({ handleComponentSelect }) {
         </div>
     );
 }
+
+export default Sidebar;

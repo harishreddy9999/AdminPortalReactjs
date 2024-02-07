@@ -1,0 +1,586 @@
+.leftsideSection {
+    /* // background-image: url('.~src/assets/images/loginreg_bg.png'); */
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.innerpic {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    left: 0px;
+    top: 0px;
+}
+
+.doctorinnerpic {
+    /* //   width: 50%; */
+    margin: 0 auto;
+    width: 100%;
+    /* //   margin: 25% 0; */
+}
+
+.form-section {
+    background-color: #f3f3f3;
+}
+
+.pdleft {
+    padding-left: 0px !important;
+    padding-right: 0px;
+}
+
+.logorow {
+    justify-content: center;
+    display: flex;
+    width: 75% !important;
+    margin: 10px 0px;
+
+}
+
+.logo {
+    width: 50% !important;
+    /* padding: 15px; */
+}
+
+.login {
+    font-size: 30px;
+    color: #000000;
+}
+
+.custom-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #4B4B4B;
+    border-radius: 3px;
+    margin-top: 8px;
+    accent-color: #9A7FF5;
+}
+
+.signinbtn {
+    background-color: #14636A;
+    width: 100%;
+    height: 55px;
+    font-size: 24px;
+    text-align: center;
+    /* // font-family: Calibri; */
+    border-radius: 10px;
+    color: white;
+    border: none;
+}
+
+.signinbtn:hover {
+    background-color: #14636A !important;
+}
+
+.login {
+    padding: 0px 15%;
+    font-size: 24px;
+    font-weight: 600;
+    /* // font-family: Calibri; */
+}
+
+.custom-form {
+    width: 85%;
+    padding: 0 15%;
+}
+
+.fs-14 {
+    font-size: 16px !important;
+    font-weight: 500;
+}
+
+.r-link {
+    text-decoration: none;
+}
+
+
+
+.eachrow {
+    margin: 20px 0px 28px 0px;
+}
+
+.eachrowbtn {
+    margin: 4% 0 2% 0;
+}
+
+.label-text {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 3px;
+    /* // font-family: Calibri; */
+}
+
+.rembertext {
+    font-size: 22px;
+    cursor: pointer;
+    /* // font-family: Calibri; */
+}
+
+.each-row-end {
+    font-size: 12px;
+    /* // margin: 7% 0; */
+    /* // font-family: Calibri; */
+}
+
+a {
+    color: #0071FF !important;
+}
+
+.error {
+    border-color: #e06452 !important;
+}
+
+.eyeicon {
+    position: absolute;
+    right: 23px;
+    top: 9px;
+}
+
+@media (max-width:768px) {
+
+    .custom-form,
+    .login {
+        padding: 0 8%;
+    }
+
+    .rembertext {
+        font-size: 16px;
+    }
+
+    .logo {
+        width: 40%;
+        /* padding: 15px; */
+    }
+}
+
+@media (max-width:600px) {
+    .leftsideSection {
+        height: auto;
+    }
+
+    .doctorinnerpic {
+        width: 50%;
+        height: auto;
+        margin-top: 50px !important;
+    }
+
+    .logorow {
+
+        margin: 30px 0px;
+    }
+
+    .logo {
+        width: 40%;
+        /* padding: 15px; */
+    }
+
+    .login {
+        font-size: 20px;
+
+    }
+
+    .label-text {
+        font-size: 14px;
+    }
+
+    .custom-checkbox {
+        width: 18px;
+        height: 18px;
+    }
+
+    .rembertext {
+        font-size: 14px;
+    }
+
+    .custom-form {
+        padding: 0 10%;
+    }
+
+    .login {
+        padding: 0px 10%;
+    }
+}
+
+.neo-form-field {
+    width: 100% !important;
+}
+
+.neo-form-field-infix {
+    width: 100% !important;
+}
+
+.neo-input-element {
+    width: 100% !important;
+}
+
+.justify-content-center {
+    display: flex;
+    justify-content: center;
+}
+
+button:disabled,
+button[disabled] {
+    color: white !important;
+    /* // cursor: none !important; */
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
+.life-line {
+    margin-top: 20px;
+}
+
+
+@media (max-width:600px) {
+    .doctorinnerpic {
+        display: none;
+    }
+
+    .responsive {
+        position: absolute;
+    }
+
+    .leftsideSection {
+        opacity: 0.6;
+    }
+
+    .custom-form {
+        width: 100%;
+    }
+
+    .rembertext {
+        padding-top: 5px;
+    }
+
+    .formControl {
+
+        border-radius: 5px;
+        height: 35px;
+    }
+
+    .signinbtn {
+
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .fgt {
+        padding-top: 5px;
+    }
+}
+
+@media only screen and(min-width:768px) and (max-width:992px) {
+    .right_portion {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+
+        .rightcontent {
+            display: flex !important;
+            align-items: center !important;
+            flex-direction: column !important;
+        }
+
+        #docs-logo {
+            justify-content: flex-start;
+        }
+
+        .logo {
+            width: 60% !important;
+            padding-bottom: 0px;
+        }
+
+        .custom-form {
+            padding: 0px;
+        }
+
+        .rembertext {
+            font-size: 19px;
+            padding-left: 0px;
+        }
+
+        .login {
+            width: 100%;
+            padding: 0px 15% 0px 7%;
+        }
+
+        .rembertext {
+            margin-top: 1px;
+        }
+
+        #resetpwd {
+            justify-content: flex-start !important;
+            padding-left: 25%;
+        }
+
+        #rmbr_checkbox {
+            padding-left: 0px !important;
+        }
+    }
+
+}
+
+@media only screen and(min-width:992px) and (max-width:1440px) {
+    .right_portion {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+
+        .rightcontent {
+            display: flex !important;
+            align-items: center !important;
+            flex-direction: column !important;
+        }
+
+        #docs-logo {
+            justify-content: flex-start;
+        }
+
+        .logo {
+            width: 60%;
+            padding-bottom: 0px;
+        }
+
+        .custom-form {
+            padding: 0px;
+        }
+
+        .rembertext {
+            font-size: 19px;
+            padding-left: 0px;
+        }
+
+        .login {
+            width: 100%;
+            padding: 0px 15% 0px 7%;
+        }
+
+        .rembertext {
+            margin-top: 1px;
+        }
+    }
+}
+
+
+
+input::placeholder {
+    font-size: 12px;
+}
+
+.formControl-sm {
+    font-size: 12px;
+}
+
+.forgotpasword_a {
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.errordiv {
+    color: red;
+    font-size: 15px;
+    padding: 5px;
+
+}
+
+.exclamation {
+    width: 15px;
+    height: 15px;
+}
+
+.errorinput {
+    border-color: #efa9a9 !important;
+}
+
+.userloginloginform {
+    width: 60%;
+    display: flex;
+    /* justify-content: center; */
+    margin: 10px auto !important;
+}
+
+.eachrow {
+    margin: 20px 0px 28px 0px;
+}
+
+/* $primary_color: #94A3B8; */
+
+.materialtextfield {
+    position: relative;
+    margin-top: 5px;
+    margin: 20px 0px 20px 0px;
+}
+
+.matInput:focus {
+    box-shadow: none;
+}
+
+.matLabel {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    margin: 0 0.5rem;
+    transition: .1s ease-out;
+    transform-origin: left top;
+    pointer-events: none;
+    width: 75%;
+    color: #94A3B8;
+    font-family: Roboto;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    padding: 0px !important;
+}
+
+.matInput[readonly]+.matLabel {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+.matInput {
+    /* // font-size: 1rem; */
+    outline: none;
+    border-radius: 5px;
+    /* // height: 35px !important; */
+    transition: 0.1s ease-out;
+}
+
+.matSelect {
+    /* // font-size: 1rem; */
+    outline: none;
+    border-radius: 5px;
+    height: 35px !important;
+    transition: 0.1s ease-out;
+}
+
+.matInput:focus {
+    border-color: #94A3B8;
+
+}
+
+.matInput[readonly]:focus+.matLabel {
+    top: 50%;
+    transform: translateY(-50%)
+}
+
+.matInput:focus+.matLabel {
+    color: #94A3B8;
+    top: 0;
+    transform: translateY(-50%) scale(.9);
+    width: auto;
+}
+
+.matInput[type="text"]:not(:placeholder-shown) {
+    border-color: #94A3B8 !important;
+}
+
+.matInput[type="date"]:not(:placeholder-shown)+.matLabel {
+    top: 50%;
+    transform: translateY(-50%);
+    color: gray;
+    width: 75%;
+}
+
+.matInput[type="date"]:valid:not(focus)+.matLabel {
+    display: block;
+    top: 0;
+    color: #94A3B8;
+    ;
+    width: auto;
+    transform: translateY(-50%) scale(.9);
+}
+
+.matInput[type="date"]:focus+.matLabel {
+    display: block;
+    top: 0;
+    color: #94A3B8;
+
+    width: auto;
+    transform: translateY(-50%) scale(.9);
+}
+
+.matInput[type="date"]:valid:not(focus) {
+    border-color: #94A3B8;
+    ;
+}
+
+.matInput:not(:placeholder-shown)+.matLabel {
+    top: 0;
+    color: #94A3B8;
+
+    transform: translateY(-50%) scale(.9);
+    width: auto;
+}
+
+.matInput[readonly]:not(:placeholder-shown)+.matLabel {
+    top: 0;
+    color: #94A3B8;
+
+    transform: translateY(-50%) scale(.9);
+    width: auto;
+    background-color: white;
+}
+
+.matSelect:focus {
+    border-color: #94A3B8;
+
+}
+
+.matSelect:focus~.matLabel,
+.matSelect:valid~.matLabel {
+    display: block;
+    color: #94A3B8;
+    top: 0;
+    width: auto;
+    transform: translateY(-50%) scale(.9);
+}
+
+.matSelect:valid:not(focus) {
+    border-color: #94A3B8;
+    ;
+}
+
+.matSelect:valid:not(focus)~.matLabel {
+    display: block;
+    color: #94A3B8;
+    top: 0;
+    width: auto;
+    transform: translateY(-50%) scale(.9);
+}
+
+input::placeholder {
+    font-size: 12px;
+}
+
+.userloginsigninbtn {
+    background-color: #14636A;
+    width: 100%;
+    height: 55px;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    border: none;
+}
+
+.userloginforgetpassword {
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.rightcontent {
+    margin-top: 80px !important;
+}

@@ -1,0 +1,50 @@
+.doctormain {
+    width: 500px;
+    height: 500px;
+    justify-content: center;
+    padding: 10px;
+}
+
+.complaintDetailHeading {
+    text-align: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.lbl {
+    font-size: 13px;
+    font-weight: bold;
+    padding-block: 5px;
+}
+
+.complaintDeailDate,
+.raisedByDetail,
+.subjectDetail,
+.descrptiontext,
+.attach-fileName {
+    font-size: 13px;
+    padding-block: 5px;
+}
+
+.descrptiontext {
+    height: 150px;
+}
+
+.attchments {
+    border: 1px solid #ced4da;
+    flex-wrap: wrap;
+    padding-block: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    overflow-y: scroll;
+    height: 155px;
+}
+
+.imgdiv {
+    padding-inline: 10px;
+}
+
+.attchmentsimg {
+    width: 25px;
+    height: 30px;
+}

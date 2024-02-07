@@ -4,6 +4,8 @@ import { AdminSidebar } from './Admin-sidebar';
 import AdminHeader from './Admin-header';
 import '../../App.css';
 import '../../Styles/Admin-dashboard.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CreatePanel from './Admin-CreatePanel';
 
 
 function AdminDashboard() {
@@ -20,6 +22,7 @@ function AdminDashboard() {
         setDataToSend(data);
     };
     const handleComponentSelect = (component) => {
+        // debugger;
         setSelectedComponent(component);
     };
 
@@ -33,7 +36,8 @@ function AdminDashboard() {
                     <AdminSidebar dataReceived={dataToSend} handleComponentSelect={handleComponentSelect} />
                 </div>
                 <div className={!collapseSidebar ? 'mainContent' : 'mainContent-expand'}>
-                    <AdminMainContent selectedComponent={selectedComponent} />
+                    <AdminMainContent selectedComponent={selectedComponent} handleComponentSelect={handleComponentSelect} />
+
                 </div>
 
             </div>

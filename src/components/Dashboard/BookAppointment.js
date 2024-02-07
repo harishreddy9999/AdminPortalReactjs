@@ -9,8 +9,8 @@ import Button from '@mui/material/Button';
 // import Button from '@mui/material/Button';
 import moment from 'moment';
 import { withStyles } from '@mui/styles';
-import '../Styles/BookAppointment.css';
-import { getClinicsList, showAvailabileTimeSlots, fetchPatient, proceedToPayment } from '../services/authService';
+import '../../Styles/BookAppointment.css';
+import { getClinicsList, showAvailabileTimeSlots, fetchPatient, proceedToPayment } from '../../services/authService';
 // import { useState } from 'react';
 
 const styles = (theme) => ({

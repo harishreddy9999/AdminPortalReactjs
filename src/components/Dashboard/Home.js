@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { getDoctorProfile, getAppointmentsByClinicAndDate, getAptInvoice } from '../services/authService';
+import { getDoctorProfile, getAppointmentsByClinicAndDate, getAptInvoice } from '../../services/authService';
 import moment from 'moment';
-import '../Styles/home.css';
+import '../../Styles/home.css';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -21,6 +21,10 @@ function Home() {
     const [cancelingAppointment, setCancelingAppointment] = useState(null);
     const [isBookAppointment, setIsBookAppointment] = useState(false);
 
+    // const handlePackagesListClick = () => {
+    //     // debugger;
+    //     handleComponentSelect('Packages');
+    // };
     useEffect(() => {
 
 
@@ -141,6 +145,8 @@ function Home() {
     const closeBookAppointmentDialog = () => {
         setIsBookAppointment(false);
     };
+
+
     return (
         <div className='container'>
             {/* <h2>Home</h2>
@@ -269,6 +275,9 @@ function Home() {
                     </div>
                 ))}
             </div>
+            {/* <div className='row'>
+                <button className='submit-btn' onClick={handlePackagesListClick}>Show Packages List</button>
+            </div> */}
             {cancelDialogOpen ? <CancelDialog
                 open={cancelDialogOpen}
                 onCancel={closeCancelDialog}
@@ -285,3 +294,5 @@ function Home() {
 }
 
 export default Home;
+
+

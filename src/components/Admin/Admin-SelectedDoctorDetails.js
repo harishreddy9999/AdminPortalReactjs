@@ -1,33 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import '../../App.css';
-import '../../Styles/Admin-labdetails.css';
+// import '../../Styles/Admin-doctorDetails.css';
 import Modal from 'react-modal';
 import Card from '@mui/material/Card';
 import { verifyProfiles } from '../../services/adminportalService';
-import RejectionModalComponent from './Admin-RejectionModal';
+import moment from 'moment';
+// import RejectionModalComponent from './Admin-RejectionModal';
 
-const AdminLabDetails = ({ isOpen, onClose, lab }) => {
-    const [labDetails, setLabDetails] = useState(null);
-    const [labLogo, setLabLogo] = useState('');
-    const [locality, setlocality] = useState([]);
-    const [isRejectionModalOpen, setisRejectionModalOpen] = useState(false);
+const AdminSelectedDoctorDetails = ({ isOpen, onClose, doctor }) => {
+    const [doctorDetails, setDoctorDetails] = useState(null);
 
     useEffect(() => {
-        if (lab) {
-            if (lab.hasOwnProperty("labLogo")) {
-                setLabLogo(lab.labLogo);
-            }
-            setLabDetails(lab);
-            setlocality(lab.address);
-            console.log("labDetails", labDetails, labLogo);
+        if (doctor) {
+
+            setDoctorDetails(doctor);
+            console.log("doctorDetails", doctorDetails);
         }
-    }, [lab]);
+    }, [doctor]);
 
     const verify = async (approve, id) => {
         let obj = {
             id: id,
             status: approve,
-            type: "LAB",
+            type: "DOCTOR",
             comments: ""
         };
 
@@ -38,17 +33,17 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
         }
     }
 
-    const reject = async (approve, id) => {
-        setisRejectionModalOpen(true);
-    }
+    // const reject = async (approve, id) => {
+    //     setisRejectionModalOpen(true);
+    // }
 
-    const closeRejectionModal = () => {
-        setisRejectionModalOpen(false);
-    }
+    // const closeRejectionModal = () => {
+    //     setisRejectionModalOpen(false);
+    // }
 
     return (
         <div>
-            {labDetails ? (
+            {doctorDetails ? (
 
                 <Modal
                     isOpen={isOpen}
@@ -68,18 +63,19 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
                 >
                     <div id="12041" className="row space">
                         <div id="12042" className="col-lg-12 col-md-12">
-                            <h6 id="h-lbl" className="screen-heading">Lab Details</h6>
+                            <h6 id="h-lbl" className="screen-heading">Doctor Details</h6>
                         </div>
                         <div id="12043" className="col-lg-12 col-md-12">
+
                             <Card className='mat-card' id="m-card">
                                 <div id="12044" className="row">
                                     <div id="12045" className="col-lg-12">
                                         <div id="12046" className="row" >
                                             <div id="12047" className="col-lg-3" >
                                                 {
-                                                    labLogo !== '' ? (
+                                                    doctorDetails.profilePicture !== '' ? (
                                                         <div id="img-div" className='p-2'>
-                                                            <img src="{labLogo}" className="labLogo" id="pic" alt='lab-logo' />
+                                                            <img src="{doctorDetails.profilePicture}" className="labLogo" id="pic" alt='lab-logo' />
                                                         </div>
                                                     ) : <div id="img-div" className='p-2'>
                                                         <img src="../images/UserLogo.svg" className="labLogo" id="pic" alt='lab-logo' />
@@ -90,9 +86,9 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
                                             </div>
                                             <div id="12048" className="col-lg-9">
                                                 <div id="12049" className='p-2'>
-                                                    <div id="12050" className="labName">{labDetails.labName}</div>
+                                                    <div id="12050" className="labName">{doctorDetails.fullName}</div>
                                                     {
-                                                        labDetails.accountStatus === 'PENDING' ? (
+                                                        doctorDetails.accountStatus === 'PENDING' ? (
                                                             <div id="12051" className="accountStatus">Pending</div>
                                                         ) : ''
                                                     }
@@ -108,49 +104,56 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
                                     <div id="12059" className="col-lg-4">
                                         <label id="phn-lbl" className="pat-details-side-heading">Phone Number</label>
                                         <div id="12060" className="details" >
-                                            {labDetails.phoneNumber}
+                                            {doctorDetails.phoneNumber}
                                         </div>
                                     </div>
                                     <div id="12061" className="col-lg-4">
                                         <label id="mail-lbl" className="pat-details-side-heading"> Email</label>
-                                        <div id="12062" className="details">{labDetails.email}</div>
+                                        <div id="12062" className="details">{doctorDetails.email}</div>
 
                                     </div>
                                     <div id="12063" className="col-lg-4">
-                                        <label id="gst-lbl" className="pat-details-side-heading"> GST Number</label>
-                                        <div id="12064" className="details">{labDetails.nablLicenseNumber}</div>
+                                        <label id="gst-lbl" className="pat-details-side-heading">Gender</label>
+                                        {
+                                            doctorDetails.gender === 'M' ? (
+                                                <div id="12064" className="details">Male</div>
+                                            ) : (
+                                                <div id="12064" className="details">Female</div>
+                                            )
+                                        }
                                     </div>
 
                                 </div>
                                 <div id="12065" className="row pt-2">
 
                                     <div id="12066" className="col-lg-4">
-                                        <label id="per-lbl" className="pat-details-side-heading">Contact Person</label>
-                                        <div id="12067" className="details">{labDetails.pathologistName}</div>
+                                        <label id="per-lbl" className="pat-details-side-heading">Specialization</label>
+                                        <div id="12067" className="details">{doctorDetails.primarySpecialization[0]}</div>
                                     </div>
                                     <div id="12068" className="col-lg-4">
-                                        <label id="lis-lbl" className="pat-details-side-heading"> License Number</label>
-                                        <div id="12069" className="details">{labDetails.nablLicenseNumber}</div>
+                                        <label id="lis-lbl" className="pat-details-side-heading">Languages</label>
+                                        <div id="12069" className="details">{doctorDetails.languages}</div>
+                                    </div>
+                                    <div id="12068" className="col-lg-4">
+                                        <label id="lis-lbl" className="pat-details-side-heading">DOB</label>
+                                        <div id="12069" className="details">{moment(new Date(doctorDetails.dOB)).format("DD/MM/YYYY")}</div>
                                     </div>
                                 </div>
                                 <div id="120652" className="row pt-2">
-                                    <div id="120591" className="col-lg-4">
-                                        <label className="pb-1 pat-details-side-heading" id="gst-lbl"> Address</label>
-                                        <ul className="ulcalss" id="localityul">
-                                            {
-                                                locality.map((local, index) => (
-                                                    <li key={index} className="liclass" id="localityli">{local.locality} </li>
-                                                ))
-                                            }
-
-                                        </ul>
+                                    <div id="12066" className="col-lg-4">
+                                        <label id="per-lbl" className="pat-details-side-heading">Years of Experience</label>
+                                        <div id="12067" className="details">{doctorDetails.yearsOfExperience}</div>
+                                    </div>
+                                    <div id="12068" className="col-lg-4">
+                                        <label id="lis-lbl" className="pat-details-side-heading">About me</label>
+                                        <div id="12069" className="details">{doctorDetails.aboutMe}</div>
                                     </div>
                                 </div>
                                 <div id="12070" className="row">
                                     <div id="12071" className="col-12 edit space d-flex justify-content-end">
-                                        <button id="12072" className="provider-submit-btn me-2" onClick={() => verify('APPROVED', labDetails._id)}
+                                        <button id="12072" className="provider-submit-btn me-2" onClick={() => verify('APPROVED', doctorDetails._id)}
                                         >Approve</button>
-                                        <button id="12073" className="reject-btn provider-cancel-btn me-2" onClick={() => reject('REJECTED', labDetails._id)}>Reject</button>
+                                        <button id="12073" className="reject-btn provider-cancel-btn me-2">Reject</button>
                                         <button className="canceldismiss provider-cancel-btn me-1" id="no" onClick={onClose}>Dismiss</button>
 
                                     </div>
@@ -165,12 +168,9 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
             )
 
             }
-            {labDetails ? (
-                <RejectionModalComponent isOpen={isRejectionModalOpen} onClose={closeRejectionModal} id={labDetails._id} type={'LAB'} status={'REJECTED'} />
-            ) : ''
-            }
+
         </div>
     );
 };
 
-export default AdminLabDetails;
+export default AdminSelectedDoctorDetails;
