@@ -2,38 +2,39 @@ import React, { useState } from 'react';
 import { login } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 import styles from '../Styles/User/UserLogin.module.css';
+import { useForm } from 'react-hook-form';
 
 
 
 function LoginForm() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = (data) => {
+        // e.preventDefault();
         setIsLoading(true);
-
-        try {
-            // Call the login service function
-            let reqobj = {
-                userName: email,
-                role: "DOCTOR",
-                password: password,
-                deviceToken: ""
-            }
-            const response = await login(reqobj);
-            if (response.errors === "") {
-                // debugger;
-                sessionStorage.setItem("LoginResponse", JSON.stringify(response));
-                sessionStorage.setItem('providerID', response.user._id);
-                console.log('Login successful component', response);
-                navigate('/user-dashboard/home');
-            }
-        } catch (error) {
-            console.error('Login failed:', error);
-        }
+        console.log(data, errors);
+        // try {
+        //     // Call the login service function
+        //     let reqobj = {
+        //         userName: email,
+        //         role: "DOCTOR",
+        //         password: password,
+        //         deviceToken: ""
+        //     }
+        //     const response = await login(reqobj);
+        //     if (response.errors === "") {
+        //         // debugger;
+        //         sessionStorage.setItem("LoginResponse", JSON.stringify(response));
+        //         sessionStorage.setItem('providerID', response.user._id);
+        //         console.log('Login successful component', response);
+        //         navigate('/user-dashboard/home');
+        //     }
+        // } catch (error) {
+        //     console.error('Login failed:', error);
+        // }
 
         setIsLoading(false);
     };
@@ -55,22 +56,25 @@ function LoginForm() {
 
                         </div>
                         <div className={styles.userloginloginform}>
-                            <form onSubmit={handleSubmit} className='row'>
+                            <form onSubmit={handleSubmit(onSubmit)} className='row'>
                                 <div className={`row ${styles.eachrow}`}>
                                     {/* <label htmlFor="email">Email:</label> */}
                                     <div className={styles.materialtextfield}>
                                         <input
                                             type="email"
                                             className={`form-control ${styles.matInput}`}
-                                            id="email" placeholder="Email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            required
-
+                                            id="email" placeholder=""
+                                            {...register('email', {
+                                                required: 'Email is required',
+                                                pattern: {
+                                                    value: /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w[a-z]{1,2})+$/,
+                                                    message: 'Please enter a valid email address'
+                                                }
+                                            })}
                                         />
                                         <label htmlFor="email" className={styles.matLabel}>Email</label>
+                                        {errors.email && <div className="error">{errors.email.message}</div>}
                                     </div>
-
                                 </div>
                                 <div className='row each-row'>
                                     <div className={styles.materialtextfield}>
@@ -79,12 +83,14 @@ function LoginForm() {
                                             type="password"
                                             id="password"
                                             className={`form-control ${styles.matInput}`}
-                                            placeholder="Password"
-                                            value={password}
-                                            onChange={(e) => setPassword(e.target.value)}
-                                            required
+                                            placeholder=""
+                                            {...register('password', {
+                                                required: 'password is required',
+
+                                            })}
                                         />
                                         <label htmlFor="password" className={styles.matLabel}>Password</label>
+                                        {errors.password && <div className="error">{errors.password.message}</div>}
                                     </div>
                                 </div>
                                 <div className={styles.eachrowbtn}>
