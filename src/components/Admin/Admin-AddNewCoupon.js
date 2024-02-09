@@ -173,7 +173,7 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
             console.log("createCouponRes", createCouponRes);
             onClose();
         } catch {
-            console.error("Error creating coupon:", error);
+            console.error("Error creating coupon:");
         }
 
 
