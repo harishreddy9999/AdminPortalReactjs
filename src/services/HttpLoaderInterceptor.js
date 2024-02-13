@@ -1,60 +1,35 @@
-import React, { useState, createContext, useContext } from 'react';
+// HttpLoaderInterceptor.js
 import axios from 'axios';
+import { useContext } from 'react';
+import { LoaderContext } from './LoaderContext';
 
-const HttpLoaderContext = createContext();
+const axiosInstance = axios.create();
 
-export const HttpLoaderProvider = ({ children }) => {
-    const [isLoading, setIsLoading] = useState(false);
-
-    const showLoader = () => {
+axiosInstance.interceptors.request.use(
+    (config) => {
         debugger;
+        const { setIsLoading } = useContext(LoaderContext);
         setIsLoading(true);
-    };
+        return config;
+    },
+    (error) => {
+        console.error('Error in request interceptor', error);
+        return Promise.reject(error);
+    }
+);
 
-    const hideLoader = () => {
-        debugger;
+axiosInstance.interceptors.response.use(
+    (response) => {
+        const { setIsLoading } = useContext(LoaderContext);
         setIsLoading(false);
-    };
+        return response;
+    },
+    (error) => {
+        console.error('Error in response interceptor', error);
+        const { setIsLoading } = useContext(LoaderContext);
+        setIsLoading(false);
+        return Promise.reject(error);
+    }
+);
 
-    // Wrapper around axios API calls
-    const axiosInstance = axios.create();
-
-    axiosInstance.interceptors.request.use(
-        (config) => {
-            showLoader(); // Show loader before each HTTP request
-            return config;
-        },
-        (error) => {
-            // hideLoader(); // Hide loader on request error
-            return Promise.reject(error);
-        }
-    );
-
-    axiosInstance.interceptors.response.use(
-        (response) => {
-            // hideLoader(); // Hide loader on successful response
-            return response;
-        },
-        (error) => {
-            hideLoader(); // Hide loader on response error
-            return Promise.reject(error);
-        }
-    );
-
-    return (
-        <HttpLoaderContext.Provider value={{ isLoading, axiosInstance }}>
-            {children}
-            {isLoading && (
-                <div className='loader-container'>
-                    <div className="loader-overlay">
-                        <img src='../images/provider_isometric.png' alt="Loading..." className="loader-img" />
-                    </div>
-                </div>
-            )}
-        </HttpLoaderContext.Provider>
-    );
-};
-
-export const useHttpLoader = () => {
-    return useContext(HttpLoaderContext);
-};
+export default axiosInstance;
