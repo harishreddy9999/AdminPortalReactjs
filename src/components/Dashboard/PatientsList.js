@@ -21,8 +21,16 @@ const PatientsList = () => {
     const searchMyPatients = async () => {
         const res = await searchMyPatientsAPI(searchText, page, rowsPerPage);
         console.log(res);
-        res.patientList.forEach(element => {
-            element.age = calculateAge(element.patientDetails.demographicInfo.dOB)
+        // debugger;
+        res.patientList.forEach((element, index) => {
+            // console.log(index, element.appointmentDetails[0].date)
+            element.age = calculateAge(element.patientDetails.demographicInfo.dOB);
+            if (element.appointmentDetails.length > 0) {
+                element.appointmentDate = moment(new Date(element.appointmentDetails[0].date)).format("DD-MM-YYYY");
+            } else {
+                element.appointmentDate = "";
+            }
+
         });
         setPatientsList(res.patientList);
         setTotalPatientsCount(res.totalCount);
@@ -80,7 +88,7 @@ const PatientsList = () => {
                                                     patient.patientDetails.demographicInfo.lastName}</TableCell>
                                             </div>
                                             <div class="col-lg-2 col-md-2 col-sm-2 justify-content-center table-header-text row" id="table-date">
-                                                <TableCell>{moment(new Date(patient.appointmentDetails[0].date)).format("DD-MM-YYYY")}</TableCell>
+                                                <TableCell>{patient.appointmentDate}</TableCell>
                                             </div>
                                             <div class="col-lg-2 col-md-2 col-sm-2 table-header-text row" id="table-gender">
                                                 <TableCell>{patient.patientDetails.demographicInfo.gender}</TableCell>

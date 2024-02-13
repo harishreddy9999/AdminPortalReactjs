@@ -8,7 +8,6 @@ import AdminDashboard from './components/Admin/Admin';
 
 function App() {
   return (
-
     <Router>
       <Routes>
         <Route path="/" element={<LoginForm />} />
@@ -17,6 +16,7 @@ function App() {
         <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
       </Routes>
     </Router>
+
   );
 }
 
