@@ -1,11 +1,38 @@
-.dashboard {
+.collapse-prosidebar-deskop {
+    width: 60px;
+    height: 100%;
+    background-color: #fff;
+    position: fixed;
+    z-index: 1;
+    box-shadow: 1px 1px 5px #d3d3d3;
+}
+
+.collapse-prosidebar-deskop-expand {
+    width: 200px;
+    height: 100%;
+    background-color: #fff;
+    position: fixed;
+    z-index: 1;
+    box-shadow: 1px 1px 5px #d3d3d3;
+}
+
+.promainContent {
+
+    height: auto;
+    width: 100%;
+    padding: 0px;
+    padding-top: 55px;
+    padding-left: 50px; 
+    z-index: 0;
+    left :60px;
+}
+
+.promainContent-expand {
+    padding-top: 55px;
+    padding-left: 200px;
+    width: 100%;
+}
+
+.dashboard-promainContent {
     display: flex;
-}
-
-.sidebar {
-    width: 20%;
-}
-
-.main-content {
-    width: 80%;
 }

@@ -1,21 +1,28 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import Home from './Home';
+import PatientsList from './PatientsList';
 
-function MainContent() {
 
-    // debugger;
+export function MainContent({ selectedComponent, handleComponentSelect }) {
+    let componentToRender;
+    debugger;
+    switch (selectedComponent) {
+        case 'Patients':
+        case null:
+            componentToRender = <PatientsList />;
+            break;
+    
+        // case 'Panels':
+            // componentToRender = <PanlesList handleComponentSelect={handleComponentSelect} />;
+            // break;
+  
+
+        default:
+            componentToRender = null;
+    }
+
     return (
-        <div className="row">
-            <div className='col-6'>
-                Main content
-                <Home />
-            </div>
-            <div className='col-6'>
-                <Outlet />
-            </div>
-            {/* {componentToRender} */}
-
+        <div className="row" style={{ paddingInline: '0px' }}>
+            {componentToRender}
         </div>
     );
 }
