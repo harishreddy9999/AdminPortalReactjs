@@ -4,13 +4,15 @@ import { searchMyPatientsAPI, calculateAge } from '../../services/userPatientsSr
 import moment from 'moment';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updatePatientsPage, updatePatientsRowsPerPage, updatePatientsSearchText } from '../../Actions/patientsListActions';
 
-const PatientsList = () => {
+const PatientsList = ({ page, rowsPerPage, searchText, updatePatientsPage, updatePatientsRowsPerPage, updatePatientsSearchText }) => {
 
     const navigate = useNavigate();
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(50);
-    const [searchText, setSearchText] = useState('');
+    // const [page, setPage] = useState(0);
+    // const [rowsPerPage, setRowsPerPage] = useState(50);
+    // const [searchText, setSearchText] = useState('');
     const [patientsList, setPatientsList] = useState([]);
     const [totalPatientsCount, setTotalPatientsCount] = useState(0);
     const [rowsPerPageOptions, setrowsPerPageOptions] = useState([5, 10, 20, 25, 50]);
@@ -37,13 +39,17 @@ const PatientsList = () => {
     }
 
     const handleChangePage = (event, newPage) => {
-        setPage(newPage);
+        // setPage(newPage);
+        updatePatientsPage(newPage);
     };
 
     const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-        setSearchText('');
+        // setRowsPerPage(parseInt(event.target.value, 10));
+        // setPage(0);
+        // setSearchText('');
+        updatePatientsRowsPerPage(parseInt(event.target.value, 10));
+        updatePatientsPage(0);
+        // updatePatientsSearchText('');
     };
 
     const getPatientDetails = (patient) => {
@@ -122,4 +128,17 @@ const PatientsList = () => {
     )
 }
 
-export default PatientsList;
+// export default PatientsList;
+const mapStateToProps = (state) => ({
+    page: state.patients.page,
+    rowsPerPage: state.patients.rowsPerPage,
+    searchText: state.patients.searchText
+});
+
+const mapDispatchToProps = {
+    updatePatientsPage,
+    updatePatientsRowsPerPage,
+    updatePatientsSearchText
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PatientsList);

@@ -12,11 +12,9 @@ import PatientsList from './PatientsList';
 import PatientDetails from './PatientDetails';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { LoaderProvider } from '../../services/LoaderContext';
 
 function Dashboard() {
     return (
-        // <LoaderProvider>
         <div className="dashboard">
             <div className="sidebar" style={{ width: '20%' }}>
                 <Sidebar />
@@ -38,7 +36,6 @@ function Dashboard() {
             </div>
             <ToastContainer limit={1} />
         </div>
-        // </LoaderProvider>
     );
 }
 

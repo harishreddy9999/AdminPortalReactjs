@@ -8,6 +8,8 @@ export async function login(reqobj) {
         const loginResponseData = response.data;
         const token = response.data.token;
         sessionStorage.setItem('token', token);
+        sessionStorage.setItem('user', JSON.stringify(loginResponseData.user));
+        sessionStorage.setItem('role', loginResponseData.role);
         if (!response.statusText === "OK") {
             throw new Error('Login request failed');
         }
@@ -206,3 +208,5 @@ export async function adminLogin(reqobj) {
         throw error;
     }
 }
+
+
