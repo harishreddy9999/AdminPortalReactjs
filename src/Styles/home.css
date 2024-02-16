@@ -41,3 +41,9 @@
     font-size: 12px;
     font-weight: 500;
 }
+
+.start-visit-btn {
+    background-color: #9BD5DA;
+    font-size: 12px;
+    padding: 4px 15px !important;
+}

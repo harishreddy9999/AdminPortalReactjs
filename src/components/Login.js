@@ -31,6 +31,13 @@ function LoginForm() {
                 setIsLoading(false);
                 sessionStorage.setItem("LoginResponse", JSON.stringify(response));
                 sessionStorage.setItem('providerID', response.user._id);
+                // debugger;
+                sessionStorage.setItem('firstName', response.user.firstName);
+                sessionStorage.setItem('lastName', response.user.lastName);
+                sessionStorage.setItem("Gender", response.user.gender);
+                sessionStorage.setItem('specilization', JSON.stringify(response.user.specialization));
+                sessionStorage.setItem("Gender", response.user.gender);
+                sessionStorage.setItem("userID", response.user._id);
                 console.log('Login successful component', response);
                 navigate('/user-dashboard/home');
             } else {

@@ -9,8 +9,11 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CancelDialog from './CancelAptDialog';
 import BookAppointmentComponent from './BookAppointment';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+
+    const navigate = useNavigate();
     const [doctorClinicList, setDoctorClinicList] = useState([]);
     const [selectedClinic, setSelectedClinic] = useState('');
     const [appointments, setAppointments] = useState([]);
@@ -21,6 +24,7 @@ function Home() {
     const [cancelingAppointment, setCancelingAppointment] = useState(null);
     const [isBookAppointment, setIsBookAppointment] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
     // const handlePackagesListClick = () => {
     //     // debugger;
     //     handleComponentSelect('Packages');
@@ -29,7 +33,7 @@ function Home() {
 
         // debugger;
 
-
+        // console.log("useContext", context);
         fetchDoctorProfile();
     }, []);
 
@@ -168,9 +172,18 @@ function Home() {
         setIsBookAppointment(false);
     };
 
+    const startVisit = (appointmentDetails) => {
+        sessionStorage.setItem('AppointmentID', appointmentDetails.appointmentID);
+        sessionStorage.setItem('appoinmentType', appointmentDetails.appointmentType);
+        sessionStorage.setItem("PATIENTID", appointmentDetails.patient);
+        navigate('/screening');
+        // debugger;
+        // this.router.navigate(['/screening']);
+    }
 
     return (
         <div className='container'>
+
             {/* <h2>Home</h2>
             <p>Welcome to the Home page!</p> */}
             {doctorClinicList.length > 0 && (
@@ -270,6 +283,7 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className="col-lg-1 col-md-1 card-text d-flex align-items-center" id="action">
+                                    <button className='start-visit-btn' onClick={() => startVisit(appointment)}>Start Visit</button>
                                     <IconButton
                                         aria-controls={`simple-menu-${index}`}
                                         aria-haspopup="true"
@@ -318,6 +332,8 @@ function Home() {
                     </div>
                 </div>
             )}
+
+
 
         </div>
     );
