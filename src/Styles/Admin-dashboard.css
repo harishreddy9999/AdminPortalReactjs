@@ -24,11 +24,16 @@
     padding-top: 55px;
     padding-left: 50px;
     z-index: 0;
+    background-color: #f1f1f1;
+    height: 100vh;
 }
 
 .mainContent-expand {
     padding-top: 55px;
     padding-left: 170px;
+    width: 100%;
+    background-color: #f1f1f1;
+    height: 100vh;
 }
 
 .dashboard-mainContent {

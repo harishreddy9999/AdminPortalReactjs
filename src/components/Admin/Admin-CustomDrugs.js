@@ -3,6 +3,7 @@ import '../../App.css';
 import '../../Styles/AdminCustomDrugs.css';
 import { getAllCustomDrugsAPI } from '../../services/adminPortalPanelsService';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
+import UpdateDrugInfo from './Admin-UpdateDrugInfo';
 
 const CustomDrugs = () => {
 
@@ -11,7 +12,9 @@ const CustomDrugs = () => {
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [totalDrugsCount, settotalDrugsCount] = useState(0);
     const [customDrugsDetails, setCustomDrugsDetails] = useState([]);
-    const [rowsPerPageOptions, setrowsPerPageOptions] = useState([5, 10, 15, 20, 25, 50])
+    const [rowsPerPageOptions, setrowsPerPageOptions] = useState([5, 10, 15, 20, 25, 50]);
+    const [selectedDrugDetails, setselectedDrugDetails] = useState(null);
+    const [isDrugInfoOpen, setIsDrugInfoOpen] = useState(false);
     useEffect(() => {
         getAllCustomDrugs();
     }, [page, rowsPerPage, searchText]);
@@ -20,6 +23,9 @@ const CustomDrugs = () => {
 
         const getAllCustomDrugsRes = await getAllCustomDrugsAPI(page, rowsPerPage, searchText);
         console.log("getAllCustomDrugsRes", getAllCustomDrugsRes);
+        getAllCustomDrugsRes.customDrugs.forEach(element => {
+            element.composition = element.composition.slice(0, -1);
+        })
         setCustomDrugsDetails(getAllCustomDrugsRes.customDrugs)
         settotalDrugsCount(getAllCustomDrugsRes.customDrugCount)
     }
@@ -33,44 +39,69 @@ const CustomDrugs = () => {
         setPage(0);
     };
 
+    const updateDrugInfo = (drug) => {
+        setselectedDrugDetails(drug);
+        setIsDrugInfoOpen(true);
+        // debugger;
+    }
+
+    const closeDrugInfo = () => {
+        setIsDrugInfoOpen(false);
+    }
+
     return (
         <div className="row">
-            Custom Drugs
-            <Paper>
-                <TableContainer>
-                    <Table>
-                        <TableHead>
-                            <TableRow className='table-header user-heading'>
-                                <TableCell>Drug Name</TableCell>
-                                <TableCell>Composition</TableCell>
-                                <TableCell>Manufacture</TableCell>
-                                <TableCell>MRP</TableCell>
-                                <TableCell>Actions</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {customDrugsDetails.map((row, index) => (
-                                <TableRow key={index}>
-                                    <TableCell>{row.productName}</TableCell>
-                                    <TableCell>{row.composition}</TableCell>
-                                    <TableCell>{row.manufacturer}</TableCell>
-                                    <TableCell>{row.MRP}</TableCell>
-                                    <TableCell><button className='update-composition-btn'>Update Drug Info</button></TableCell>
+
+            <div className='custom-drugs-screen'>
+                <div className='drug-search-row'>
+                    <div className="searchdiv d-flex justify-content-center" id="searchdiv">
+                        <div className="form-control d-flex justify-content-between searchInput_customdrug">
+                            <input type="text" className="input_search_custom_drug" placeholder="Search by drug name/composition" />
+                            <img className="searchicon" src="../images/search.svg" alt='search-panels' />
+                        </div>
+                    </div>
+                </div>
+                <Paper>
+                    <TableContainer>
+                        <Table className='custom-drugs-tbl'>
+                            <TableHead className='custom-drugs-tbl-header-row'>
+                                <TableRow className=''>
+                                    <TableCell className='custom-drugs-tbl-header'>#</TableCell>
+                                    <TableCell className='custom-drugs-tbl-header'>Drug Name</TableCell>
+                                    <TableCell className='custom-drugs-tbl-header'>Composition</TableCell>
+                                    <TableCell className='custom-drugs-tbl-header'>Manufacture</TableCell>
+                                    <TableCell className='custom-drugs-tbl-header'>MRP</TableCell>
+                                    <TableCell className='custom-drugs-tbl-header'>Actions</TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-                <TablePagination
-                    rowsPerPageOptions={rowsPerPageOptions}
-                    component="div"
-                    count={totalDrugsCount}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                />
-            </Paper>
+                            </TableHead>
+                            <TableBody className='custom-drugs-tbl-body'>
+                                {customDrugsDetails.map((row, index) => (
+                                    <TableRow key={index} className='custom-drugs-tbl-body-td'>
+                                        <TableCell>{index + 1}</TableCell>
+                                        <TableCell>{row.productName}</TableCell>
+                                        <TableCell>{row.composition}</TableCell>
+                                        <TableCell>{row.manufacturer}</TableCell>
+                                        <TableCell>{row.MRP}</TableCell>
+                                        <TableCell><button className='update-composition-btn' onClick={() => updateDrugInfo(row)} >Update Drug Info</button></TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <TablePagination
+                        rowsPerPageOptions={rowsPerPageOptions}
+                        component="div"
+                        count={totalDrugsCount}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onPageChange={handleChangePage}
+                        onRowsPerPageChange={handleChangeRowsPerPage}
+                    />
+                </Paper>
+            </div>
+            {
+                selectedDrugDetails ? (<UpdateDrugInfo isOpen={isDrugInfoOpen} onClose={closeDrugInfo} drugInfo={selectedDrugDetails} />) : ''
+            }
         </div>
     )
 }
