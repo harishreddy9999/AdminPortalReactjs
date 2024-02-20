@@ -5,6 +5,8 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 import Switch from '@material-ui/core/Switch';
 import { getGoalsAPI, updateGoalsActiveStatusAPI, updateTrackerActiveStatusAPI, getTrackersAPI } from '../../services/adminportalService';
 import moment from 'moment';
+import AddNewTracker from './Admin-AddTracker';
+import AddNewGoal from './Admin-AddGoals';
 
 const WellnessGoals = () => {
 
@@ -22,6 +24,10 @@ const WellnessGoals = () => {
     const [trackerPageSize, setTrackerPageSize] = useState(5);
     const [trackersTotalcount, setTrackersTotalcount] = useState(0);
     const [trackerslist, setTrackerslist] = useState([]);
+    const [isAddNewTracker, setisAddNewTracker] = useState(false);
+    const [isAddNewTrackerOpen, setisAddNewTrackerOpen] = useState(false);
+    const [isAddNewGoal, setisAddNewGoal] = useState(false);
+    const [isAddNewGoalOpen, setisAddNewGoalOpen] = useState(false);
     useEffect(() => {
         getGoals();
     }, [searchtext, page, size])
@@ -88,6 +94,20 @@ const WellnessGoals = () => {
             getTrackers();
         }
     }
+    const addTracker = () => {
+        setisAddNewTracker(true);
+        setisAddNewTrackerOpen(true);
+    }
+    const addGoal = () => {
+        setisAddNewGoal(true);
+        setisAddNewGoalOpen(true);
+    }
+    const closeAllModals = () => {
+        setisAddNewTracker(false);
+        setisAddNewTrackerOpen(false);
+        setisAddNewGoal(false);
+        setisAddNewGoalOpen(false);
+    }
     return (
         <div className='wellness-main-screen'>
             <div className='row'>
@@ -105,7 +125,7 @@ const WellnessGoals = () => {
                             </div>
                             <div className='col-6'></div>
                             <div className='col-3 d-flex justify-content-end'>
-                                <button className='wellness-add-btn'>Add Goals</button>
+                                <button className='wellness-add-btn' onClick={addGoal}>Add Goals</button>
                             </div>
                         </div>
                         <div className='row programs-table-row'>
@@ -172,7 +192,7 @@ const WellnessGoals = () => {
                             </div>
                             <div className='col-6'></div>
                             <div className='col-3 d-flex justify-content-end'>
-                                <button className='wellness-add-btn'>Add Tracker</button>
+                                <button className='wellness-add-btn' onClick={addTracker}>Add Tracker</button>
                             </div>
                         </div>
                         <div className='row programs-table-row'>
@@ -221,7 +241,12 @@ const WellnessGoals = () => {
                     </div>
                 )}
             </div>
-
+            {
+                isAddNewTracker ? (<AddNewTracker isOpen={isAddNewTrackerOpen} onClose={closeAllModals} />) : ''
+            }
+            {
+                isAddNewGoal ? (<AddNewGoal isOpen={isAddNewGoalOpen} onClose={closeAllModals} />) : ''
+            }
         </div>
     )
 }
