@@ -663,10 +663,10 @@ const BookAppointmentComponent = ({ open, onCancel, classes }) => {
                     </div>
                 </div>
                 <div className='row d-flex justify-content-end'>
-                    <button class="submitbtn skip-btn provider-submit-btn" id="submit" onClick={() => bookAppointmentV2("SKIP")}>
+                    <button className="submitbtn skip-btn provider-submit-btn" id="submit" onClick={() => bookAppointmentV2("SKIP")}>
                         Later
                     </button>
-                    <button class="submitbtn provider-submit-btn me-2" id="submit" onClick={() => bookAppointmentV2("PAY")}>
+                    <button className="submitbtn provider-submit-btn me-2" id="submit" onClick={() => bookAppointmentV2("PAY")}>
                         Bill Patient
                     </button>
                 </div>

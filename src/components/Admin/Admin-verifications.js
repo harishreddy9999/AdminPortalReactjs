@@ -266,25 +266,25 @@ function Verifications() {
                 ))}
 
                 {value === 1 && (
-                    <div id="13914" class="row table-header user-heading d-flex">
-                        <div id="13915" class="col-2 heading-label table-header-text">Clinic Name</div>
-                        <div id="13916" class="col-2 heading-id-label table-header-text">Registration No</div>
-                        <div id="13917" class="col-2 heading-label table-header-text">Address</div>
-                        <div id="13918" class="col-2 heading-label table-header-text">Registered Council</div>
-                        <div id="13919" class="col-2 heading-label table-header-text">GST Number</div>
-                        <div id="13921" class="col-2 heading-actions table-header-text">Actions</div>
+                    <div id="13914" className="row table-header user-heading d-flex">
+                        <div id="13915" className="col-2 heading-label table-header-text">Clinic Name</div>
+                        <div id="13916" className="col-2 heading-id-label table-header-text">Registration No</div>
+                        <div id="13917" className="col-2 heading-label table-header-text">Address</div>
+                        <div id="13918" className="col-2 heading-label table-header-text">Registered Council</div>
+                        <div id="13919" className="col-2 heading-label table-header-text">GST Number</div>
+                        <div id="13921" className="col-2 heading-actions table-header-text">Actions</div>
                     </div>
                 )}
                 {value === 1 && clinicUnverifiedList.map((clinic, index) => (
                     <div key={index} className="row user-details d-flex card-body">
-                        <div id="13925" class="col-2  d-flex">
-                            <div id="13927" class="user-name table-data-text">{clinic.clinicName}</div>
+                        <div id="13925" className="col-2  d-flex">
+                            <div id="13927" className="user-name table-data-text">{clinic.clinicName}</div>
                         </div>
-                        <div id="13928" class="col-2 user-role table-data-text">{clinic.registrationNumber}</div>
-                        <div id="13929" class="col-2 user-mobile table-data-text">{clinic.clinicAddress.address}</div>
-                        <div id="13930" class="col-2 user-email table-data-text">{clinic.nameOfCouncil}</div>
-                        <div id="13931" class="col-2 user-email table-data-text">{clinic.GSTNumber}</div>
-                        <div id="13932" class="col-2 d-flex align-items-center"><button class="provider-submit-btn" id="det-btn">View Details</button></div>
+                        <div id="13928" className="col-2 user-role table-data-text">{clinic.registrationNumber}</div>
+                        <div id="13929" className="col-2 user-mobile table-data-text">{clinic.clinicAddress.address}</div>
+                        <div id="13930" className="col-2 user-email table-data-text">{clinic.nameOfCouncil}</div>
+                        <div id="13931" className="col-2 user-email table-data-text">{clinic.GSTNumber}</div>
+                        <div id="13932" className="col-2 d-flex align-items-center"><button className="provider-submit-btn" id="det-btn">View Details</button></div>
 
                     </div>
                 ))}

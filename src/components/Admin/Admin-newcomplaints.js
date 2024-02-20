@@ -265,7 +265,7 @@ function NewComplaints() {
             <div className='row '>
 
 
-                <Tabs value={value} onChange={handleChange} class="Tabs" >
+                <Tabs value={value} onChange={handleChange} className="Tabs" >
                     <Tab className={value === 0 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 0 ? "../images/line.png" : ""} /> <img id="doctorImg" className="tabimg" src={value === 0 ? "../images/activemedical.svg" : "../images/medical.png"} alt='Doctor' />
                         <span className={value === 0 ? "selected-text" : "tabtext"}>Docisn Plus Web</span></span>} />
                     <Tab className={value === 1 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 1 ? "../images/line.png" : ""} /><img id="clinicImg" className="tabimg" src={value === 1 ? "../images/activehospital.png" : "../images/hospital.png"} alt='Clinic' />
@@ -377,328 +377,328 @@ function NewComplaints() {
                 </div> */}
 
             </div>
-            <div class="maingriddetails">
-            <div>
-            {value === 0 &&  <h4 id="h-vcount">Docisn Plus Web Complaints</h4>}
-            {value === 1 &&  <h4 id="h-vcount">Docisn Plus App Complaints</h4>}
-            {value === 2 &&  <h4 id="h-vcount">Docisn Patients Complaints</h4>}
-            {value === 3 &&  <h4 id="h-vcount">Docisn Clinic  Complaints</h4>}
-            {value === 4 &&  <h4 id="h-vcount">Docsin Laboratory Complaints</h4>}
-            {value === 5 &&  <h4 id="h-vcount">Docisn rx Complaints</h4>}
-            </div>
-
-            <div className='row stats-card gridview'>
-            
-                <div id="13941" className="row table-header user-heading d-flex">
-                <div id="13942" className="col-1 heading-label table-header-text index">#</div>
-                    <div id="13942" className="col-2 heading-label table-header-text">DATE</div>
-                    <div id="13943" className="col-2 heading-id-label table-header-text">RAISED BY</div>
-                    <div id="13944" className="col-3 heading-label table-header-text">SUBJECT</div>
-                    <div id="13945" className="col-2 heading-label table-header-text">STATUS</div>
-                    <div id="13948" className="col-2 heading-actions table-header-text">Actions</div>
+            <div className="maingriddetails">
+                <div>
+                    {value === 0 && <h4 id="h-vcount">Docisn Plus Web Complaints</h4>}
+                    {value === 1 && <h4 id="h-vcount">Docisn Plus App Complaints</h4>}
+                    {value === 2 && <h4 id="h-vcount">Docisn Patients Complaints</h4>}
+                    {value === 3 && <h4 id="h-vcount">Docisn Clinic  Complaints</h4>}
+                    {value === 4 && <h4 id="h-vcount">Docsin Laboratory Complaints</h4>}
+                    {value === 5 && <h4 id="h-vcount">Docisn rx Complaints</h4>}
                 </div>
 
-                {docisnWebComplaintsList.length > 0 && docisnWebComplaintsList.map((complaint, index) => (
-                    <div key={index} className="row user-details d-flex card-body">
+                <div className='row stats-card gridview'>
+
+                    <div id="13941" className="row table-header user-heading d-flex">
+                        <div id="13942" className="col-1 heading-label table-header-text index">#</div>
+                        <div id="13942" className="col-2 heading-label table-header-text">DATE</div>
+                        <div id="13943" className="col-2 heading-id-label table-header-text">RAISED BY</div>
+                        <div id="13944" className="col-3 heading-label table-header-text">SUBJECT</div>
+                        <div id="13945" className="col-2 heading-label table-header-text">STATUS</div>
+                        <div id="13948" className="col-2 heading-actions table-header-text">Actions</div>
+                    </div>
+
+                    {docisnWebComplaintsList.length > 0 && docisnWebComplaintsList.map((complaint, index) => (
+                        <div key={index} className="row user-details d-flex card-body">
                             <div id="13952" className="col-1 d-flex index">
-                           {index+1}
-                        </div>
-                        <div id="13952" className="col-2 d-flex">
-                            <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
-                        </div>
-                        <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
+                                {index + 1}
+                            </div>
+                            <div id="13952" className="col-2 d-flex">
+                                <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
+                            </div>
+                            <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
 
-                        <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
-                        <div id="13959" className="col-2 user-email table-data-text">
-                        {
-                                complaint.status === 'ISSUE_RESOLVED' ?
-                                   <span className='showresolved'>Resolved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'IN_PROGRESS' ?
-                                   <span className='showinprogess'>In Progress</span> : ('')
-                            }
-                              {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                   <span className='showcomplaintrecieved'>Recieved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'INVALID_ISSUE' ?
-                                   <span className='showinvalidissue'>Invalid</span> : ('')
-                            }
-                            
-                         </div>
-                        <div id="13960" className="col-2 d-flex">
-                            <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
-                            {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                    (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
-                            }
+                            <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
+                            <div id="13959" className="col-2 user-email table-data-text">
+                                {
+                                    complaint.status === 'ISSUE_RESOLVED' ?
+                                        <span className='showresolved'>Resolved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        <span className='showinprogess'>In Progress</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        <span className='showcomplaintrecieved'>Recieved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'INVALID_ISSUE' ?
+                                        <span className='showinvalidissue'>Invalid</span> : ('')
+                                }
 
-                        </div>
-                    </div>
-                ))}
+                            </div>
+                            <div id="13960" className="col-2 d-flex">
+                                <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
+                                }
 
-                {docisnAppComplaintsList.length > 0 && docisnAppComplaintsList.map((complaint, index) => (
-                    <div key={index} className="row user-details d-flex card-body">
-                           <div id="13952" className="col-1 d-flex index" >
-                            {index+1}
+                            </div>
                         </div>
-                        <div id="13952" className="col-2 d-flex">
-                            <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
-                        </div>
-                        <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
+                    ))}
 
-                        <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
-                        <div id="13959" className="col-2 user-email table-data-text">
-                        {
-                                complaint.status === 'ISSUE_RESOLVED' ?
-                                   <span className='showresolved'>Resolved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'IN_PROGRESS' ?
-                                   <span className='showinprogess'>In Progress</span> : ('')
-                            }
-                              {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                   <span className='showcomplaintrecieved'>Recieved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'INVALID_ISSUE' ?
-                                   <span className='showinvalidissue'>Invalid</span> : ('')
-                            }
-                        </div>
-                        <div id="13960" className="col-2 d-flex">
-                            <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
-                            {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                    (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
-                            }
-                        </div>
-                    </div>
-                ))}
+                    {docisnAppComplaintsList.length > 0 && docisnAppComplaintsList.map((complaint, index) => (
+                        <div key={index} className="row user-details d-flex card-body">
+                            <div id="13952" className="col-1 d-flex index" >
+                                {index + 1}
+                            </div>
+                            <div id="13952" className="col-2 d-flex">
+                                <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
+                            </div>
+                            <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
 
-                {clinicComplaintsList.length > 0 && clinicComplaintsList.map((complaint, index) => (
-                    <div key={index} className="row user-details d-flex card-body">
-                           <div id="13952" className="col-1 d-flex index">
-                           {index+1}
+                            <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
+                            <div id="13959" className="col-2 user-email table-data-text">
+                                {
+                                    complaint.status === 'ISSUE_RESOLVED' ?
+                                        <span className='showresolved'>Resolved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        <span className='showinprogess'>In Progress</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        <span className='showcomplaintrecieved'>Recieved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'INVALID_ISSUE' ?
+                                        <span className='showinvalidissue'>Invalid</span> : ('')
+                                }
+                            </div>
+                            <div id="13960" className="col-2 d-flex">
+                                <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
+                                }
+                            </div>
                         </div>
-                        <div id="13952" className="col-2 d-flex">
-                            <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
-                        </div>
-                        <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
+                    ))}
 
-                        <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
-                        <div id="13959" className="col-2 user-email table-data-text">
-                        {
-                                complaint.status === 'ISSUE_RESOLVED' ?
-                                   <span className='showresolved'>Resolved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'IN_PROGRESS' ?
-                                   <span className='showinprogess'>In Progress</span> : ('')
-                            }
-                              {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                   <span className='showcomplaintrecieved'>Recieved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'INVALID_ISSUE' ?
-                                   <span className='showinvalidissue'>Invalid</span> : ('')
-                            }
-                        </div>
-                        <div id="13960" className="col-2 d-flex">
-                            <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
-                            {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                    (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
-                            }
-                        </div>
-                    </div>
-                ))}
+                    {clinicComplaintsList.length > 0 && clinicComplaintsList.map((complaint, index) => (
+                        <div key={index} className="row user-details d-flex card-body">
+                            <div id="13952" className="col-1 d-flex index">
+                                {index + 1}
+                            </div>
+                            <div id="13952" className="col-2 d-flex">
+                                <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
+                            </div>
+                            <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
 
-                {pharmaComplaintsList.length > 0 && pharmaComplaintsList.map((complaint, index) => (
-                    <div key={index} className="row user-details d-flex card-body">
-                           <div id="13952" className="col-1 d-flex index">
-                           {index+1}
+                            <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
+                            <div id="13959" className="col-2 user-email table-data-text">
+                                {
+                                    complaint.status === 'ISSUE_RESOLVED' ?
+                                        <span className='showresolved'>Resolved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        <span className='showinprogess'>In Progress</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        <span className='showcomplaintrecieved'>Recieved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'INVALID_ISSUE' ?
+                                        <span className='showinvalidissue'>Invalid</span> : ('')
+                                }
+                            </div>
+                            <div id="13960" className="col-2 d-flex">
+                                <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
+                                }
+                            </div>
                         </div>
-                        <div id="13952" className="col-2 d-flex">
-                            <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
-                        </div>
-                        <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
+                    ))}
 
-                        <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
-                        <div id="13959" className="col-2 user-email table-data-text">
-                        {
-                                complaint.status === 'ISSUE_RESOLVED' ?
-                                   <span className='showresolved'>Resolved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'IN_PROGRESS' ?
-                                   <span className='showinprogess'>In Progress</span> : ('')
-                            }
-                              {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                   <span className='showcomplaintrecieved'>Recieved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'INVALID_ISSUE' ?
-                                   <span className='showinvalidissue'>Invalid</span> : ('')
-                            }</div>
-                        <div id="13960" className="col-2 d-flex">
-                            <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
-                            {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                    (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
-                            }
-                        </div>
-                    </div>
-                ))}
+                    {pharmaComplaintsList.length > 0 && pharmaComplaintsList.map((complaint, index) => (
+                        <div key={index} className="row user-details d-flex card-body">
+                            <div id="13952" className="col-1 d-flex index">
+                                {index + 1}
+                            </div>
+                            <div id="13952" className="col-2 d-flex">
+                                <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
+                            </div>
+                            <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
 
-                {labComplaintsList.length > 0 && labComplaintsList.map((complaint, index) => (
-                    <div key={index} className="row user-details d-flex card-body">
-                           <div id="13952" className="col-1 d-flex index">
-                           {index+1}
+                            <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
+                            <div id="13959" className="col-2 user-email table-data-text">
+                                {
+                                    complaint.status === 'ISSUE_RESOLVED' ?
+                                        <span className='showresolved'>Resolved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        <span className='showinprogess'>In Progress</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        <span className='showcomplaintrecieved'>Recieved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'INVALID_ISSUE' ?
+                                        <span className='showinvalidissue'>Invalid</span> : ('')
+                                }</div>
+                            <div id="13960" className="col-2 d-flex">
+                                <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
+                                }
+                            </div>
                         </div>
-                        <div id="13952" className="col-2 d-flex">
-                            <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
-                        </div>
-                        <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
+                    ))}
 
-                        <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
-                        <div id="13959" className="col-2 user-email table-data-text">
-                        {
-                                complaint.status === 'ISSUE_RESOLVED' ?
-                                   <span className='showresolved'>Resolved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'IN_PROGRESS' ?
-                                   <span className='showinprogess'>In Progress</span> : ('')
-                            }
-                              {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                   <span className='showcomplaintrecieved'>Recieved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'INVALID_ISSUE' ?
-                                   <span className='showinvalidissue'>Invalid</span> : ('')
-                            }
-                        </div>
-                        <div id="13960" className="col-2 d-flex">
-                            <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
-                            {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                    (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
-                            }
-                        </div>
-                    </div>
-                ))}
+                    {labComplaintsList.length > 0 && labComplaintsList.map((complaint, index) => (
+                        <div key={index} className="row user-details d-flex card-body">
+                            <div id="13952" className="col-1 d-flex index">
+                                {index + 1}
+                            </div>
+                            <div id="13952" className="col-2 d-flex">
+                                <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
+                            </div>
+                            <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
 
-                {patientsComplaintsList.length > 0 && patientsComplaintsList.map((complaint, index) => (
-                    <div key={index} className="row user-details d-flex card-body">
-                           <div id="13952" className="col-1 d-flex index">
-                           {index+1}
+                            <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
+                            <div id="13959" className="col-2 user-email table-data-text">
+                                {
+                                    complaint.status === 'ISSUE_RESOLVED' ?
+                                        <span className='showresolved'>Resolved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        <span className='showinprogess'>In Progress</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        <span className='showcomplaintrecieved'>Recieved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'INVALID_ISSUE' ?
+                                        <span className='showinvalidissue'>Invalid</span> : ('')
+                                }
+                            </div>
+                            <div id="13960" className="col-2 d-flex">
+                                <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
+                                }
+                            </div>
                         </div>
-                        <div id="13952" className="col-2 d-flex">
-                            <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
-                        </div>
-                        <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
+                    ))}
 
-                        <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
-                        <div id="13959" className="col-2 user-email table-data-text">
-                        {
-                                complaint.status === 'ISSUE_RESOLVED' ?
-                                   <span className='showresolved'>Resolved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'IN_PROGRESS' ?
-                                   <span className='showinprogess'>In Progress</span> : ('')
-                            }
-                              {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                   <span className='showcomplaintrecieved'>Recieved</span> : ('')
-                            }
-                              {
-                                complaint.status === 'INVALID_ISSUE' ?
-                                   <span className='showinvalidissue'>Invalid</span> : ('')
-                            }
+                    {patientsComplaintsList.length > 0 && patientsComplaintsList.map((complaint, index) => (
+                        <div key={index} className="row user-details d-flex card-body">
+                            <div id="13952" className="col-1 d-flex index">
+                                {index + 1}
+                            </div>
+                            <div id="13952" className="col-2 d-flex">
+                                <div id="13954" className="user-name table-data-text">{moment(new Date(complaint.createdOn)).format("DD/MM/YYYY")}</div>
+                            </div>
+                            <div id="13956" className="col-2 user-mobile table-data-text">{complaint.providerName}</div>
+
+                            <div id="13958" className="col-3 user-email table-data-text">{complaint.title}</div>
+                            <div id="13959" className="col-2 user-email table-data-text">
+                                {
+                                    complaint.status === 'ISSUE_RESOLVED' ?
+                                        <span className='showresolved'>Resolved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        <span className='showinprogess'>In Progress</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        <span className='showcomplaintrecieved'>Recieved</span> : ('')
+                                }
+                                {
+                                    complaint.status === 'INVALID_ISSUE' ?
+                                        <span className='showinvalidissue'>Invalid</span> : ('')
+                                }
+                            </div>
+                            <div id="13960" className="col-2 d-flex">
+                                <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
+                                {
+                                    complaint.status === 'COMPLAINT_RECIEVED' ?
+                                        (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
+                                }
+                                {
+                                    complaint.status === 'IN_PROGRESS' ?
+                                        (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
+                                            onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
+                                }
+                            </div>
                         </div>
-                        <div id="13960" className="col-2 d-flex">
-                            <VisibilityIcon className="complaint-eyeicon" id="doctoreye" onClick={() => viewComplaintDetail(complaint)} />
-                            {
-                                complaint.status === 'COMPLAINT_RECIEVED' ?
-                                    (<button type="button" className="btn-primary initiate-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => initiatedata(complaint._id)}>Initiate</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary resolve-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "RESOLVED")}>Resolved</button>) : ('')
-                            }
-                            {
-                                complaint.status === 'IN_PROGRESS' ?
-                                    (<button type="button" className="btn-primary invalid-btn ms-2" id="doc-initiatebtn"
-                                        onClick={() => resolvedComplaint(complaint._id, "INVALID")}>Invalid</button>) : ('')
-                            }
-                        </div>
-                    </div>
-                ))}
-            </div>
+                    ))}
+                </div>
             </div>
             {isInitiateComplaintOpen ? (
                 <div className='initiateComp-popup'>
