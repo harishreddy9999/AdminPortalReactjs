@@ -1,0 +1,52 @@
+.wellness-main-screen {
+    padding: 20px !important;
+}
+
+.tabs-row {
+    display: flex;
+    border-bottom: 1px solid lightgrey;
+}
+
+.tab-heading {
+    margin: 10px;
+    cursor: pointer;
+    padding: 8px 20px !important;
+}
+
+.active {
+    background-color: white;
+    border-radius: 5px;
+
+    border-left: 2px solid brown;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    color: brown;
+
+}
+
+.programs-heading-row {
+    margin: 10px 0 !important;
+    padding: 0 20px !important;
+}
+
+.programs-table-row {
+    padding: 0 20px !important;
+}
+
+.wellness-screen-heading {
+    color: #1E293B;
+    font-size: 15px;
+    font-weight: 500;
+
+}
+
+.wellness-add-btn {
+    background-color: #9A7FF5;
+    color: #fff !important;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 100px;
+    height: 30px;
+    border: none;
+}
