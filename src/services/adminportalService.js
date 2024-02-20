@@ -473,3 +473,51 @@ export async function updateTrackerActiveStatusAPI(obj) {
         throw error;
     }
 }
+
+
+export async function addNewTrackersAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/wellness/wellnessTrackers', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('addNewTrackersAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('addNewTrackersAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('addNewTrackersAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function addNewGoalsAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/wellness/wellnessGoals', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('addNewTrackersAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('addNewTrackersAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('addNewTrackersAPI failed:', error);
+        throw error;
+    }
+}

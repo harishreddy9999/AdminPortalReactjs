@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import '../../Styles/Admin-verifications.css';
 import Modal from 'react-modal';
-import Card from '@mui/material/Card';
+// import Card from '@mui/material/Card';
 
 const PackageDetails = ({ isOpen, onClose, packageDet }) => {
 
