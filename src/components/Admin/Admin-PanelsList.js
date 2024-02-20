@@ -1,24 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import '../../Styles/Admin-PanelsList.css';
-import { getDefaultPanelsAPI } from '../../services/adminPortalPanelsService'
+import { getDefaultPanelsAPI, deleteAdminPanelAPI } from '../../services/adminPortalPanelsService'
 // import moment from 'moment';
-import CustomPagination from '../CustomComponents/CustomPagination';
+// import CustomPagination from '../CustomComponents/CustomPagination';
 import { useNavigate } from 'react-router-dom';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
+
 
 
 const PanlesList = ({ handleComponentSelect }) => {
 
     const [searchText, setSearchText] = useState('');
     const [pageNo, setpageNo] = useState(0);
-    const [pageSize, setpageSize] = useState(1);
+    const [pageSize, setpageSize] = useState(2);
     const [panelsList, setPanelsList] = useState([]);
     const [totalPanelsCount, setTotalPanelsCount] = useState(0);
+    const [rowsPerPageOptions, setrowsPerPageOptions] = useState([1, 2, 4, 5, 10, 20])
     const navigate = useNavigate();
 
     useEffect(() => {
         getDefaultPanels();
-    }, [pageNo]);
+    }, [pageNo, pageSize]);
 
     const getDefaultPanels = async () => {
         console.log("pageNo", pageNo)
@@ -30,10 +33,16 @@ const PanlesList = ({ handleComponentSelect }) => {
         }
     }
 
-    const handlePageChange = (newPage) => {
+    const handlePageChange = (event, newPage) => {
         // debugger;
-        console.log("newPage", newPage)
-        setpageNo(newPage - 1);
+        console.log("newPage", event, newPage);
+        // debugger;
+        setpageNo(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setpageSize(parseInt(event.target.value, 10));
+        setpageNo(0);
     };
 
     const search = () => {
@@ -43,58 +52,86 @@ const PanlesList = ({ handleComponentSelect }) => {
     const addPanel = () => {
         handleComponentSelect('AddNewPanel');
     }
+
+    const deletePanel = async (panelID, index) => {
+        let reqObj = {
+            panelID: panelID
+        }
+        console.log("reqObj", reqObj)
+        // return;
+        const deleteAdminPanelRes = await deleteAdminPanelAPI(reqObj);
+        console.log("deleteAdminPanelRes", deleteAdminPanelRes);
+        if (deleteAdminPanelRes) {
+            setpageSize(parseInt(2));
+            setpageNo(0);
+        }
+    }
     return (
         <div className="row">
-            <div className="main-container">
-                <div className="d-flex justify-content-between align-items-center">
-                    <label className="heading screen-heading">PANELS/PACKAGES</label>
-                    <div className="searchdiv d-flex justify-content-center" id="searchdiv">
-                        <div className="form-control d-flex justify-content-between searchInput">
-                            <input type="text" className="input_search_tag" placeholder="search Profiles" />
-                            <img className="searchicon" onClick={search} src="../images/search.svg" alt='search-panels' />
+            <div className="panellist-main-container">
+                <div className="row">
+                    <div className='col-3'>
+                        <label className="heading screen-heading">Panels/Packages</label>
+                    </div>
+                    <div className='col-6'>
+                        <div className="searchdiv d-flex justify-content-center" id="searchdiv">
+                            <div className="form-control d-flex justify-content-between searchInput">
+                                <input type="text" className="input_search_tag" placeholder="Search Profiles" />
+                                <img className="searchicon" onClick={search} src="../images/search.svg" alt='search-panels' />
+                            </div>
                         </div>
                     </div>
-                    <button className="add-panel-btn" onClick={addPanel} >+ Add Profile</button>
+                    <div className='col-3 d-flex justify-content-end'>
+                        <button className="add-panel-btn" onClick={addPanel} >+ Add Profile</button>
+                    </div>
                 </div>
-                <div className="">
-                    <div className="row table-header">
-                        <div className="col-lg-4 col-4 ">
-                            <label className=" table-header-text">PROFILE NAME</label>
-                        </div>
-                        <div className="col-lg-2 col-2 ">
-                            <label className=" table-header-text">PROFILE CODE</label>
-                        </div>
+                <div className='row'>
+                    <div className='panel-list-table'>
+                        <Paper>
+                            <TableContainer>
+                                <Table className='custom-drugs-tbl'>
+                                    <TableHead className='custom-drugs-tbl-header-row'>
+                                        <TableRow className=''>
+                                            <TableCell className='custom-drugs-tbl-header'>#</TableCell>
+                                            <TableCell className='custom-drugs-tbl-header'>Profile Name</TableCell>
+                                            <TableCell className='custom-drugs-tbl-header'>Test Name</TableCell>
+                                            <TableCell className='custom-drugs-tbl-header'>Profile Code</TableCell>
+                                            <TableCell className='custom-drugs-tbl-header'>Actions</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody className='custom-drugs-tbl-body'>
+                                        {panelsList.map((panel, index) => (
+                                            <TableRow key={index} className='custom-drugs-tbl-body-td'>
+                                                <TableCell>{index + 1}</TableCell>
+                                                <TableCell>{panel.panelName}</TableCell>
+                                                <TableCell>
+                                                    {panel.tests.map((test, testIndex) => (
+                                                        <p className='test-name' key={testIndex}>{test.testName} - {test.testShortCode}</p>
+                                                    ))}
+                                                </TableCell>
+                                                <TableCell>{panel.panelShortCode}</TableCell>
+                                                <TableCell>
+                                                    <img className='edit-panel-img' src='../images/Admin-icons/edit-panel.svg' alt='edit-panel' />
+                                                    <img onClick={() => deletePanel(panel.panelID, index)} className='edit-panel-img' src='../images/Admin-icons/delete-panel.svg' alt='delete-panel' />
+                                                </TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                            <TablePagination
+                                rowsPerPageOptions={rowsPerPageOptions}
+                                component="div"
+                                count={totalPanelsCount}
+                                rowsPerPage={pageSize}
+                                page={pageNo}
+                                onPageChange={handlePageChange}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                            />
+                        </Paper>
+                    </div>
+                </div>
 
-                        <div className="col-lg-4 col-4 ">
-                            <label className="table-header-text">TEST NAMES</label>
-                        </div>
-                        <div className="col-lg-2 col-2 ">
-                            <label className="table-header-text">ACTIONS</label>
-                        </div>
-                    </div>
-                    {panelsList.length > 0 && totalPanelsCount > 0 && panelsList.map((panel, index) => (
-                        <div key={index} className="row text-center trow card-body">
-                            <div className="col-lg-4 col-4 table-data-text">{panel.panelName}</div>
-                            <div className="col-lg-2 col-2 table-data-text">{panel.panelShortCode}</div>
-                            <div className="col-lg-4 col-4 table-data-text">
-                                {
-                                    panel.tests.length > 0 && panel.tests.map((test, testIndex) => (
-                                        <span key={testIndex}>{test.testName} - {test.testShortCode}</span>
-                                    ))}
-                            </div>
-                            <div className="col-lg-2 col-2 tab-det table-data-text">
-                                {/* <img src="./assets/images/edit.svg" alt="" (click)="editPanel(panel)" className="editImg me-2">
-                                <img src="./assets/images/delete.png" alt="" (click)="deletePanel(panel.panelID,i)" className="deleteimg"> */}
-                            </div>
-                        </div>
-                    ))}
-                    <CustomPagination
-                        totalCount={totalPanelsCount}
-                        pageSize={pageSize}
-                        page={pageNo}
-                        onPageChange={handlePageChange}
-                    />
-                </div>
             </div>
         </div>
     )

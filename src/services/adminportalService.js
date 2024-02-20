@@ -1,4 +1,4 @@
-import { adminAPIURL } from './httpHeaderInterceptor';
+import { adminAPIURL, api } from './httpHeaderInterceptor';
 
 export async function getVerificationStats() {
 
@@ -206,6 +206,126 @@ export async function createCouponAPI(obj) {
 
     } catch (error) {
         console.error('createCouponRes failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getAlltipsAPI() {
+
+
+    try {
+        const response = await adminAPIURL.get('/tips/allHealthTips');
+        const getAlltipsAPIRes = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAlltipsAPIRes request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAlltipsAPIRes successful service', getAlltipsAPIRes);
+        // debugger;
+        return getAlltipsAPIRes;
+
+    } catch (error) {
+        console.error('createCouponRes failed:', error);
+        throw error;
+    }
+}
+
+
+export async function postHealthTipAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/tips/postHealthTip', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('data request failed');
+        }
+
+
+        // Handle the response data
+        console.log('postHealthTipAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('createCouponRes failed:', error);
+        throw error;
+    }
+}
+
+
+export async function createAdminHealthTipsAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/tips/addHealthTipByAdmin', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('data request failed');
+        }
+
+
+        // Handle the response data
+        console.log('createAdminHealthTipsAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('createAdminHealthTipsAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getWellnessProgrammesAPI() {
+
+
+    try {
+        const response = await adminAPIURL.get('/wellness/getWellnessPrograms?programID=');
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getWellnessProgrammesAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getWellnessProgrammesAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('createCouponRes failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getWellnessPackagesAPI() {
+
+
+    try {
+        const response = await adminAPIURL.get('/wellness/getWellnessPackages?programID=');
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getWellnessPackagesAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getWellnessPackagesAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getWellnessPackagesAPI failed:', error);
         throw error;
     }
 }

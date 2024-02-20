@@ -94,3 +94,26 @@ export async function getAllCustomDrugsAPI(page, size, text) {
         throw error;
     }
 }
+
+export async function deleteAdminPanelAPI(obj) {
+
+
+    try {
+        const response = await labAPIURL.post('/admin/deletePanel', obj);
+        const deleteAdminPanelRes = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('deleteAdminPanelRes request failed');
+        }
+
+
+        // Handle the response data
+        // console.log('getDefaultPanelsRes successful service', getDefaultPanelsRes);
+        // debugger;
+        return deleteAdminPanelRes;
+
+    } catch (error) {
+        console.error('deleteAdminPanelRes failed:', error);
+        throw error;
+    }
+}
