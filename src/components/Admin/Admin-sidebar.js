@@ -32,7 +32,7 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
 
                 <li className="menuRow col-lg-12" id="menu-profile">
                     <Link className="d-block fs1  tduh text-nowrap verfications"
-                        id="a-verify" to="/admin-dashboard/Verifications" onClick={() => handleLinkClick('Verifications')}>
+                        id="a-verify" to="/admin-dashboard/NewVerifications" onClick={() => handleLinkClick('Verifications')}>
                         <span className="changepassword">
                             <img id="1501346" src="../images/Admin-sidebar-icons/verifications-icon.svg"
                                 className="iconsizeactive" alt='verification' />
@@ -48,7 +48,7 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
                 </li>
                 <li className="menuRow col-lg-12" id="menu-profile" >
                     <Link className="d-block fs1  tduh text-nowrap complaints"
-                        id="a-verify" to="/admin-dashboard/Complaints" onClick={() => handleLinkClick('Complaints')}>
+                        id="a-verify" to="/admin-dashboard/NewComplaints" onClick={() => handleLinkClick('NewComplaints')}>
                         <span className="changepassword"> <img id="1501347" src="../images/Admin-sidebar-icons/complaints-icon.svg"
                             className="iconsize" alt='complaints' /></span>
                         {
