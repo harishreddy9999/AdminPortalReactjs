@@ -40,7 +40,8 @@
 
 }
 
-.wellness-add-btn {
+.wellness-add-btn,
+.view-package-btn {
     background-color: #9A7FF5;
     color: #fff !important;
     border-radius: 5px;

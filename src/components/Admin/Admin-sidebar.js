@@ -109,21 +109,7 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
 
                 </li>
 
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className="d-block fs1  tduh text-nowrap complaints"
-                        id="a-verify" to="/admin-dashboard/Healthtips" onClick={() => handleLinkClick('Healthtips')}>
-                        <span className="changepassword"> <img id="150Healthtips" src="../images/Admin-sidebar-icons/healthtip.svg"
-                            className="iconsize" alt='Tips' /></span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl" className="sidebartext">Health Tips</span>
-                            ) : (
-                                <span className="ctooltip" id="s-tTipsverify">Health Tips</span>
-                            )
-                        }
-                    </Link>
 
-                </li>
                 <li className="menuRow col-lg-12" id="menu-profile" >
                     <Link className="d-block fs1  tduh text-nowrap complaints"
                         id="a-wellness" to="/admin-dashboard/Wellness" onClick={() => handleLinkClick('Wellness')}>
@@ -140,6 +126,36 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
 
                 </li>
 
+                <li className="menuRow col-lg-12" id="menu-profile" >
+                    <Link className="d-block fs1  tduh text-nowrap complaints"
+                        id="a-wellness-goals" to="/admin-dashboard/WellnessGoals" onClick={() => handleLinkClick('WellnessGoals')}>
+                        <span className="changepassword"> <img id="150Wellness-goals" src="../images/Admin-sidebar-icons/verifications-icon.svg"
+                            className="iconsize" alt='Wellness-goals' /></span>
+                        {
+                            tooltipv ? (
+                                <span id="span-lbl-Wellness-goals" className="sidebartext">Wellness Goals</span>
+                            ) : (
+                                <span className="ctooltip" id="s-Wellness-goals">Wellness Goals</span>
+                            )
+                        }
+                    </Link>
+
+                </li>
+                <li className="menuRow col-lg-12" id="menu-profile" >
+                    <Link className="d-block fs1  tduh text-nowrap complaints"
+                        id="a-verify" to="/admin-dashboard/Healthtips" onClick={() => handleLinkClick('Healthtips')}>
+                        <span className="changepassword"> <img id="150Healthtips" src="../images/Admin-sidebar-icons/healthtip.svg"
+                            className="iconsize" alt='Tips' /></span>
+                        {
+                            tooltipv ? (
+                                <span id="span-lbl" className="sidebartext">Health Tips</span>
+                            ) : (
+                                <span className="ctooltip" id="s-tTipsverify">Health Tips</span>
+                            )
+                        }
+                    </Link>
+
+                </li>
 
             </ul>
 

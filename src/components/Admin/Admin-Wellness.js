@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import '../../Styles/Admin-wellness.css';
-import { getWellnessProgrammesAPI, getWellnessPackagesAPI } from '../../services/adminportalService';
+import { getWellnessProgrammesAPI, getWellnessPackagesAPI, updateProgramActiveStatusAPI, updatePackageActiveStatusAPI } from '../../services/adminportalService';
 import moment from 'moment';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import Switch from '@material-ui/core/Switch';
+import PackageDetails from './Admin-PackageDetails';
 
 const Wellness = () => {
 
     const [selectedTab, setSelectedTab] = useState('PRO');
     const [programmesList, setProgrammesList] = useState([]);
     const [packagesList, setPackagesList] = useState([]);
+    const [selectedPackage, setSelectedPackage] = useState(null);
+    const [isPackagerDetailsOpen, setIsDPackageDetailsOpen] = useState(false);
+
     useEffect(() => {
         getWellnessProgrammes();
         getWellnessPackages();
@@ -30,6 +35,43 @@ const Wellness = () => {
         console.log(value);
         setSelectedTab(value)
 
+    }
+    const handleToggle = async (event, index, program) => {
+        console.log(event.target, index);
+        let reqObj = {
+            programID: program._id,
+            status: event.target.checked
+        };
+        console.log("reqObj", reqObj);
+        const updateProgramActiveStatusRes = await updateProgramActiveStatusAPI(reqObj);
+        console.log("updateProgramActiveStatusRes", updateProgramActiveStatusRes)
+        if (updateProgramActiveStatusRes) {
+            getWellnessProgrammes();
+        }
+    }
+
+    const isActivechange = async (event, index, program) => {
+        console.log(event.target, index);
+        let reqObj = {
+            programID: program._id,
+            status: event.target.checked
+        };
+        console.log("reqObj", reqObj);
+        const updatePackageActiveStatusRes = await updatePackageActiveStatusAPI(reqObj);
+        console.log("updatePackageActiveStatusRes", updatePackageActiveStatusRes)
+        if (updatePackageActiveStatusRes) {
+            getWellnessPackages();
+        }
+    }
+    const viewPackage = (value) => {
+        console.log(value);
+        setSelectedPackage(value);
+        setIsDPackageDetailsOpen(true);
+    }
+
+    const closeAllModals = () => {
+        setSelectedPackage(null);
+        setIsDPackageDetailsOpen(false);
     }
     return (
         <div className='wellness-main-screen'>
@@ -82,7 +124,14 @@ const Wellness = () => {
                                                         )}
                                                     </TableCell>
                                                     <TableCell>{moment(new Date(row.createdOn)).format("DD-MM-YYYY")}</TableCell>
-                                                    <TableCell></TableCell>
+                                                    <TableCell>
+                                                        <Switch
+                                                            checked={row.status} // Assuming `enabled` is a boolean field in your data
+                                                            onChange={(event) => handleToggle(event, index, row)} // Adjust your handleToggle function accordingly
+                                                            name={`toggle-${index}`}
+                                                            color="primary"
+                                                        />
+                                                    </TableCell>
                                                 </TableRow>
                                             ))}
                                         </TableBody>
@@ -129,7 +178,15 @@ const Wellness = () => {
                                                     </TableCell>
                                                     <TableCell>{row.actualPrice}</TableCell>
                                                     <TableCell>{row.finalPrice}</TableCell>
-                                                    <TableCell></TableCell>
+                                                    <TableCell>
+                                                        <Switch
+                                                            checked={row.status} // Assuming `enabled` is a boolean field in your data
+                                                            onChange={(event) => isActivechange(event, index, row)} // Adjust your handleToggle function accordingly
+                                                            name={`toggle-${index}`}
+                                                            color="primary"
+                                                        />
+                                                        <button className='view-package-btn' onClick={() => viewPackage(row)}>View</button>
+                                                    </TableCell>
                                                 </TableRow>
                                             ))}
                                         </TableBody>
@@ -142,6 +199,9 @@ const Wellness = () => {
                     </div>
                 )}
             </div>
+            {
+                selectedPackage ? (<PackageDetails isOpen={isPackagerDetailsOpen} onClose={closeAllModals} packageDet={selectedPackage} />) : ''
+            }
         </div>
 
     )
