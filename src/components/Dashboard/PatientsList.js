@@ -4,13 +4,15 @@ import { searchMyPatientsAPI, calculateAge } from '../../services/userPatientsSr
 import moment from 'moment';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { updatePatientsPage, updatePatientsRowsPerPage, updatePatientsSearchText } from '../../Actions/patientsListActions';
 
-const PatientsList = () => {
+const PatientsList = ({ page, rowsPerPage, searchText, updatePatientsPage, updatePatientsRowsPerPage, updatePatientsSearchText }) => {
 
     const navigate = useNavigate();
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(50);
-    const [searchText, setSearchText] = useState('');
+    // const [page, setPage] = useState(0);
+    // const [rowsPerPage, setRowsPerPage] = useState(50);
+    // const [searchText, setSearchText] = useState('');
     const [patientsList, setPatientsList] = useState([]);
     const [totalPatientsCount, setTotalPatientsCount] = useState(0);
     const [rowsPerPageOptions, setrowsPerPageOptions] = useState([5, 10, 20, 25, 50]);
@@ -21,21 +23,33 @@ const PatientsList = () => {
     const searchMyPatients = async () => {
         const res = await searchMyPatientsAPI(searchText, page, rowsPerPage);
         console.log(res);
-        res.patientList.forEach(element => {
-            element.age = calculateAge(element.patientDetails.demographicInfo.dOB)
+        // debugger;
+        res.patientList.forEach((element, index) => {
+            // console.log(index, element.appointmentDetails[0].date)
+            element.age = calculateAge(element.patientDetails.demographicInfo.dOB);
+            if (element.appointmentDetails.length > 0) {
+                element.appointmentDate = moment(new Date(element.appointmentDetails[0].date)).format("DD-MM-YYYY");
+            } else {
+                element.appointmentDate = "";
+            }
+
         });
         setPatientsList(res.patientList);
         setTotalPatientsCount(res.totalCount);
     }
 
     const handleChangePage = (event, newPage) => {
-        setPage(newPage);
+        // setPage(newPage);
+        updatePatientsPage(newPage);
     };
 
     const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-        setSearchText('');
+        // setRowsPerPage(parseInt(event.target.value, 10));
+        // setPage(0);
+        // setSearchText('');
+        updatePatientsRowsPerPage(parseInt(event.target.value, 10));
+        updatePatientsPage(0);
+        // updatePatientsSearchText('');
     };
 
     const getPatientDetails = (patient) => {
@@ -80,7 +94,7 @@ const PatientsList = () => {
                                                     patient.patientDetails.demographicInfo.lastName}</TableCell>
                                             </div>
                                             <div class="col-lg-2 col-md-2 col-sm-2 justify-content-center table-header-text row" id="table-date">
-                                                <TableCell>{moment(new Date(patient.appointmentDetails[0].date)).format("DD-MM-YYYY")}</TableCell>
+                                                <TableCell>{patient.appointmentDate}</TableCell>
                                             </div>
                                             <div class="col-lg-2 col-md-2 col-sm-2 table-header-text row" id="table-gender">
                                                 <TableCell>{patient.patientDetails.demographicInfo.gender}</TableCell>
@@ -114,4 +128,17 @@ const PatientsList = () => {
     )
 }
 
-export default PatientsList;
+// export default PatientsList;
+const mapStateToProps = (state) => ({
+    page: state.patients.page,
+    rowsPerPage: state.patients.rowsPerPage,
+    searchText: state.patients.searchText
+});
+
+const mapDispatchToProps = {
+    updatePatientsPage,
+    updatePatientsRowsPerPage,
+    updatePatientsSearchText
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PatientsList);

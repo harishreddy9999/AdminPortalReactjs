@@ -1,0 +1,55 @@
+.screening-mainPage {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+}
+
+.screening-sidebar {
+    width: 160px;
+    padding: 0px !important;
+}
+
+.screening-maincontent {
+    width: calc(100% - 160px);
+}
+
+.screening-tabs-row {
+    border-right: 2px solid #CFCFCF;
+    padding: 4px 0 20px 5px !important;
+    width: 160px;
+    height: calc(100vh - 128px);
+    overflow-y: auto;
+}
+
+
+.screening-tab-list {
+    padding: 10px 5px;
+    cursor: pointer;
+}
+
+.activeTab {
+
+    background: #F8E7E8 0% 0% no-repeat padding-box;
+
+    opacity: 1;
+    border-radius: 16px 0px 0px 16px !important;
+
+
+}
+
+.activeTab .screening-tab-text {
+    color: #0AAEBD;
+}
+
+.screening-tab-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.screening-tab-text {
+    font-size: 12px;
+    letter-spacing: 0px;
+    color: #979393;
+    opacity: 1;
+    margin-left: 6px;
+}

@@ -11,6 +11,8 @@ import PackagesList from './Packages';
 import { Outlet } from 'react-router-dom';
 import PatientsList from './PatientsList';
 import PatientDetails from './PatientDetails';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Dashboard() {
 
@@ -71,7 +73,7 @@ function Dashboard() {
                 </div>
 
             </div>
-        
+            <ToastContainer limit={1} />
         </div>
     );
 }

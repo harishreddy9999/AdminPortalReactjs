@@ -5,6 +5,8 @@ import AdminCoupons from './Admin-Coupons';
 import PanlesList from './Admin-PanelsList';
 import CreatePanel from './Admin-CreatePanel';
 import CustomDrugs from './Admin-CustomDrugs';
+import HealthTips from './Admin-Healthtips.js';
+import Wellness from './Admin-Wellness.js';
 
 
 export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
@@ -29,6 +31,12 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
             break;
         case 'CustomDrugs':
             componentToRender = <CustomDrugs />;
+            break;
+        case 'Healthtips':
+            componentToRender = <HealthTips />;
+            break;
+        case 'Wellness':
+            componentToRender = <Wellness />;
             break;
 
         default:

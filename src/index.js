@@ -4,12 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Modal from 'react-modal';
+import { Provider } from 'react-redux';
+import store from './Store/store';
+// import { LoaderProvider } from '../src/services/LoaderContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 Modal.setAppElement('#root');
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

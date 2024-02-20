@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { login } from '../services/authService';
 import { useNavigate } from 'react-router-dom';
 import styles from '../Styles/User/UserLogin.module.css';
-
-
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LoginForm() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+    // const { isLoading, showLoader, hideLoader } = useLoader();
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsLoading(true);
 
         try {
             // Call the login service function
@@ -22,23 +23,37 @@ function LoginForm() {
                 role: "DOCTOR",
                 password: password,
                 deviceToken: ""
-            }
+            };
+            setIsLoading(true);
             const response = await login(reqobj);
             if (response.errors === "") {
                 // debugger;
+                setIsLoading(false);
                 sessionStorage.setItem("LoginResponse", JSON.stringify(response));
                 sessionStorage.setItem('providerID', response.user._id);
+                // debugger;
+                sessionStorage.setItem('firstName', response.user.firstName);
+                sessionStorage.setItem('lastName', response.user.lastName);
+                sessionStorage.setItem("Gender", response.user.gender);
+                sessionStorage.setItem('specilization', JSON.stringify(response.user.specialization));
+                sessionStorage.setItem("Gender", response.user.gender);
+                sessionStorage.setItem("userID", response.user._id);
                 console.log('Login successful component', response);
                 navigate('/user-dashboard/home');
+            } else {
+                // debugger;
+                toast.error(response.errors);
+                setIsLoading(false);
             }
         } catch (error) {
+            setIsLoading(false);
             console.error('Login failed:', error);
         }
 
-        setIsLoading(false);
     };
 
     return (
+
         <div id="12218" className="container-fluid">
             <div id="12219" className="row">
                 <div id="12220" className="col-lg-5 col-md-6 col-sm-5  col-12 px-0">
@@ -109,6 +124,15 @@ function LoginForm() {
                     </div>
                 </div>
             </div>
+
+            {isLoading && (
+                <div className='loader-container'>
+                    <div className="loader-overlay">
+                        <img src='../images/provider_isometric.png' alt="Loading..." className="loader-img" />
+                    </div>
+                </div>
+            )}
+            <ToastContainer />
         </div>
     );
 }

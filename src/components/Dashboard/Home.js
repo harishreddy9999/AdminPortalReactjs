@@ -8,9 +8,12 @@ import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CancelDialog from './CancelAptDialog';
 import BookAppointmentComponent from './BookAppointment';
-// import { ThemeContext } from '@mui/system';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 function Home() {
+
+    const navigate = useNavigate();
     const [doctorClinicList, setDoctorClinicList] = useState([]);
     const [selectedClinic, setSelectedClinic] = useState('');
     const [appointments, setAppointments] = useState([]);
@@ -20,6 +23,7 @@ function Home() {
     const [cancelDialogOpen, setCancelDialogOpen] = useState(false);
     const [cancelingAppointment, setCancelingAppointment] = useState(null);
     const [isBookAppointment, setIsBookAppointment] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     // const handlePackagesListClick = () => {
     //     // debugger;
@@ -27,37 +31,45 @@ function Home() {
     // };
     useEffect(() => {
 
+        // debugger;
 
-        const fetchDoctorProfile = async () => {
-            try {
-                const response = await getDoctorProfile();
-                console.log("home component", response);
-                const clinicInformation = response.doctor[0].clinicInformation;
-                for (let i = 0; i < clinicInformation.length; i++) {
-                    if (!clinicInformation[i].subscriptionStatus) {
-                        clinicInformation.splice(i, 1);
-                        i--; // Decrement i to account for the removed element
-                    }
-                }
-                setDoctorClinicList(clinicInformation);
-                if (clinicInformation.length > 0) {
-
-                    const clinicRegNo = clinicInformation[0].regNo;
-                    setSelectedClinic(clinicRegNo);
-                    const today = new Date();
-                    const formattedDate = today.toISOString().split('T')[0];
-                    setSelectedDate(formattedDate);
-                    fetchAppointments(clinicRegNo, formattedDate);
-                }
-            } catch (error) {
-                console.error('Error fetching doctor profile:', error);
-            }
-        };
-
+        // console.log("useContext", context);
         fetchDoctorProfile();
     }, []);
+
+    const fetchDoctorProfile = async () => {
+        try {
+            setIsLoading(true);
+            const response = await getDoctorProfile();
+            console.log("home component", response);
+            const clinicInformation = response.doctor[0].clinicInformation;
+            setIsLoading(false);
+            // toast.success('doctor profile fetched');
+            // toast.error('error toast', 'error');
+            for (let i = 0; i < clinicInformation.length; i++) {
+                if (!clinicInformation[i].subscriptionStatus) {
+                    clinicInformation.splice(i, 1);
+                    i--; // Decrement i to account for the removed element
+                }
+            }
+
+            setDoctorClinicList(clinicInformation);
+            if (clinicInformation.length > 0) {
+
+                const clinicRegNo = clinicInformation[0].regNo;
+                setSelectedClinic(clinicRegNo);
+                const today = new Date();
+                const formattedDate = today.toISOString().split('T')[0];
+                setSelectedDate(formattedDate);
+                fetchAppointments(clinicRegNo, formattedDate);
+            }
+        } catch (error) {
+            console.error('Error fetching doctor profile:', error);
+        }
+    };
     const fetchAppointments = async (clinicRegNo, currentDate) => {
         try {
+            setIsLoading(true);
             const aptsByDate = await getAppointmentsByClinicAndDate(clinicRegNo, currentDate);
             aptsByDate.forEach(el => {
                 var formattedDate = moment(
@@ -66,9 +78,23 @@ function Home() {
                 el.patientAge = moment().diff(formattedDate, 'years', false);
                 el.vistType = el.appointmentType.includes('FOLLOWUP') ? 'FOLLOWUP' : 'NEW'
             })
+            setIsLoading(false);
+            // toast.success('appointments fetched');
+            // toast.info(
+            //     <div>
+            //         <p>What is your answer?</p>
+            //         <button >Option 1</button>
+            //         <button >Option 2</button>
+            //     </div>,
+            //     {
+            //         autoClose: false, // Do not auto close
+            //         closeOnClick: false, // Do not close on click
+            //     }
+            // );
             console.log("aptsByDate", aptsByDate);
             setAppointments(aptsByDate);
         } catch (error) {
+            toast.error('Error fetching appointments')
             console.error('Error fetching appointments:', error);
         }
     };
@@ -146,9 +172,18 @@ function Home() {
         setIsBookAppointment(false);
     };
 
+    const startVisit = (appointmentDetails) => {
+        sessionStorage.setItem('AppointmentID', appointmentDetails.appointmentID);
+        sessionStorage.setItem('appoinmentType', appointmentDetails.appointmentType);
+        sessionStorage.setItem("PATIENTID", appointmentDetails.patient);
+        navigate('/screening');
+        // debugger;
+        // this.router.navigate(['/screening']);
+    }
 
     return (
         <div className='container'>
+
             {/* <h2>Home</h2>
             <p>Welcome to the Home page!</p> */}
             {doctorClinicList.length > 0 && (
@@ -248,6 +283,7 @@ function Home() {
                                     </div>
                                 </div>
                                 <div className="col-lg-1 col-md-1 card-text d-flex align-items-center" id="action">
+                                    <button className='start-visit-btn' onClick={() => startVisit(appointment)}>Start Visit</button>
                                     <IconButton
                                         aria-controls={`simple-menu-${index}`}
                                         aria-haspopup="true"
@@ -288,6 +324,16 @@ function Home() {
             {isBookAppointment ? <BookAppointmentComponent
                 open={isBookAppointment}
                 onCancel={closeBookAppointmentDialog} /> : <div />}
+
+            {isLoading && (
+                <div className='loader-container'>
+                    <div className="loader-overlay">
+                        <img src='../images/provider_isometric.png' alt="Loading..." className="loader-img" />
+                    </div>
+                </div>
+            )}
+
+
 
         </div>
     );
