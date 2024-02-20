@@ -67,19 +67,19 @@ const PatientsList = ({ page, rowsPerPage, searchText, updatePatientsPage, updat
                             <TableHead>
                                 <TableRow className='table-header user-heading'>
                                     <div className='row'>
-                                        <div class="col-lg-3 col-md-3 col-sm-3 table-header-text" id="table-patients">
+                                        <div className="col-lg-3 col-md-3 col-sm-3 table-header-text" id="table-patients">
                                             <TableCell>PATIENTS</TableCell>
                                         </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-2 justify-content-center table-header-text row" id="table-date">
+                                        <div className="col-lg-2 col-md-2 col-sm-2 justify-content-center table-header-text row" id="table-date">
                                             <TableCell>LAST APPOINTMENT</TableCell>
                                         </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-2 table-header-text row" id="table-gender">
+                                        <div className="col-lg-2 col-md-2 col-sm-2 table-header-text row" id="table-gender">
                                             <TableCell>GENDER</TableCell>
                                         </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-2 table-header-text p-0" id="table-age">
+                                        <div className="col-lg-2 col-md-2 col-sm-2 table-header-text p-0" id="table-age">
                                             <TableCell>AGE</TableCell>
                                         </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-3 table-header-text p-0" id="table-chiefcomplaint">
+                                        <div className="col-lg-3 col-md-3 col-sm-3 table-header-text p-0" id="table-chiefcomplaint">
                                             <TableCell>MOBILE NUMBER</TableCell>
                                         </div>
                                     </div>
@@ -89,20 +89,20 @@ const PatientsList = ({ page, rowsPerPage, searchText, updatePatientsPage, updat
                                 {patientsList.map((patient, index) => (
                                     <TableRow key={index} >
                                         <div className='d-flex w-100' onClick={() => getPatientDetails(patient)}>
-                                            <div class="col-lg-3 col-md-3 col-sm-3 table-header-text" id="table-patients">
+                                            <div className="col-lg-3 col-md-3 col-sm-3 table-header-text" id="table-patients">
                                                 <TableCell>{patient.patientDetails.demographicInfo.firstName + ' ' +
                                                     patient.patientDetails.demographicInfo.lastName}</TableCell>
                                             </div>
-                                            <div class="col-lg-2 col-md-2 col-sm-2 justify-content-center table-header-text row" id="table-date">
+                                            <div className="col-lg-2 col-md-2 col-sm-2 justify-content-center table-header-text row" id="table-date">
                                                 <TableCell>{patient.appointmentDate}</TableCell>
                                             </div>
-                                            <div class="col-lg-2 col-md-2 col-sm-2 table-header-text row" id="table-gender">
+                                            <div className="col-lg-2 col-md-2 col-sm-2 table-header-text row" id="table-gender">
                                                 <TableCell>{patient.patientDetails.demographicInfo.gender}</TableCell>
                                             </div>
-                                            <div class="col-lg-2 col-md-2 col-sm-2 table-header-text p-0" id="table-age">
+                                            <div className="col-lg-2 col-md-2 col-sm-2 table-header-text p-0" id="table-age">
                                                 <TableCell>{patient.age}</TableCell>
                                             </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-3 table-header-text p-0" id="table-chiefcomplaint">
+                                            <div className="col-lg-3 col-md-3 col-sm-3 table-header-text p-0" id="table-chiefcomplaint">
                                                 <TableCell>{patient.patientDetails.phoneNumber ? patient.patientDetails.phoneNumber : '-'}</TableCell>
                                             </div>
 

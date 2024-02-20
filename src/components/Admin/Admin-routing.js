@@ -7,6 +7,7 @@ import CreatePanel from './Admin-CreatePanel';
 import CustomDrugs from './Admin-CustomDrugs';
 import HealthTips from './Admin-Healthtips.js';
 import Wellness from './Admin-Wellness.js';
+import WellnessGoals from './Admin-WellnessGoals.js';
 
 
 export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
@@ -37,6 +38,9 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
             break;
         case 'Wellness':
             componentToRender = <Wellness />;
+            break;
+        case 'WellnessGoals':
+            componentToRender = <WellnessGoals />;
             break;
 
         default:

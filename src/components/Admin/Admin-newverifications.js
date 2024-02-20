@@ -114,42 +114,42 @@ function NewVerifications() {
     }, []);
     return (
         <div id="15818" className="row matop">
-               <div className='row '>
+            <div className='row '>
                 {/* <Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary">
                     <Tab label="Doctor" />
                     <Tab label="Clinic" />
                     <Tab label="Laboratory" />
                     <Tab label="Pharmacy" />
                 </Tabs> */}
-                <Tabs value={value} onChange={handleChange} class="Tabs" >
-                    <Tab className={value === 0 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 0 ? "../images/line.png" : ""}   /> <img id="doctorImg" className="tabimg" src={value === 0 ? "../images/activemedical.svg" : "../images/medical.png"}  alt='Doctor' /> 
-                    <span className={value === 0 ? "selected-text" : "tabtext"}>Doctor</span></span>} />
-                    <Tab className={value === 1 ? "selected-tab" : "tab"}label={<span><img id="doctorImg" className="lineimg" src={value === 1 ? "../images/line.png" : ""}   /><img id="clinicImg" className="tabimg" src={value === 1 ? "../images/activehospital.png" : "../images/hospital.png"} alt='Clinic' />
-                    <span className={value === 1 ? "selected-text" : "tabtext"}>Clinic</span></span>} />
-                    <Tab className={value === 2 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 2 ? "../images/line.png" : ""}   /><img id="labImg" className="tabimg" src={value === 2 ? "../images/activelab.png" : "../images/lab.png"} alt='Laboratory' />
-                    <span className={value === 2 ? "selected-text" : "tabtext"}>Laboratory</span></span>} />
-                    <Tab className={value === 3 ? "selected-tab" : "tab"}label={<span><img id="doctorImg" className="lineimg" src={value === 3 ? "../images/line.png" : ""}   /><img id="pharmacyImg" className="tabimg" src={value === 3 ? "../images/activepharmacy.png" : "../images/pharmacy.png"}  alt='Pharmacy' />
-                    <span className={value === 3 ? "selected-text" : "tabtext"}>Pharmacy</span></span>} />
+                <Tabs value={value} onChange={handleChange} className="Tabs" >
+                    <Tab className={value === 0 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 0 ? "../images/line.png" : ""} /> <img id="doctorImg" className="tabimg" src={value === 0 ? "../images/activemedical.svg" : "../images/medical.png"} alt='Doctor' />
+                        <span className={value === 0 ? "selected-text" : "tabtext"}>Doctor</span></span>} />
+                    <Tab className={value === 1 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 1 ? "../images/line.png" : ""} /><img id="clinicImg" className="tabimg" src={value === 1 ? "../images/activehospital.png" : "../images/hospital.png"} alt='Clinic' />
+                        <span className={value === 1 ? "selected-text" : "tabtext"}>Clinic</span></span>} />
+                    <Tab className={value === 2 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 2 ? "../images/line.png" : ""} /><img id="labImg" className="tabimg" src={value === 2 ? "../images/activelab.png" : "../images/lab.png"} alt='Laboratory' />
+                        <span className={value === 2 ? "selected-text" : "tabtext"}>Laboratory</span></span>} />
+                    <Tab className={value === 3 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 3 ? "../images/line.png" : ""} /><img id="pharmacyImg" className="tabimg" src={value === 3 ? "../images/activepharmacy.png" : "../images/pharmacy.png"} alt='Pharmacy' />
+                        <span className={value === 3 ? "selected-text" : "tabtext"}>Pharmacy</span></span>} />
                 </Tabs>
-                </div>
+            </div>
             <div className='row'>
-            <div id="15855" className="col-lg-3 col-md-3 col-6">
-                <Card className="cards" id="m-card">
+                <div id="15855" className="col-lg-3 col-md-3 col-6">
+                    <Card className="cards" id="m-card">
                         <div id="15820" className="d-flex">
                             <div id="15821" className="flex-grow-1">
                                 <div>
-                                {value === 0 &&  <h5 id="h-vcount">{totalDoctorsCount}</h5>}
-                                {value === 1 &&  <h5 id="h-vcount">{totalClinicProfilesCount}</h5>}
-                                {value === 2 &&  <h5 id="h-vcount">{totalLabProfilesCount}</h5>}
-                                {value === 3 &&  <h5 id="h-vcount">{totalPharmacyCount}</h5>}
+                                    {value === 0 && <h5 id="h-vcount">{totalDoctorsCount}</h5>}
+                                    {value === 1 && <h5 id="h-vcount">{totalClinicProfilesCount}</h5>}
+                                    {value === 2 && <h5 id="h-vcount">{totalLabProfilesCount}</h5>}
+                                    {value === 3 && <h5 id="h-vcount">{totalPharmacyCount}</h5>}
                                     <div id="15823" className='totaltext'>Total</div>
                                 </div>
                             </div>
                             <div>
-                           <span>
-                            <img id="1501346" src="../images/podium.png"
-                                className="iconbackground" alt='podium' />
-                            </span>
+                                <span>
+                                    <img id="1501346" src="../images/podium.png"
+                                        className="iconbackground" alt='podium' />
+                                </span>
                             </div>
                         </div>
                     </Card>
@@ -159,177 +159,177 @@ function NewVerifications() {
                         <div id="15820" className="d-flex">
                             <div id="15821" className="flex-grow-1">
                                 <div>
-                                {value === 0 &&  <h5 id="h-vcount">{verifiedDoctorsCount}</h5>}
-                                {value === 1 &&  <h5 id="h-vcount">{verifiedClinicsCount}</h5>}
-                                {value === 2 &&  <h5 id="h-vcount">{verifiedLabProfilesCount}</h5>}
-                                {value === 3 &&  <h5 id="h-vcount">{verifiedPharmacyProfiles}</h5>}
+                                    {value === 0 && <h5 id="h-vcount">{verifiedDoctorsCount}</h5>}
+                                    {value === 1 && <h5 id="h-vcount">{verifiedClinicsCount}</h5>}
+                                    {value === 2 && <h5 id="h-vcount">{verifiedLabProfilesCount}</h5>}
+                                    {value === 3 && <h5 id="h-vcount">{verifiedPharmacyProfiles}</h5>}
                                     <div id="15823" className='verifiedtext'>Verified </div>
                                 </div>
                             </div>
                             <div>
-                            <span>
-                            <img id="1501346" src="../images/verify.png"
-                                className="vereifyiconbackground" alt='verification' />
-                            </span>
+                                <span>
+                                    <img id="1501346" src="../images/verify.png"
+                                        className="vereifyiconbackground" alt='verification' />
+                                </span>
                             </div>
                         </div>
                     </Card>
-                    
+
                 </div>
                 <div id="15831" className="col-lg-3 col-md-3 col-6">
-                <Card className="cards" id="m-card">
+                    <Card className="cards" id="m-card">
                         <div id="15820" className="d-flex">
                             <div id="15821" className="flex-grow-1">
                                 <div>
-                                {value === 0 &&  <h5 id="h-vcount">{unVerifiefDoctorsCount}</h5>}
-                                {value === 1 &&  <h5 id="h-vcount">{unVerifiedClinicsCount}</h5>}
-                                {value === 2 &&  <h5 id="h-vcount">{unVerifiedLabProfilesCount}</h5>}
-                                {value === 3 &&  <h5 id="h-vcount">0</h5>}
+                                    {value === 0 && <h5 id="h-vcount">{unVerifiefDoctorsCount}</h5>}
+                                    {value === 1 && <h5 id="h-vcount">{unVerifiedClinicsCount}</h5>}
+                                    {value === 2 && <h5 id="h-vcount">{unVerifiedLabProfilesCount}</h5>}
+                                    {value === 3 && <h5 id="h-vcount">0</h5>}
                                     <div id="15823" className='unverifiedtext'>Unverified</div>
                                 </div>
                             </div>
                             <div>
-                            <span>
-                            <img id="1501346" src="../images/reject.png"
-                                className="rejecticonbackground" alt='reject' />
-                            </span>
+                                <span>
+                                    <img id="1501346" src="../images/reject.png"
+                                        className="rejecticonbackground" alt='reject' />
+                                </span>
                             </div>
                         </div>
                     </Card>
                 </div>
                 <div id="15843" className="col-lg-3 col-md-3 col-6">
-                <Card className="cards" id="m-card">
+                    <Card className="cards" id="m-card">
                         <div id="15820" className="d-flex">
                             <div id="15821" className="flex-grow-1">
                                 <div>
-                                {value === 0 &&  <h5 id="h-vcount">{rejectedDoctorsCount}</h5>}
-                                {value === 1 &&  <h5 id="h-vcount">{rejectedClinicsCount}</h5>}
-                                {value === 2 &&  <h5 id="h-vcount">{rejectedLabProfilesCount}</h5>}
-                                {value === 3 &&  <h5 id="h-vcount">0</h5>}
+                                    {value === 0 && <h5 id="h-vcount">{rejectedDoctorsCount}</h5>}
+                                    {value === 1 && <h5 id="h-vcount">{rejectedClinicsCount}</h5>}
+                                    {value === 2 && <h5 id="h-vcount">{rejectedLabProfilesCount}</h5>}
+                                    {value === 3 && <h5 id="h-vcount">0</h5>}
                                     <div id="15823" className='rejectedtext'>Rejected</div>
                                 </div>
                             </div>
                             <div>
-                            <span>
-                            <img id="1501346" src="../images/rejected.png"
-                                className="rejectediconbackground" alt='rejected' />
-                            </span>
+                                <span>
+                                    <img id="1501346" src="../images/rejected.png"
+                                        className="rejectediconbackground" alt='rejected' />
+                                </span>
                             </div>
                         </div>
                     </Card>
                 </div>
-             
+
             </div>
-            <div class="maingriddetails">
-            <div>
-            {value === 0 &&  <h4 id="h-vcount">Pending Doctor Profiles</h4>}
-            {value === 1 &&  <h4 id="h-vcount">Pending Clinic Profiles</h4>}
-            {value === 2 &&  <h4 id="h-vcount">Pending Laboratory Profiles</h4>}
-            {value === 3 &&  <h4 id="h-vcount">Pending Pharmacy Profiles</h4>}
+            <div className="maingriddetails">
+                <div>
+                    {value === 0 && <h4 id="h-vcount">Pending Doctor Profiles</h4>}
+                    {value === 1 && <h4 id="h-vcount">Pending Clinic Profiles</h4>}
+                    {value === 2 && <h4 id="h-vcount">Pending Laboratory Profiles</h4>}
+                    {value === 3 && <h4 id="h-vcount">Pending Pharmacy Profiles</h4>}
+                </div>
+
+
+                <div className='row stats-card gridview'>
+                    {value === 0 && (
+                        <div id="13941" className="row table-header user-headings d-flex">
+                            <div id="13942" className="col-2 heading-label table-header-text">Doctor Name</div>
+                            <div id="13943" className="col-2 heading-id-label table-header-text">Specialization</div>
+                            <div id="13944" className="col-2 heading-label table-header-text">MOBILE</div>
+                            <div id="13945" className="col-2 heading-label table-header-text">Experience</div>
+                            <div id="13946" className="col-2 heading-label table-header-text">City</div>
+                            <div id="13948" className="col-2 heading-actions table-header-text">Actions</div>
+                        </div>
+                    )}
+
+                    {value === 0 && doctorsUnverifiedList.map((doctor, index) => (
+                        <div key={index} className="row user-detailss d-flex card-body">
+                            <div id="13952" className="col-2 d-flex">
+                                <div id="13954" className="user-name table-data-text">{doctor.firstName} {doctor.lastName}</div>
+                            </div>
+                            <div id="13956" className="col-2 user-mobile table-data-text">{doctor.specialization}</div>
+                            <div id="13957" className="col-2 user-email table-data-text">{doctor.phoneNumber}</div>
+                            <div id="13958" className="col-2 user-email table-data-text">{doctor.yearsOfExperience} yrs</div>
+                            <div id="13959" className="col-2 user-email table-data-text">{doctor.city}</div>
+                            <div id="13960" className="col-2 d-flex align-items-center">
+                                <a className="viewdetails" onClick={() => viewDoctorDetails(doctor)}>View Details
+                                    <img id="1501346" src="../images/eye.png" className="eyeiconview" alt='eyeiconview' />
+                                </a>
+                                {/* <button className="provider-submit-btn" id="det-btn" onClick={() => viewDoctorDetails(doctor)}>View Details</button> */}
+                            </div>
+                        </div>
+                    ))}
+
+                    {value === 1 && (
+                        <div id="13914" className="row table-header user-headings d-flex">
+                            <div id="13915" className="col-2 heading-label table-header-text">Clinic Name</div>
+                            <div id="13916" className="col-2 heading-id-label table-header-text">Registration No</div>
+                            <div id="13917" className="col-2 heading-label table-header-text">Address</div>
+                            <div id="13918" className="col-2 heading-label table-header-text">Registered Council</div>
+                            <div id="13919" className="col-2 heading-label table-header-text">GST Number</div>
+                            <div id="13921" className="col-2 heading-actions table-header-text">Actions</div>
+                        </div>
+                    )}
+                    {value === 1 && clinicUnverifiedList.map((clinic, index) => (
+                        <div key={index} className="row user-detailss d-flex card-body">
+                            <div id="13925" className="col-2  d-flex">
+                                <div id="13927" className="user-name table-data-text">{clinic.clinicName}</div>
+                            </div>
+                            <div id="13928" className="col-2 user-role table-data-text">{clinic.registrationNumber}</div>
+                            <div id="13929" className="col-2 user-mobile table-data-text">{clinic.clinicAddress.address}</div>
+                            <div id="13930" className="col-2 user-email table-data-text">{clinic.nameOfCouncil}</div>
+                            <div id="13931" className="col-2 user-email table-data-text">{clinic.GSTNumber}</div>
+                            <div id="13932" className="col-2 d-flex align-items-center"><button className="provider-submit-btn" id="det-btn">View Details</button></div>
+
+                        </div>
+                    ))}
+                    {value === 2 && (
+                        <div id="13969" className="row table-header user-headings d-flex">
+                            <div id="13970" className="col-2 table-header-text">Lab Name</div>
+                            <div id="13971" className="col-2 table-header-text">Lab License No</div>
+                            <div id="13972" className="col-2 table-header-text">MOBILE</div>
+                            <div id="13973" className="col-2 table-header-text">Contact Person</div>
+                            <div id="13974" className="col-2 table-header-text">Email</div>
+                            <div id="13976" className="col-2 table-header-text">Actions</div>
+                        </div>
+                    )}
+                    {value === 2 && labsUnverifiedList.map((lab, index) => (
+                        <div key={index} className="row user-detailss d-flex card-body">
+                            <div id="13980" className="col-2  d-flex">
+                                <div id="13982" className="user-name table-data-text">{lab.labName}</div>
+                            </div>
+                            <div id="13983" className="col-2 user-role table-data-text">{lab.nablLicenseNumber}</div>
+                            <div id="13984" className="col-2 user-mobile table-data-text">{lab.phoneNumber}</div>
+                            <div id="13985" className="col-2 user-email table-data-text">{lab.pathologistName}</div>
+                            <div id="13987" className="col-2 user-email table-data-text">{lab.email}</div>
+                            <div id="13988" className="col-2 d-flex align-items-center">
+                                <button onClick={() => viewLabDetails(lab)} className="provider-submit-btn" id="det-btn">View Details</button>
+                            </div>
+                        </div>
+                    ))}
+                    {value === 3 && (
+                        <div id="13997" className="row user-headings table-header d-flex">
+                            <div id="13998" className="col-2 heading-label table-header-text">Pharmacy Name</div>
+                            <div id="13999" className="col-3 heading-id-label table-header-text">Pharmacy License No</div>
+                            <div id="14000" className="col-2 heading-label table-header-text">MOBILE</div>
+                            <div id="14001" className="col-2 heading-label table-header-text">Timings</div>
+                            <div id="14003" className="col-2 heading-actions table-header-text">Actions</div>
+                        </div>
+                    )}
+                    {value === 3 && pharmacyUnverifiedList.map((pharmacy, index) => (
+                        <div key={index} className="row user-detailss d-flex card-body">
+                            <div id="14007" className="col-2 col-lg-2 d-flex">
+                                <div id="14009" className="user-name table-data-text">{pharmacy.pharmacyName}</div>
+                            </div>
+                            <div id="14010" className="col-3 user-role table-data-text">{pharmacy.licenseNumber}</div>
+                            <div id="14011" className="col-2 user-mobile table-data-text">{pharmacy.mobile}</div>
+                            <div id="14012" className="col-2 user-email table-data-text">{pharmacy.startTime} - {pharmacy.endTime}</div>
+                            <div id="14013" className="col-2 d-flex align-items-center"><button className="provider-submit-btn" id="det-btn">View Details</button></div>
+
+                        </div>
+                    ))}
+                </div>
             </div>
 
-        
-            <div className='row stats-card gridview'>
-                {value === 0 && (
-                    <div id="13941" className="row table-header user-headings d-flex">
-                        <div id="13942" className="col-2 heading-label table-header-text">Doctor Name</div>
-                        <div id="13943" className="col-2 heading-id-label table-header-text">Specialization</div>
-                        <div id="13944" className="col-2 heading-label table-header-text">MOBILE</div>
-                        <div id="13945" className="col-2 heading-label table-header-text">Experience</div>
-                        <div id="13946" className="col-2 heading-label table-header-text">City</div>
-                        <div id="13948" className="col-2 heading-actions table-header-text">Actions</div>
-                    </div>
-                )}
-
-                {value === 0 && doctorsUnverifiedList.map((doctor, index) => (
-                    <div key={index} className="row user-detailss d-flex card-body">
-                        <div id="13952" className="col-2 d-flex">
-                            <div id="13954" className="user-name table-data-text">{doctor.firstName} {doctor.lastName}</div>
-                        </div>
-                        <div id="13956" className="col-2 user-mobile table-data-text">{doctor.specialization}</div>
-                        <div id="13957" className="col-2 user-email table-data-text">{doctor.phoneNumber}</div>
-                        <div id="13958" className="col-2 user-email table-data-text">{doctor.yearsOfExperience} yrs</div>
-                        <div id="13959" className="col-2 user-email table-data-text">{doctor.city}</div>
-                        <div id="13960" className="col-2 d-flex align-items-center">
-                            <a class="viewdetails" onClick={() => viewDoctorDetails(doctor)}>View Details
-                            <img id="1501346" src="../images/eye.png" class="eyeiconview" alt='eyeiconview' />
-                            </a>
-                            {/* <button className="provider-submit-btn" id="det-btn" onClick={() => viewDoctorDetails(doctor)}>View Details</button> */}
-                        </div>
-                    </div>
-                ))}
-
-                {value === 1 && (
-                    <div id="13914" class="row table-header user-headings d-flex">
-                        <div id="13915" class="col-2 heading-label table-header-text">Clinic Name</div>
-                        <div id="13916" class="col-2 heading-id-label table-header-text">Registration No</div>
-                        <div id="13917" class="col-2 heading-label table-header-text">Address</div>
-                        <div id="13918" class="col-2 heading-label table-header-text">Registered Council</div>
-                        <div id="13919" class="col-2 heading-label table-header-text">GST Number</div>
-                        <div id="13921" class="col-2 heading-actions table-header-text">Actions</div>
-                    </div>
-                )}
-                {value === 1 && clinicUnverifiedList.map((clinic, index) => (
-                    <div key={index} className="row user-detailss d-flex card-body">
-                        <div id="13925" class="col-2  d-flex">
-                            <div id="13927" class="user-name table-data-text">{clinic.clinicName}</div>
-                        </div>
-                        <div id="13928" class="col-2 user-role table-data-text">{clinic.registrationNumber}</div>
-                        <div id="13929" class="col-2 user-mobile table-data-text">{clinic.clinicAddress.address}</div>
-                        <div id="13930" class="col-2 user-email table-data-text">{clinic.nameOfCouncil}</div>
-                        <div id="13931" class="col-2 user-email table-data-text">{clinic.GSTNumber}</div>
-                        <div id="13932" class="col-2 d-flex align-items-center"><button class="provider-submit-btn" id="det-btn">View Details</button></div>
-
-                    </div>
-                ))}
-                {value === 2 && (
-                    <div id="13969" className="row table-header user-headings d-flex">
-                        <div id="13970" className="col-2 table-header-text">Lab Name</div>
-                        <div id="13971" className="col-2 table-header-text">Lab License No</div>
-                        <div id="13972" className="col-2 table-header-text">MOBILE</div>
-                        <div id="13973" className="col-2 table-header-text">Contact Person</div>
-                        <div id="13974" className="col-2 table-header-text">Email</div>
-                        <div id="13976" className="col-2 table-header-text">Actions</div>
-                    </div>
-                )}
-                {value === 2 && labsUnverifiedList.map((lab, index) => (
-                    <div key={index} className="row user-detailss d-flex card-body">
-                        <div id="13980" className="col-2  d-flex">
-                            <div id="13982" className="user-name table-data-text">{lab.labName}</div>
-                        </div>
-                        <div id="13983" className="col-2 user-role table-data-text">{lab.nablLicenseNumber}</div>
-                        <div id="13984" className="col-2 user-mobile table-data-text">{lab.phoneNumber}</div>
-                        <div id="13985" className="col-2 user-email table-data-text">{lab.pathologistName}</div>
-                        <div id="13987" className="col-2 user-email table-data-text">{lab.email}</div>
-                        <div id="13988" className="col-2 d-flex align-items-center">
-                            <button onClick={() => viewLabDetails(lab)} className="provider-submit-btn" id="det-btn">View Details</button>
-                        </div>
-                    </div>
-                ))}
-                {value === 3 && (
-                    <div id="13997" className="row user-headings table-header d-flex">
-                        <div id="13998" className="col-2 heading-label table-header-text">Pharmacy Name</div>
-                        <div id="13999" className="col-3 heading-id-label table-header-text">Pharmacy License No</div>
-                        <div id="14000" className="col-2 heading-label table-header-text">MOBILE</div>
-                        <div id="14001" className="col-2 heading-label table-header-text">Timings</div>
-                        <div id="14003" className="col-2 heading-actions table-header-text">Actions</div>
-                    </div>
-                )}
-                {value === 3 && pharmacyUnverifiedList.map((pharmacy, index) => (
-                    <div key={index} className="row user-detailss d-flex card-body">
-                        <div id="14007" className="col-2 col-lg-2 d-flex">
-                            <div id="14009" className="user-name table-data-text">{pharmacy.pharmacyName}</div>
-                        </div>
-                        <div id="14010" className="col-3 user-role table-data-text">{pharmacy.licenseNumber}</div>
-                        <div id="14011" className="col-2 user-mobile table-data-text">{pharmacy.mobile}</div>
-                        <div id="14012" className="col-2 user-email table-data-text">{pharmacy.startTime} - {pharmacy.endTime}</div>
-                        <div id="14013" className="col-2 d-flex align-items-center"><button className="provider-submit-btn" id="det-btn">View Details</button></div>
-
-                    </div>
-                ))}
-            </div>
-            </div>
-         
             {
                 selectedLab ? (<AdminLabDetails isOpen={isLabDetailsOpen} onClose={closeAllModals} lab={selectedLab} />) : ''
             }

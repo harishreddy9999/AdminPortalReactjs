@@ -1,4 +1,4 @@
-import { adminAPIURL, api } from './httpHeaderInterceptor';
+import { adminAPIURL } from './httpHeaderInterceptor';
 
 export async function getVerificationStats() {
 
@@ -326,6 +326,150 @@ export async function getWellnessPackagesAPI() {
 
     } catch (error) {
         console.error('getWellnessPackagesAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function updateProgramActiveStatusAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/wellness/updateProgramActiveStatus', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('updateProgramActiveStatusAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('updateProgramActiveStatusAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('updateProgramActiveStatusAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function updatePackageActiveStatusAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/wellness/updatePackageActiveStatus', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('updatePackageActiveStatusAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('updatePackageActiveStatusAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('updatePackageActiveStatusAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getGoalsAPI(searchtext, page, size) {
+
+
+    try {
+        const response = await adminAPIURL.get('/wellness/getwellnessGoals?searchText=' + searchtext + '&page=' + page + '&size=' + size);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getGoalsAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getGoalsAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getGoalsAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function updateGoalsActiveStatusAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/wellness/updateGoalActiveStatus', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('updateGoalsActiveStatusAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('updateGoalsActiveStatusAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('updateGoalsActiveStatusAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getTrackersAPI(searchtext, page, size) {
+
+
+    try {
+        const response = await adminAPIURL.get('/wellness/getwellnessTracker?searchText=' + searchtext + '&page=' + page + '&size=' + size);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getTrackersAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getTrackersAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getTrackersAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function updateTrackerActiveStatusAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/wellness/updateTrackerActiveStatus', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('updateTrackerActiveStatusAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('updateTrackerActiveStatusAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('updateTrackerActiveStatusAPI failed:', error);
         throw error;
     }
 }
