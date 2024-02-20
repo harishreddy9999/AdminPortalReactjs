@@ -1,5 +1,6 @@
 .matop {
-    margin: 1rem 0px !important;
+    /* margin: 1rem 0px !important; */
+    padding: 10px 30px !important;
 }
 
 .stats-card {
@@ -43,16 +44,17 @@
     overflow-y: auto;
 }
 
-.user-details {
-    margin: 5px !important;
-    padding: 4px !important;
+.user-detailss {
+    margin: 0px !important;
+    padding:2px 10px !important;
     background: #FFFFFF 0% 0% no-repeat padding-box;
-    border: 1px solid #CBC9CF;
-    border-radius: 5px;
+    /* border: 1px solid #CBC9CF; */
+    border-radius: 0px !important;
     opacity: 1;
+    border: none !important;
 }
 
-.user-details:hover {
+.user-detailss:hover {
     border: 1px solid #0D6EFD;
 }
 
@@ -65,27 +67,31 @@
 
 
 .table-header-text {
-    color: #fff;
+    color: black !important;
     text-align: left;
     letter-spacing: 0px;
     opacity: 1;
-    font-size: 12px;
+    font-size: 14px !important;
     font-weight: bold;
     text-transform: uppercase;
 }
 
 .table-header {
-    background: #9BD5DA 0% 0% no-repeat padding-box;
-    border-radius: 3px;
+    /* background: #9BD5DA 0% 0% no-repeat padding-box; */
+    /* border-radius: 3px; */
     opacity: 1;
+    margin: 0px !important;
+    border-bottom: 1px solid #CBC9CF;
+    background :#ffffff !important;
+    color: black !important;
 }
 
 .card-body {
-    border-bottom: 1px solid #CBC9CF;
+    border-bottom: 1px solid #CBC9CF !important;
 }
 
-.user-heading {
-    padding: 7px 0px !important;
+.user-headings {
+    padding: 10px !important;
     /* height: 30px; */
     /* margin: 0px 8px !important; */
 }
@@ -93,4 +99,115 @@
 .table-data-text {
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 14px !important;
+}
+
+.cards {
+    background-color: white !important;
+    color: black !important;
+    padding: 26px !important;
+    /* margin: 10px; */
+    border-radius: 15px !important;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
+    width: 350px;
+}
+h4{
+    padding: 14px;
+}
+.iconbackground{
+    background-color: #E8FAFC;
+    padding: 15px;
+    border-radius: 16px;
+    height: 60px;
+}
+.vereifyiconbackground{
+    background-color: #c5ebaa;
+    padding: 15px;
+    border-radius: 16px;
+    height: 60px;
+}
+.rejecticonbackground{
+    background-color: #dce0e5;
+    padding: 15px;
+    border-radius: 16px;
+    height: 60px;
+}
+.rejectediconbackground{
+    background-color: #dac0c0;
+    padding: 15px;
+    border-radius: 16px;
+    height: 60px;
+}
+.tabimg{
+    width:30px;
+    padding: 0px 5px;
+    
+}
+.lineimg{
+    height:30px;
+    width:3px;
+}
+.selected-text{
+    color:#3C678C;
+    font-size: 16px;
+    font-family:poppins;
+    text-align: center;
+}
+.tabtext{
+    font-size: 16px;
+    font-family:poppins;
+}
+.selected-tab{
+  /* border: none !important; */
+  /* border-left: 4px solid #FF817F !important; */
+  margin: 5px !important;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
+  border-radius: 10px !important;
+  padding-left: 0px !important;
+}
+.tab{
+    border: none !important; 
+  margin: 5px !important;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
+  border-radius: 10px !important;
+  padding-left: 0px !important;
+}
+.Tabs{
+    border-bottom: 1px solid #efe3e3 !important;
+    padding: 0px;
+    margin-bottom: 10px;
+
+}
+.maingriddetails{
+    border: 1px solid #ebe3e3;
+    margin-top: 15px;
+    border-radius: 20px;
+}
+.gridview{
+    border: 1px solid #ebe3e3;
+    border-radius: 20px;
+    padding: 0px !important;
+}
+.viewdetails{
+    color:#3C678C;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+.eyeiconview{
+    width:20px;
+    padding-left: 5px;
+}
+.unverifiedtext{
+    color: #64748B;
+}
+.rejectedtext{
+    color: #B91C1C;
+}
+.verifiedtext{
+    color:#31680A
+}
+.totaltext{
+    color: #17335D;
 }

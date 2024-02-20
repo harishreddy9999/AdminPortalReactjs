@@ -1,6 +1,6 @@
 import React from 'react';
-import Verifications from './Admin-verifications';
-import Complaints from './Admin-complaints';
+import Verifications from './Admin-newverifications';
+import NewComplaints from './Admin-newcomplaints';
 import AdminCoupons from './Admin-Coupons';
 import PanlesList from './Admin-PanelsList';
 import CreatePanel from './Admin-CreatePanel';
@@ -17,8 +17,8 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
         case null:
             componentToRender = <Verifications />;
             break;
-        case 'Complaints':
-            componentToRender = <Complaints />;
+        case 'NewComplaints':
+            componentToRender = <NewComplaints />;
             break;
         case 'Coupons':
             componentToRender = <AdminCoupons />;
