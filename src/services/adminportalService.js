@@ -521,3 +521,216 @@ export async function addNewGoalsAPI(obj) {
         throw error;
     }
 }
+
+
+export async function getAllDoctorsInAdminAPI(text, size, page) {
+
+
+    try {
+        const response = await adminAPIURL.get('/doctor/getAllDoctors?searchText=' + text + '&size=' + size + '&page=' + page);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllDoctorsInAdminAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllDoctorsInAdminAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllDoctorsInAdminAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getAllPatientsInAdminAPI(text, size, page) {
+
+
+    try {
+        const response = await adminAPIURL.get('/patients/getAllPatients?searchText=' + text + '&size=' + size + '&page=' + page);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllPatientsInAdminAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllPatientsInAdminAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllPatientsInAdminAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getAllPharmaInAdminAPI(text, size, page) {
+
+
+    try {
+        const response = await adminAPIURL.get('/pharmacy/getAllPharmacies?searchText=' + text + '&size=' + size + '&page=' + page);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllPharmaInAdminAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllPharmaInAdminAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllPharmaInAdminAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getAllLabInAdminAPI(text, size, page) {
+
+
+    try {
+        const response = await adminAPIURL.get('/lab/getAllLabs?searchText=' + text + '&size=' + size + '&page=' + page);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllLabInAdminAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllLabInAdminAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllLabInAdminAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getAllClinicsInAdminAPI(text, size, page) {
+
+
+    try {
+        const response = await adminAPIURL.get('/clinics/getAllClinics?searchText=' + text + '&size=' + size + '&page=' + page);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllLabInAdminAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllLabInAdminAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllLabInAdminAPI failed:', error);
+        throw error;
+    }
+}
+
+export async function getAllClinicSubscriptionsAPI() {
+
+
+    try {
+        const response = await adminAPIURL.get('/subscription/getAllClinicSubscriptions');
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllClinicSubscriptionsAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllClinicSubscriptionsAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllClinicSubscriptionsAPI failed:', error);
+        throw error;
+    }
+}
+
+export async function getAllPharmacySubscriptionsAPI() {
+
+
+    try {
+        const response = await adminAPIURL.get('subscription/getAllPharmacySubscriptions');
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllPharmacySubscriptionsAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllPharmacySubscriptionsAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllPharmacySubscriptionsAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getAllConfiguredSubscriptionAPI() {
+
+
+    try {
+        const response = await adminAPIURL.get('/subscription/getAllSubscription');
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllConfiguredSubscriptionAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllConfiguredSubscriptionAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllConfiguredSubscriptionAPI failed:', error);
+        throw error;
+    }
+}
+
+export async function updateClinicSubscriptionAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/subscription/updateClinicSubscriptions', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('updateClinicSubscriptionAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('updateClinicSubscriptionAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('updateClinicSubscriptionAPI failed:', error);
+        throw error;
+    }
+}

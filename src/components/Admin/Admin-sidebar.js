@@ -63,6 +63,36 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
                 </li>
                 <li className="menuRow col-lg-12" id="menu-profile" >
                     <Link className="d-block fs1  tduh text-nowrap complaints"
+                        id="a-verify" to="/admin-dashboard/Panels" onClick={() => handleLinkClick('Panels')}>
+                        <span className="changepassword"> <img id="150Panels" src="../images/Admin-sidebar-icons/panels-icon.svg"
+                            className="iconsize" alt='Panels' /></span>
+                        {
+                            tooltipv ? (
+                                <span id="span-lbl" className="sidebartext">Panels</span>
+                            ) : (
+                                <span className="ctooltip" id="s-tPanelsverify">Panels</span>
+                            )
+                        }
+                    </Link>
+
+                </li>
+                <li className="menuRow col-lg-12" id="menu-profile" >
+                    <Link className="d-block fs1  tduh text-nowrap complaints"
+                        id="a-verify" to="/admin-dashboard/Subscriptions" onClick={() => handleLinkClick('Subscriptions')}>
+                        <span className="changepassword"> <img id="1501Subscriptions" src="../images/Admin-sidebar-icons/subscription.svg"
+                            className="iconsize" alt='Subscriptions' /></span>
+                        {
+                            tooltipv ? (
+                                <span id="span-lblSubscriptions" className="sidebartext">Subscriptions</span>
+                            ) : (
+                                <span className="ctooltip" id="s-Subscriptionsverify">Subscriptions</span>
+                            )
+                        }
+                    </Link>
+
+                </li>
+                <li className="menuRow col-lg-12" id="menu-profile" >
+                    <Link className="d-block fs1  tduh text-nowrap complaints"
                         id="a-verify" to="/admin-dashboard/Coupons" onClick={() => handleLinkClick('Coupons')}>
                         <span className="changepassword"> <img id="1501Coupons" src="../images/Admin-sidebar-icons/coupon-icon.svg"
                             className="iconsize" alt='Coupons' /></span>
@@ -77,16 +107,18 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
 
                 </li>
 
+
+
                 <li className="menuRow col-lg-12" id="menu-profile" >
                     <Link className="d-block fs1  tduh text-nowrap complaints"
-                        id="a-verify" to="/admin-dashboard/Panels" onClick={() => handleLinkClick('Panels')}>
-                        <span className="changepassword"> <img id="150Panels" src="../images/Admin-sidebar-icons/panels-icon.svg"
-                            className="iconsize" alt='Panels' /></span>
+                        id="a-verify" to="/admin-dashboard/Users" onClick={() => handleLinkClick('Users')}>
+                        <span className="changepassword"> <img id="150-Users" src="../images/Admin-sidebar-icons/users-icon.svg"
+                            className="iconsize" alt='Users' /></span>
                         {
                             tooltipv ? (
-                                <span id="span-lbl" className="sidebartext">Panels</span>
+                                <span id="span-lbl-Users" className="sidebartext">Users</span>
                             ) : (
-                                <span className="ctooltip" id="s-tPanelsverify">Panels</span>
+                                <span className="ctooltip" id="s-Usersverify">Users</span>
                             )
                         }
                     </Link>
