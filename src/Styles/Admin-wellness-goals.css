@@ -1,3 +1,7 @@
 .matLabel {
     padding: 10px 0 !important;
 }
+
+.multi-select-dropdown {
+    height: 30px !important;
+}

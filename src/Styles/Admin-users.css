@@ -1,0 +1,27 @@
+.users-search {
+    width: 40%;
+    border: none;
+    outline: none;
+}
+
+.user-searchdiv {
+    padding-block-start: 10px;
+
+}
+
+.users-searchInput {
+    align-items: center;
+    padding-block: 3px;
+    width: 40%;
+}
+
+.add-subscription-btn {
+    background-color: #9A7FF5;
+    color: #fff !important;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 100px;
+    height: 30px;
+    border: none;
+}

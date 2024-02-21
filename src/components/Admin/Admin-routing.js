@@ -8,6 +8,8 @@ import CustomDrugs from './Admin-CustomDrugs';
 import HealthTips from './Admin-Healthtips.js';
 import Wellness from './Admin-Wellness.js';
 import WellnessGoals from './Admin-WellnessGoals.js';
+import AdminUsersList from './Admin-UsersList.js';
+import AdminSubscripions from './Admin-Subscriptions.js';
 
 
 export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
@@ -41,6 +43,12 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
             break;
         case 'WellnessGoals':
             componentToRender = <WellnessGoals />;
+            break;
+        case 'Users':
+            componentToRender = <AdminUsersList />;
+            break;
+        case 'Subscriptions':
+            componentToRender = <AdminSubscripions />;
             break;
 
         default:
