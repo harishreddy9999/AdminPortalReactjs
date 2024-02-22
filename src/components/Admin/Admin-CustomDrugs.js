@@ -3,7 +3,8 @@ import '../../App.css';
 import '../../Styles/AdminCustomDrugs.css';
 import { getAllCustomDrugsAPI } from '../../services/adminPortalPanelsService';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
-import UpdateDrugInfo from './Admin-UpdateDrugInfo';
+import UpdateCustomDrugInfo from './Admin-UpdateCustomDrugInfo';
+
 
 const CustomDrugs = () => {
 
@@ -13,8 +14,10 @@ const CustomDrugs = () => {
     const [totalDrugsCount, settotalDrugsCount] = useState(0);
     const [customDrugsDetails, setCustomDrugsDetails] = useState([]);
     const [rowsPerPageOptions, setrowsPerPageOptions] = useState([5, 10, 15, 20, 25, 50]);
-    const [selectedDrugDetails, setselectedDrugDetails] = useState(null);
-    const [isDrugInfoOpen, setIsDrugInfoOpen] = useState(false);
+    const [selectedCustomDrugInfo, setSelectedCustomDrugInfo] = useState(null);
+    const [isUpdateDrugInfo, setisUpdateDrugInfo] = useState(false);
+    const [isUpdateDrugInfoOpen, setisUpdateDrugInfoOpen] = useState(false);
+
     useEffect(() => {
         getAllCustomDrugs();
     }, [page, rowsPerPage, searchText]);
@@ -40,14 +43,17 @@ const CustomDrugs = () => {
     };
 
     const updateDrugInfo = (drug) => {
-        setselectedDrugDetails(drug);
-        setIsDrugInfoOpen(true);
-        // debugger;
+        setSelectedCustomDrugInfo(drug);
+        setisUpdateDrugInfo(true);
+        setisUpdateDrugInfoOpen(true);
+    }
+    const closeAllModals = () => {
+        setSelectedCustomDrugInfo(null);
+        setisUpdateDrugInfo(false);
+        setisUpdateDrugInfoOpen(false);
+        getAllCustomDrugs();
     }
 
-    const closeDrugInfo = () => {
-        setIsDrugInfoOpen(false);
-    }
 
     return (
         <div className="row">
@@ -100,7 +106,7 @@ const CustomDrugs = () => {
                 </Paper>
             </div>
             {
-                selectedDrugDetails ? (<UpdateDrugInfo isOpen={isDrugInfoOpen} onClose={closeDrugInfo} drugInfo={selectedDrugDetails} />) : ''
+                isUpdateDrugInfo ? (<UpdateCustomDrugInfo isOpen={isUpdateDrugInfoOpen} onClose={closeAllModals} drugInfo={selectedCustomDrugInfo} />) : ''
             }
         </div>
     )

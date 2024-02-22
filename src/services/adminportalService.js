@@ -734,3 +734,75 @@ export async function updateClinicSubscriptionAPI(obj) {
         throw error;
     }
 }
+
+
+export async function activeCouponAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/coupon/activeCoupon', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('activeCouponAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('activeCouponAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('activeCouponAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function updateDrugDetailsAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/drugs/updateDrugDetails', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('updateDrugDetailsAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('updateDrugDetailsAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('updateDrugDetailsAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getAllUserCouponsAPI() {
+
+
+    try {
+        const response = await adminAPIURL.get('/coupon/getCouponDetails?page=0&size=100');
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllUserCouponsAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllUserCouponsAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllUserCouponsAPI failed:', error);
+        throw error;
+    }
+}

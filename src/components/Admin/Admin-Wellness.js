@@ -6,6 +6,7 @@ import moment from 'moment';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import Switch from '@material-ui/core/Switch';
 import PackageDetails from './Admin-PackageDetails';
+import CreateWellnessPackage from './Admin-AddWellnessPackage';
 
 const Wellness = () => {
 
@@ -14,6 +15,8 @@ const Wellness = () => {
     const [packagesList, setPackagesList] = useState([]);
     const [selectedPackage, setSelectedPackage] = useState(null);
     const [isPackagerDetailsOpen, setIsDPackageDetailsOpen] = useState(false);
+    const [isAddNewPackage, setisAddNewPackage] = useState(false);
+    const [isAddWellnessPackageOpen, setisAddWellnessPackageOpen] = useState(false);
 
     useEffect(() => {
         getWellnessProgrammes();
@@ -72,6 +75,13 @@ const Wellness = () => {
     const closeAllModals = () => {
         setSelectedPackage(null);
         setIsDPackageDetailsOpen(false);
+        setisAddNewPackage(false);
+        setisAddWellnessPackageOpen(false);
+    }
+
+    const addNewPackage = () => {
+        setisAddNewPackage(true);
+        setisAddWellnessPackageOpen(true);
     }
     return (
         <div className='wellness-main-screen'>
@@ -149,7 +159,7 @@ const Wellness = () => {
                                 <p className='wellness-screen-heading'>Wellness Packages</p>
                             </div>
                             <div className='col-6 d-flex justify-content-end'>
-                                <button className='wellness-add-btn'>Add</button>
+                                <button className='wellness-add-btn' onClick={addNewPackage} >Add</button>
                             </div>
                         </div>
                         <div className='row programs-table-row'>
@@ -201,6 +211,9 @@ const Wellness = () => {
             </div>
             {
                 selectedPackage ? (<PackageDetails isOpen={isPackagerDetailsOpen} onClose={closeAllModals} packageDet={selectedPackage} />) : ''
+            }
+            {
+                isAddNewPackage ? (<CreateWellnessPackage isOpen={isAddWellnessPackageOpen} onClose={closeAllModals} />) : ''
             }
         </div>
 
