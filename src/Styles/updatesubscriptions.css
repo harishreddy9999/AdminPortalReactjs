@@ -1,0 +1,24 @@
+select,input{
+    margin :5px 0px !important;
+}
+.page-header{
+    padding: 10px !important;
+    background-color: #9BD5DA;
+    color: white !important;
+    display: flex;
+    justify-content: center;
+}
+.cancel-btn {
+    background-color: #E5E5E5;
+    color: #000;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    border: none;
+    margin: 10px;
+}
+.add-panel-btn {
+    margin: 10px;
+}

@@ -734,3 +734,48 @@ export async function updateClinicSubscriptionAPI(obj) {
         throw error;
     }
 }
+
+export async function getAllPharmacyConfiguredSubscriptionAPI() {
+
+
+    try {
+        const response = await adminAPIURL.get('/subscription/getAllSubscription?applicationType=PHARMACY');
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllPharmacyConfiguredSubscriptionAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllPharmacyConfiguredSubscriptionAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllPharmacyConfiguredSubscriptionAPI failed:', error);
+        throw error;
+    }
+}
+export async function updatePharmacySubscriptionsAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/subscription/updatePharmacySubscriptions', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('updateClinicSubscriptionAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('updateClinicSubscriptionAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('updateClinicSubscriptionAPI failed:', error);
+        throw error;
+    }
+}

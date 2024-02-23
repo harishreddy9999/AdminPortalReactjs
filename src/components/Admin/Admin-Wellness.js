@@ -6,6 +6,8 @@ import moment from 'moment';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
 import Switch from '@material-ui/core/Switch';
 import PackageDetails from './Admin-PackageDetails';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 const Wellness = () => {
 
@@ -14,6 +16,7 @@ const Wellness = () => {
     const [packagesList, setPackagesList] = useState([]);
     const [selectedPackage, setSelectedPackage] = useState(null);
     const [isPackagerDetailsOpen, setIsDPackageDetailsOpen] = useState(false);
+    const [value, setValue] = useState(0);
 
     useEffect(() => {
         getWellnessProgrammes();
@@ -36,6 +39,9 @@ const Wellness = () => {
         setSelectedTab(value)
 
     }
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
     const handleToggle = async (event, index, program) => {
         console.log(event.target, index);
         let reqObj = {
@@ -77,12 +83,17 @@ const Wellness = () => {
         <div className='wellness-main-screen'>
             <div className='row'>
                 <div className='tabs-row'>
-                    <p className={`tab-heading ${selectedTab === 'PRO' ? 'active' : ''}`} onClick={() => showTab('PRO')}>Programmes</p>
-                    <p className={`tab-heading ${selectedTab === 'PACK' ? 'active' : ''}`} onClick={() => showTab('PACK')}>Packages</p>
+                <Tabs  value={value} onChange={handleChange} className="vTabs" >
+                    <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0  ? "vselected-text" : "vtabtext"}>Programmes</span>} />
+                    <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1  ? "vselected-text" : "vtabtext"}>Packages</span>} />
+
+                </Tabs>
+                    {/* <p className={`tab-heading ${selectedTab === 'PRO' ? 'active' : ''}`} onClick={() => showTab('PRO')}>Programmes</p>
+                    <p className={`tab-heading ${selectedTab === 'PACK' ? 'active' : ''}`} onClick={() => showTab('PACK')}>Packages</p> */}
                 </div>
             </div>
             <div className='tabs-content'>
-                {selectedTab === 'PRO' ? (
+                {value === 0 ? (
                     <div className='programs-row'>
                         <div className='row programs-heading-row'>
                             <div className='col-6'>
