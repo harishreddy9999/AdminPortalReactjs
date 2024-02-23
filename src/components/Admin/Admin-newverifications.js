@@ -116,7 +116,7 @@ function NewVerifications() {
     return (
         <div id="15818" className="row matop">
             <div className='row '>
-            
+
                 {/* <Tabs value={value} onChange={handleChange} className="Tabs" >
                     <Tab className={value === 0 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 0 ? "../images/line.png" : ""} /> <img id="doctorImg" className="tabimg" src={value === 0 ? "../images/activemedical.svg" : "../images/medical.png"} alt='Doctor' />
                         <span className={value === 0 ? "selected-text" : "tabtext"}>Doctor</span></span>} />
@@ -127,7 +127,7 @@ function NewVerifications() {
                     <Tab className={value === 3 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 3 ? "../images/line.png" : ""} /><img id="pharmacyImg" className="tabimg" src={value === 3 ? "../images/activepharmacy.png" : "../images/pharmacy.png"} alt='Pharmacy' />
                         <span className={value === 3 ? "selected-text" : "tabtext"}>Pharmacy</span></span>} />
                 </Tabs> */}
-                     <Tabs value={value} onChange={handleChange} className="vTabs" >
+                <Tabs value={value} onChange={handleChange} className="vTabs" >
                     <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0 ? "vselected-text" : "vtabtext"}>Doctor</span>} />
                     <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1 ? "vselected-text" : "vtabtext"}>Clinic</span>} />
                     <Tab className={value === 2 ? "vselected-tab" : "vtab"} label={<span className={value === 2 ? "vselected-text" : "vtabtext"}>Laboratory</span>} />
@@ -271,6 +271,14 @@ function NewVerifications() {
                             <div id="13921" className="col-2 heading-actions table-header-text">Actions</div>
                         </div>
                     )}
+                    {value === 1 && clinicUnverifiedList.length == 0 ?
+
+                        (<div className="row d-flex justify-content-center nodata" >
+                            No Data Found
+                        </div>
+                        ) : ''
+
+                    }
                     {value === 1 && clinicUnverifiedList.map((clinic, index) => (
                         <div key={index} className="row user-detailss d-flex card-body">
                             <div id="13925" className="col-2  d-flex">
@@ -280,14 +288,14 @@ function NewVerifications() {
                             <div id="13929" className="col-2 user-mobile table-data-text">{clinic.clinicAddress.address}</div>
                             <div id="13930" className="col-2 user-email table-data-text">{clinic.nameOfCouncil}</div>
                             <div id="13931" className="col-2 user-email table-data-text">{clinic.GSTNumber}</div>
-                            
+
                             <div id="13932" className="col-2 d-flex align-items-center">
                                 {/* <button className="provider-submit-btn" id="det-btn">View Details</button> */}
                                 <a className="viewdetails" >
                                     <img id="1501346" src="../images/eye.png" className="eyeiconview" alt='eyeiconview' />
                                 </a>
-                                
-                                </div>
+
+                            </div>
 
                         </div>
                     ))}
@@ -340,7 +348,7 @@ function NewVerifications() {
                                 <a className="viewdetails" >
                                     <img id="1501346" src="../images/eye.png" className="eyeiconview" alt='eyeiconview' />
                                 </a>
-                                </div>
+                            </div>
 
                         </div>
                     ))}

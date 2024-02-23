@@ -69,29 +69,32 @@ const AddNewGoal = ({ isOpen, onClose }) => {
                         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Overlay background color
                     },
                     content: {
-                        width: '60%', // Width of the modal content
+                        width: '45%', // Width of the modal content
                         minHeight: '200px', // Height of the modal content
-                        height: '300px',
+                        height: '240px',
                         margin: '25px auto', // Center the modal
+                        padding:'0px'
                     },
                 }}
             >
                 <div className="goalsformdiv p-2">
-                    <div id="pt-Coupons">Add Goal</div>
+                    {/* <div id="pt-Coupons">Add Goal</div> */}
+                    <h5 className='page-header'>Add Goal</h5>
+                  
                 </div>
                 <div className="form-goal">
                     <div className="row">
                         <div className="col-lg-4 col-md-4 col-sm-6 px-2">
                             <div className="material-textfield matinput_div">
                                 <label id="10677" className="matLabel">Goal Name<span className="required">*</span></label>
-                                <input type="text" className="form-control form-control-sm matInput"
+                                <input type="text" className="form-control form-control-sm matInput goalname"
                                     name='goalName' value={goalName} placeholder="Goal Name"
                                     onChange={handleChange}
                                     required />
                             </div>
 
                         </div>
-                        <div className='col-lg-6 col-md-6 col-sm-6 px-2'>
+                        <div className='col-lg-8 col-md-8 col-sm-6 px-2'>
                             <div className="material-textfield matinput_div">
                                 <label className="matLabel">Trackers<span className="required">*</span></label>
                                 <Select

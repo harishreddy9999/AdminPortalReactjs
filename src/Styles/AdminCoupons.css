@@ -113,6 +113,7 @@ input::placeholder {
 .form-coupon {
     flex: 1;
     overflow-y: auto;
+    margin: 10px;
 }
 
 .cancelbtn {
@@ -152,6 +153,7 @@ input::placeholder {
 .edit-icon {
     width: 15px;
     height: 15px;
+    cursor: pointer;
 }
 
 .no-data-img {
@@ -163,7 +165,7 @@ input::placeholder {
 .patients-table-header {
     border-radius: 5px;
     padding: 8px 10px !important;
-    height: 35px;
+    height: 45px;
     background-color: #9BD5DA;
 }
 
@@ -187,4 +189,80 @@ input::placeholder {
 
 .svg-icon {
     background-color: #14636a;
+}
+
+.row-heading {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.sub-heading {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.user-coupon-cards-row {
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+.user-coupon-card {
+    margin: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 10px;
+}
+
+.user-coupons-card-row {
+    width: 96%;
+    background: white;
+    margin: 10px auto;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px #d3d3d3;
+}
+
+.brd-right {
+    border-right: 1px solid lightgrey;
+}
+
+.apply-btn {
+    background-color: #9A7FF5;
+    color: #fff !important;
+    border-radius: 25px;
+    font-size: 12px;
+    text-align: center;
+    height: auto;
+    border: none;
+    cursor: pointer;
+    padding: 6px 12px;
+}
+
+.coupNumber {
+    color: chocolate;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.coupon-titleName {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.description {
+    font-size: 12px;
+    width: 70%;
+    font-weight: 500;
+}
+.topfields{
+    border: 1px solid rgb(240, 237, 237) !important;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 10px !important;
+    padding-bottom: 5px !important;
+}
+.padd{
+    padding: 10px 0px 0px 0px !important;
 }

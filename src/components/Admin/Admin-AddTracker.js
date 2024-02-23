@@ -38,15 +38,17 @@ const AddNewTracker = ({ isOpen, onClose }) => {
                         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Overlay background color
                     },
                     content: {
-                        width: '50%', // Width of the modal content
+                        width: '35%', // Width of the modal content
                         minHeight: '200px', // Height of the modal content
-                        height: '250px',
+                        height: '230px',
                         margin: '25px auto', // Center the modal
+                        padding:'0px'
                     },
                 }}
             >
                 <div className="goalsformdiv p-2">
-                    <div id="pt-Coupons">Add Tracker</div>
+                    {/* <div id="pt-Coupons">Add Tracker</div> */}
+                    <h5 className='page-header'>Add Tracker</h5>
                 </div>
                 <div className="form-goal">
                     <div className="row">

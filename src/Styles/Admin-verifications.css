@@ -232,3 +232,6 @@ h4{
     height: 24px;
     cursor: pointer;
 }
+.nodata{
+    padding: 10px !important;
+}
