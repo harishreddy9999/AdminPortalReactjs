@@ -130,8 +130,9 @@ const UpdateCustomDrugInfo = ({ isOpen, onClose, drugInfo }) => {
                     content: {
                         width: '60%', // Width of the modal content
                         minHeight: '200px', // Height of the modal content
-                        maxHeight: '350px',
+                        maxHeight: '370px',
                         margin: '25px auto', // Center the modal
+                        padding:'0px'
                     },
                 }}
             >
@@ -139,7 +140,10 @@ const UpdateCustomDrugInfo = ({ isOpen, onClose, drugInfo }) => {
                     {
                         drugInfoDetails ? (
                             <div className="row">
-                                <div className="couponformdiv p-2"><div id="pt-Coupons">Update Drug Info</div></div>
+                                <div className="couponformdiv p-0 mb-3">
+                                    {/* <div id="pt-Coupons">Update Drug Info</div> */}
+                                    <h5 className='page-header'>Update Drug Info</h5>
+                                    </div>
                                 <form onSubmit={handleSubmit}>
                                     <div className="row">
                                         <div className="col-8 row">

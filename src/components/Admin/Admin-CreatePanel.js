@@ -104,7 +104,7 @@ const CreatePanel = () => {
 
     return (
         <div className='row'>
-            <h5 className='page-header'>Create Profile</h5>
+            <h5 className='profilepage-header'>Create Profile</h5>
             <div className='add-panel-form-container'>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='row border-1 formgroup-container'>

@@ -3,7 +3,8 @@ import '../../App.css';
 import '../../Styles/Admin-users.css';
 import { getAllDoctorsInAdminAPI, getAllPatientsInAdminAPI, getAllPharmaInAdminAPI, getAllLabInAdminAPI, getAllClinicsInAdminAPI } from '../../services/adminportalService';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
-
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 const AdminUsersList = () => {
 
@@ -18,6 +19,7 @@ const AdminUsersList = () => {
     const [pharmaciesList, setPharmaciesList] = useState([]);
     const [labsList, setLabsList] = useState([]);
     const [clinicsList, setClinicsList] = useState([]);
+    const [value, setValue] = useState(0);
 
 
     const showTab = (value) => {
@@ -32,20 +34,27 @@ const AdminUsersList = () => {
 
 
     }
+    const handleChange = (event, newValue) => {
+        setSearchText('');
+        setpageNo(0);
+        setpageSize(10);
+        setTotalListCount(0);
+        setValue(newValue);
+    };
 
     useEffect(() => {
         getList();
-    }, [selectedTab, searchText, pageNo, pageSize])
+    }, [value, searchText, pageNo, pageSize])
     const getList = () => {
-        if (selectedTab === "Doctors") {
+        if (value===0) {
             getDoctorsList();
-        } else if (selectedTab === "Patients") {
+        } else if (value===1) {
             getPatientsList();
-        } else if (selectedTab === "Pharmacies") {
+        } else if (value===2) {
             getPharmaciesList();
-        } else if (selectedTab === "Labs") {
+        } else if (value===3) {
             getLabsList();
-        } else if (selectedTab === "Clinics") {
+        } else if (value===4) {
             getClinicsList();
         }
     }
@@ -102,11 +111,18 @@ const AdminUsersList = () => {
         <div className='wellness-main-screen'>
             <div className='row'>
                 <div className='tabs-row'>
-                    <p className={`tab-heading ${selectedTab === 'Doctors' ? 'active' : ''}`} onClick={() => showTab('Doctors')}>Doctors</p>
+                <Tabs  value={value} onChange={handleChange} className="vTabs" >
+                    <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0  ? "vselected-text" : "vtabtext"}>Doctors</span>} />
+                    <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1  ? "vselected-text" : "vtabtext"}>Patients</span>} />
+                    <Tab className={value === 2 ? "vselected-tab" : "vtab"} label={<span className={value === 2  ? "vselected-text" : "vtabtext"}>Pharmacies</span>} />
+                    <Tab className={value === 3 ? "vselected-tab" : "vtab"} label={<span className={value === 3 ? "vselected-text" : "vtabtext"}>Labs</span>} />
+                    <Tab className={value === 4 ? "vselected-tab" : "vtab"} label={<span className={value === 4  ? "vselected-text" : "vtabtext"}>Clinics</span>} />
+                </Tabs>
+                    {/* <p className={`tab-heading ${selectedTab === 'Doctors' ? 'active' : ''}`} onClick={() => showTab('Doctors')}>Doctors</p>
                     <p className={`tab-heading ${selectedTab === 'Patients' ? 'active' : ''}`} onClick={() => showTab('Patients')}>Patients</p>
                     <p className={`tab-heading ${selectedTab === 'Pharmacies' ? 'active' : ''}`} onClick={() => showTab('Pharmacies')}>Pharmacies</p>
                     <p className={`tab-heading ${selectedTab === 'Labs' ? 'active' : ''}`} onClick={() => showTab('Labs')}>Labs</p>
-                    <p className={`tab-heading ${selectedTab === 'Clinics' ? 'active' : ''}`} onClick={() => showTab('Clinics')}>Clinics</p>
+                    <p className={`tab-heading ${selectedTab === 'Clinics' ? 'active' : ''}`} onClick={() => showTab('Clinics')}>Clinics</p> */}
                 </div>
                 <div className='search-row'>
                     <div className="user-searchdiv d-flex justify-content-center mb-3" id="searchdiv">
@@ -119,7 +135,7 @@ const AdminUsersList = () => {
                 </div>
                 <div className='list-row'>
                     {
-                        selectedTab === 'Doctors' ? (
+                        value === 0 ? (
                             <div className='panel-list-table'>
                                 <Paper>
                                     <TableContainer>
@@ -164,7 +180,7 @@ const AdminUsersList = () => {
                         ) : ('')
                     }
                     {
-                        selectedTab === 'Patients' ? (
+                        value === 1 ? (
                             <div className='panel-list-table'>
                                 <Paper>
                                     <TableContainer>
@@ -207,7 +223,7 @@ const AdminUsersList = () => {
                         ) : ('')
                     }
                     {
-                        selectedTab === 'Pharmacies' ? (
+                         value === 2 ? (
                             <div className='panel-list-table'>
                                 <Paper>
                                     <TableContainer>
@@ -252,7 +268,7 @@ const AdminUsersList = () => {
                         ) : ('')
                     }
                     {
-                        selectedTab === 'Labs' ? (
+                        value === 3 ? (
                             <div className='panel-list-table'>
                                 <Paper>
                                     <TableContainer>
@@ -297,7 +313,7 @@ const AdminUsersList = () => {
                         ) : ('')
                     }
                     {
-                        selectedTab === 'Clinics' ? (
+                         value === 4 ? (
                             <div className='panel-list-table'>
                                 <Paper>
                                     <TableContainer>

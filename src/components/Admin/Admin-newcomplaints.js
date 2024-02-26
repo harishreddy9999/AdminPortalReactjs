@@ -265,7 +265,7 @@ function NewComplaints() {
             <div className='row '>
 
 
-                <Tabs value={value} onChange={handleChange} className="Tabs" >
+                {/* <Tabs value={value} onChange={handleChange} className="Tabs" >
                     <Tab className={value === 0 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 0 ? "../images/line.png" : ""} /> <img id="doctorImg" className="tabimg" src={value === 0 ? "../images/activemedical.svg" : "../images/medical.png"} alt='Doctor' />
                         <span className={value === 0 ? "selected-text" : "tabtext"}>Docisn Plus Web</span></span>} />
                     <Tab className={value === 1 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 1 ? "../images/line.png" : ""} /><img id="clinicImg" className="tabimg" src={value === 1 ? "../images/activehospital.png" : "../images/hospital.png"} alt='Clinic' />
@@ -278,6 +278,14 @@ function NewComplaints() {
                         <span className={value === 4 ? "selected-text" : "tabtext"}>Docisn Laboratory</span></span>} />
                     <Tab className={value === 5 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 5 ? "../images/line.png" : ""} /><img id="pharmacyImg" className="tabimg" src={value === 5 ? "../images/activepharmacy.png" : "../images/pharmacy.png"} alt='Pharmacy' />
                         <span className={value === 5 ? "selected-text" : "tabtext"}>Docisn Rx</span></span>} />
+                </Tabs> */}
+                 <Tabs value={value} onChange={handleChange} className="cTabs" >
+                    <Tab className={value === 0 ? "cselected-tab" : "ctab"} label={<span className={value === 0 ? "cselected-text" : "ctabtext"}>Docisn Plus Web</span>} />
+                    <Tab className={value === 1 ? "cselected-tab" : "ctab"} label={<span className={value === 1 ? "cselected-text" : "ctabtext"}>Docisn Plus App</span>} />
+                    <Tab className={value === 2 ? "cselected-tab" : "ctab"} label={<span className={value === 2 ? "cselected-text" : "ctabtext"}>Docisn Patients </span>} />
+                    <Tab className={value === 3 ? "cselected-tab" : "ctab"} label={<span className={value === 3 ? "cselected-text" : "ctabtext"}>Docisn Clinic</span> }/>
+                    <Tab className={value === 4 ? "cselected-tab" : "ctab"} label={<span className={value === 4 ? "cselected-text" : "ctabtext"}>Docisn Laboratory</span>}/>
+                    <Tab className={value === 5 ? "cselected-tab" : "ctab"} label={<span className={value === 5 ? "cselected-text" : "ctabtext"}>Docisn Rx</span>}/>
                 </Tabs>
             </div>
 
@@ -379,12 +387,12 @@ function NewComplaints() {
             </div>
             <div className="maingriddetails">
                 <div>
-                    {value === 0 && <h4 id="h-vcount">Docisn Plus Web Complaints</h4>}
-                    {value === 1 && <h4 id="h-vcount">Docisn Plus App Complaints</h4>}
-                    {value === 2 && <h4 id="h-vcount">Docisn Patients Complaints</h4>}
-                    {value === 3 && <h4 id="h-vcount">Docisn Clinic  Complaints</h4>}
-                    {value === 4 && <h4 id="h-vcount">Docsin Laboratory Complaints</h4>}
-                    {value === 5 && <h4 id="h-vcount">Docisn rx Complaints</h4>}
+                    {value === 0 && <h5 id="h-vcount">Docisn Plus Web Complaints</h5>}
+                    {value === 1 && <h5 id="h-vcount">Docisn Plus App Complaints</h5>}
+                    {value === 2 && <h5 id="h-vcount">Docisn Patients Complaints</h5>}
+                    {value === 3 && <h5 id="h-vcount">Docisn Clinic  Complaints</h5>}
+                    {value === 4 && <h5 id="h-vcount">Docsin Laboratory Complaints</h5>}
+                    {value === 5 && <h5 id="h-vcount">Docisn rx Complaints</h5>}
                 </div>
 
                 <div className='row stats-card gridview'>
@@ -399,7 +407,7 @@ function NewComplaints() {
                     </div>
 
                     {docisnWebComplaintsList.length > 0 && docisnWebComplaintsList.map((complaint, index) => (
-                        <div key={index} className="row user-details d-flex card-body">
+                        <div key={index} className="row user-detailss d-flex card-body">
                             <div id="13952" className="col-1 d-flex index">
                                 {index + 1}
                             </div>
@@ -451,7 +459,7 @@ function NewComplaints() {
                     ))}
 
                     {docisnAppComplaintsList.length > 0 && docisnAppComplaintsList.map((complaint, index) => (
-                        <div key={index} className="row user-details d-flex card-body">
+                        <div key={index} className="row user-detailss d-flex card-body">
                             <div id="13952" className="col-1 d-flex index" >
                                 {index + 1}
                             </div>
@@ -501,7 +509,7 @@ function NewComplaints() {
                     ))}
 
                     {clinicComplaintsList.length > 0 && clinicComplaintsList.map((complaint, index) => (
-                        <div key={index} className="row user-details d-flex card-body">
+                        <div key={index} className="row user-detailss d-flex card-body">
                             <div id="13952" className="col-1 d-flex index">
                                 {index + 1}
                             </div>
@@ -551,7 +559,7 @@ function NewComplaints() {
                     ))}
 
                     {pharmaComplaintsList.length > 0 && pharmaComplaintsList.map((complaint, index) => (
-                        <div key={index} className="row user-details d-flex card-body">
+                        <div key={index} className="row user-detailss d-flex card-body">
                             <div id="13952" className="col-1 d-flex index">
                                 {index + 1}
                             </div>
@@ -600,7 +608,7 @@ function NewComplaints() {
                     ))}
 
                     {labComplaintsList.length > 0 && labComplaintsList.map((complaint, index) => (
-                        <div key={index} className="row user-details d-flex card-body">
+                        <div key={index} className="row user-detailss d-flex card-body">
                             <div id="13952" className="col-1 d-flex index">
                                 {index + 1}
                             </div>
@@ -650,7 +658,7 @@ function NewComplaints() {
                     ))}
 
                     {patientsComplaintsList.length > 0 && patientsComplaintsList.map((complaint, index) => (
-                        <div key={index} className="row user-details d-flex card-body">
+                        <div key={index} className="row user-detailss d-flex card-body">
                             <div id="13952" className="col-1 d-flex index">
                                 {index + 1}
                             </div>
