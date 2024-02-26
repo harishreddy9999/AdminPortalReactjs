@@ -23,6 +23,9 @@ const AdminCoupons = () => {
     const [primaryPatientUser, setPrimaryUser] = useState(null);
     const [showPatientDetails, setShowPatientDetails] = useState(false);
     const [selectedPatientID, setselectedPatientID] = useState('');
+    const [couponFor, setCouponFor] = useState('');
+    const [couponID, setCouponID] = useState('');
+
     const [applyCouponForm, setApplyCouponForm] = useState({
         mobileNumber: '',
         patientName: '',
@@ -41,9 +44,9 @@ const AdminCoupons = () => {
         setFilterStartDate(e.target.value);
 
     };
-    // const handleChange = (event, newValue) => {
-    //     setValue(newValue);
-    // };
+    const handleTabChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     const onEndDateChange = (e) => {
         console.log("onEndDateChange", e);
@@ -121,12 +124,14 @@ const AdminCoupons = () => {
         }
     }
 
-    const showTab = (value) => {
-        console.log(value);
-        setSelectedTab(value);
-    }
+
 
     const handleApplyCoupon = (data) => {
+        // debugger;
+
+        setApplyCouponForm({ ...applyCouponForm, applyCoupon: data.couponNumber });
+        setCouponID(data._id);
+        setCouponFor(data.couponFor);
         // Handle applying the coupon here
         console.log('Applying coupon:', data);
     };
@@ -163,15 +168,52 @@ const AdminCoupons = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let obj = {};
+        let obj = {
+            couponID: couponID,
+            patientID: selectedPatientID,
+            couponNumber: applyCouponForm.applyCoupon,
+            couponFor: couponFor
+        };
+        console.log("applyCouponForm", applyCouponForm, obj);
+        // return;
         const apiRes = await addUserCouponAPI(obj);
+        console.log("apiRes", apiRes);
+        if (apiRes.message == 'Coupon code already used') {
+
+        }
+        else {
+            setApplyCouponForm({
+                mobileNumber: '',
+                patientName: '',
+                patientAge: '',
+                applyCoupon: ''
+            });
+            setCouponFor('');
+            setCouponID('');
+            setselectedPatientID('');
+        }
+        getList();
 
 
 
     }
 
     const selectPatient = () => {
-        setselectedPatientID(primaryPatientUser.patientID)
+        console.log(primaryPatientUser);
+
+        const patientAge = calculateAge(primaryPatientUser.patientAge)
+        setselectedPatientID(primaryPatientUser.patientID);
+        setShowPatientDetails(false);
+        // debugger;
+        setApplyCouponForm({ ...applyCouponForm, patientName: primaryPatientUser.patientName, patientAge: patientAge });
+        // setApplyCouponForm({ ...applyCouponForm,  });
+    }
+
+    const calculateAge = (dob) => {
+        var formattedDate = moment(dob).format('YYYY-MM-DD');
+        const today = moment();
+        const ageOfPatient = today.diff(formattedDate, 'years', false);
+        return ageOfPatient;
     }
 
     return (
@@ -179,7 +221,7 @@ const AdminCoupons = () => {
         <div className="container-fluid">
             <div className='tabs-row'>
 
-                <Tabs value={value} onChange={handleChange} className="vTabs" >
+                <Tabs value={value} onChange={handleTabChange} className="vTabs" >
                     <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0 ? "vselected-text" : "vtabtext"}>Coupons</span>} />
                     <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1 ? "vselected-text" : "vtabtext"}>Coupons List</span>} />
 
@@ -430,6 +472,9 @@ const AdminCoupons = () => {
                                                     onChange={handleChange}
                                                     required
                                                 />
+                                            </div>
+                                            <div className='row d-flex justify-content-end'>
+                                                <button type='submit' className='provider-submit-btn'>Submit</button>
                                             </div>
                                         </form>
                                     </div>

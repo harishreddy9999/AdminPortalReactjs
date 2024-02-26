@@ -1,52 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import '../../App.css';
-import '../../Styles/Admin-labdetails.css';
 import Modal from 'react-modal';
 import Card from '@mui/material/Card';
 import { verifyProfiles } from '../../services/adminportalService';
-import RejectionModalComponent from './Admin-RejectionModal';
+import moment from 'moment';
+// import RejectionModalComponent from './Admin-RejectionModal';
 
-const AdminLabDetails = ({ isOpen, onClose, lab }) => {
-    const [labDetails, setLabDetails] = useState(null);
-    const [labLogo, setLabLogo] = useState('');
-    const [locality, setlocality] = useState([]);
-    const [isRejectionModalOpen, setisRejectionModalOpen] = useState(false);
+const AdminSelectedClinicDetails = ({ isOpen, onClose, clinic }) => {
+    const [clinicDetails, setClinicDetails] = useState(null);
 
     useEffect(() => {
-        if (lab) {
+        if (clinic) {
             // debugger;
-            if (lab.hasOwnProperty("labLogo")) {
-                // debugger;
-                setLabLogo(lab.labLogo);
-            }
-            setLabDetails(lab);
-            setlocality(lab.address);
-            console.log("labDetails", labDetails, labLogo);
+            setClinicDetails(clinic);
+            console.log("clinicDetails", clinicDetails, clinic);
         }
-    }, [lab]);
+    }, [clinic]);
 
     const verify = async (approve, id) => {
         let obj = {
             id: id,
             status: approve,
-            type: "LAB",
+            type: "CLINIC",
             comments: ""
         };
-
+        console.log("obj", obj)
+        // return;
         const verifyProfilesRes = await verifyProfiles(obj);
         console.log("verifyProfilesRes", verifyProfilesRes)
         if (verifyProfilesRes) {
-            onClose();
+            closePopup();
         }
     }
-
-    const reject = async (approve, id) => {
-        setisRejectionModalOpen(true);
+    const closePopup = () => {
+        onClose();
     }
+    // const reject = async (approve, id) => {
+    //     setisRejectionModalOpen(true);
+    // }
 
-    const closeRejectionModal = () => {
-        setisRejectionModalOpen(false);
-    }
+    // const closeRejectionModal = () => {
+    //     setisRejectionModalOpen(false);
+    // }
 
     return (
         <div>
@@ -70,18 +65,19 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
             >
                 <div id="12041" className="row space">
                     <div id="12042" className="col-lg-12 col-md-12">
-                        <h6 id="h-lbl" className="screen-heading">Lab Details</h6>
+                        <h6 id="h-lbl" className="screen-heading-doctor-details">Clinic Details</h6>
                     </div>
                     <div id="12043" className="col-lg-12 col-md-12">
-                        <Card className='lab-details-card' id="m-card">
+
+                        <Card className='clinic-details-card' id="m-card">
                             <div id="12044" className="row">
                                 <div id="12045" className="col-lg-12">
                                     <div id="12046" className="row" >
                                         <div id="12047" className="col-lg-3" >
                                             {
-                                                labDetails?.labLogo !== '' ? (
+                                                clinicDetails?.clinicLogo !== '' ? (
                                                     <div id="img-div" className='p-2'>
-                                                        <img src="{labDetails?.labLogo}" className="labLogo" id="pic" alt='lab-logo' />
+                                                        <img src="{clinicDetails?.clinicLogo}" className="labLogo" id="pic" alt='lab-logo' />
                                                     </div>
                                                 ) : <div id="img-div" className='p-2'>
                                                     <img src="../images/UserLogo.svg" className="labLogo" id="pic" alt='lab-logo' />
@@ -92,12 +88,9 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
                                         </div>
                                         <div id="12048" className="col-lg-9">
                                             <div id="12049" className='p-2'>
-                                                <div id="12050" className="labName">{labDetails?.labName}</div>
-                                                {
-                                                    labDetails?.accountStatus === 'PENDING' ? (
-                                                        <div id="12051" className="accountStatus">Pending</div>
-                                                    ) : ''
-                                                }
+                                                <div id="12050" className="labName">{clinicDetails?.clinicName}</div>
+                                                <div id="802" className="accountStatus">{clinicDetails?.accountStatus}</div>
+                                                <div id="803" className="regno">{clinicDetails?.nameOfCouncil}</div>
 
                                             </div>
                                         </div>
@@ -108,65 +101,60 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
                             <hr />
                             <div id="12058" className="row pt-2">
                                 <div id="12059" className="col-lg-4">
-                                    <label id="phn-lbl" className="pat-details-side-heading">Phone Number</label>
+                                    <label id="phn-lbl" className="pat-details-side-heading">registrationNumber</label>
                                     <div id="12060" className="details" >
-                                        {labDetails?.phoneNumber}
+                                        {clinicDetails?.registrationNumber}
                                     </div>
                                 </div>
                                 <div id="12061" className="col-lg-4">
-                                    <label id="mail-lbl" className="pat-details-side-heading"> Email</label>
-                                    <div id="12062" className="details">{labDetails?.email}</div>
+                                    <label id="mail-lbl" className="pat-details-side-heading"> GSTNumber</label>
+                                    <div id="12062" className="details">{clinicDetails?.GSTNumber}</div>
 
                                 </div>
                                 <div id="12063" className="col-lg-4">
-                                    <label id="gst-lbl" className="pat-details-side-heading"> GST Number</label>
-                                    <div id="12064" className="details">{labDetails?.nablLicenseNumber}</div>
+                                    <label id="gst-lbl" className="pat-details-side-heading">phoneNumber</label>
+                                    <div id="12064" className="details">{clinicDetails?.phoneNumber}</div>
                                 </div>
 
                             </div>
                             <div id="12065" className="row pt-2">
 
                                 <div id="12066" className="col-lg-4">
-                                    <label id="per-lbl" className="pat-details-side-heading">Contact Person</label>
-                                    <div id="12067" className="details">{labDetails?.pathologistName}</div>
+                                    <label id="per-lbl" className="pat-details-side-heading">Location</label>
+                                    <div id="12067" className="details">{clinicDetails?.clinicAddress?.address}</div>
                                 </div>
                                 <div id="12068" className="col-lg-4">
-                                    <label id="lis-lbl" className="pat-details-side-heading"> License Number</label>
-                                    <div id="12069" className="details">{labDetails?.nablLicenseNumber}</div>
+                                    <label id="lis-lbl" className="pat-details-side-heading">State</label>
+                                    <div id="12069" className="details">{clinicDetails?.clinicAddress?.state}</div>
+                                </div>
+                                <div id="12068" className="col-lg-4">
+                                    <label id="lis-lbl" className="pat-details-side-heading">City</label>
+                                    <div id="12069" className="details">{clinicDetails?.clinicAddress?.city}</div>
                                 </div>
                             </div>
                             <div id="120652" className="row pt-2">
-                                <div id="120591" className="col-lg-4">
-                                    <label className="pb-1 pat-details-side-heading" id="gst-lbl"> Address</label>
-                                    <ul className="ulcalss" id="localityul">
-                                        {
-                                            locality.map((local, index) => (
-                                                <li key={index} className="liclass" id="localityli">{local.locality} </li>
-                                            ))
-                                        }
-
-                                    </ul>
+                                <div id="12066" className="col-lg-4">
+                                    <label id="per-lbl" className="pat-details-side-heading">Pincode</label>
+                                    <div id="12067" className="details">{clinicDetails?.clinicAddress?.pincode}</div>
                                 </div>
+
                             </div>
                             <div id="12070" className="row">
                                 <div id="12071" className="col-12 edit space d-flex justify-content-end">
-                                    <button id="12072" className="provider-submit-btn me-2" onClick={() => verify('APPROVED', labDetails._id)}
+                                    <button id="12072" className="provider-submit-btn me-2" onClick={() => verify('APPROVED', clinicDetails._id)}
                                     >Approve</button>
-                                    <button id="12073" className="reject-btn provider-cancel-btn me-2" onClick={() => reject('REJECTED', labDetails._id)}>Reject</button>
-                                    <button className="canceldismiss provider-cancel-btn me-1" id="no" onClick={onClose}>Dismiss</button>
+                                    <button id="12073" className="reject-btn provider-cancel-btn me-2">Reject</button>
+                                    <button className="canceldismiss provider-cancel-btn me-1" id="no" onClick={closePopup}>Dismiss</button>
 
                                 </div>
                             </div>
                         </Card>
                     </div>
                 </div>
-
             </Modal>
-
-
 
         </div>
     );
 };
 
-export default AdminLabDetails;
+export default AdminSelectedClinicDetails;

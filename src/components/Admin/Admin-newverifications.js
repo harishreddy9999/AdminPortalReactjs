@@ -8,6 +8,9 @@ import Tab from '@mui/material/Tab';
 import AdminLabDetails from '../Admin/Admin-LabDetails';
 import AdminSelectedDoctorDetails from '../Admin/Admin-SelectedDoctorDetails';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import AdminSelectedClinicDetails from './Admin-SelectedClinicDetails';
+import AdminSelectedPharmacyDetails from './Admin-SelectedPharmacyDetails';
+import AdminSelectedIndependentClinicDetails from './Admin-SelectedIndependentClinicDetails';
 // import Modal from 'react-modal';
 
 
@@ -36,6 +39,13 @@ function NewVerifications() {
     const [selectedLab, setSelectedLab] = useState(null);
     const [isDoctorDetailsOpen, setIsDoctorDetailsOpen] = useState(false);
     const [selectedDoctor, setSelectedDoctor] = useState(null);
+    const [selectedClinic, setSelectedClinic] = useState(null);
+    const [isClinicDetailsOpen, setIsClinicDetailsOpen] = useState(false);
+    const [independentClinicsList, setIndependentClinicUnverifiedList] = useState([]);
+    const [isPharmacyDetailsOpen, setIsPharmacyDetailsOpen] = useState(false);
+    const [selectedPharmacy, setSelectedPharmacy] = useState(null);
+    const [isIndependentClinicDetailsOpen, setIsIndependentClinicDetailsOpen] = useState(false);
+    const [selectedIndependentClinic, setSelectedIndependentClinic] = useState(null);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -100,6 +110,7 @@ function NewVerifications() {
             setDoctorsUnverifiedList(prevList => [...prevList, ...data.doctorsList]);
             setLabsUnverifiedList(prevList => [...prevList, ...data.labProfiles]);
             setPharmacyUnverifiedList(prevList => [...prevList, ...data.pharmacyProfileList]);
+            setIndependentClinicUnverifiedList(prevList => [...prevList, ...data.independentClinicList]);
             console.log("unverifiedProfiles", data);
         } catch (error) {
             console.error('Error fetching unverified profiles:', error);
@@ -113,6 +124,22 @@ function NewVerifications() {
     useEffect(() => {
         unverifiedProfiles();
     }, []);
+
+    const viewClinicDetails = (clinic) => {
+        // debugger;
+        setSelectedClinic(clinic);
+        setIsClinicDetailsOpen(true);
+    }
+    const viewPharmacyDetails = (pharmacy) => {
+        // debugger;
+        setSelectedPharmacy(pharmacy);
+        setIsPharmacyDetailsOpen(true);
+    }
+    const viewIndependentClinicDetails = (independentClinic) => {
+        // debugger;
+        setSelectedIndependentClinic(independentClinic);
+        setIsIndependentClinicDetailsOpen(true);
+    }
     return (
         <div id="15818" className="row matop">
             <div className='row '>
@@ -132,6 +159,7 @@ function NewVerifications() {
                     <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1 ? "vselected-text" : "vtabtext"}>Clinic</span>} />
                     <Tab className={value === 2 ? "vselected-tab" : "vtab"} label={<span className={value === 2 ? "vselected-text" : "vtabtext"}>Laboratory</span>} />
                     <Tab className={value === 3 ? "vselected-tab" : "vtab"} label={<span className={value === 3 ? "vselected-text" : "vtabtext"}>Pharmacy</span>} />
+                    <Tab className={value === 4 ? "vselected-tab" : "vtab"} label={<span className={value === 4 ? "vselected-text" : "vtabtext"}>Independent Clinics</span>} />
                 </Tabs>
             </div>
             <div className='row'>
@@ -144,6 +172,7 @@ function NewVerifications() {
                                     {value === 1 && <h5 id="h-vcount">{totalClinicProfilesCount}</h5>}
                                     {value === 2 && <h5 id="h-vcount">{totalLabProfilesCount}</h5>}
                                     {value === 3 && <h5 id="h-vcount">{totalPharmacyCount}</h5>}
+                                    {value === 4 && <h5 id="h-vcount">0</h5>}
                                     <div id="15823" className='totaltext'>Total</div>
                                 </div>
                             </div>
@@ -165,6 +194,7 @@ function NewVerifications() {
                                     {value === 1 && <h5 id="h-vcount">{verifiedClinicsCount}</h5>}
                                     {value === 2 && <h5 id="h-vcount">{verifiedLabProfilesCount}</h5>}
                                     {value === 3 && <h5 id="h-vcount">{verifiedPharmacyProfiles}</h5>}
+                                    {value === 4 && <h5 id="h-vcount">0</h5>}
                                     <div id="15823" className='verifiedtext'>Verified </div>
                                 </div>
                             </div>
@@ -187,6 +217,7 @@ function NewVerifications() {
                                     {value === 1 && <h5 id="h-vcount">{unVerifiedClinicsCount}</h5>}
                                     {value === 2 && <h5 id="h-vcount">{unVerifiedLabProfilesCount}</h5>}
                                     {value === 3 && <h5 id="h-vcount">0</h5>}
+                                    {value === 4 && <h5 id="h-vcount">0</h5>}
                                     <div id="15823" className='unverifiedtext'>Unverified</div>
                                 </div>
                             </div>
@@ -208,6 +239,7 @@ function NewVerifications() {
                                     {value === 1 && <h5 id="h-vcount">{rejectedClinicsCount}</h5>}
                                     {value === 2 && <h5 id="h-vcount">{rejectedLabProfilesCount}</h5>}
                                     {value === 3 && <h5 id="h-vcount">0</h5>}
+                                    {value === 4 && <h5 id="h-vcount">0</h5>}
                                     <div id="15823" className='rejectedtext'>Rejected</div>
                                 </div>
                             </div>
@@ -228,6 +260,7 @@ function NewVerifications() {
                     {value === 1 && <h5 id="h-vcount">Pending Clinic Profiles</h5>}
                     {value === 2 && <h5 id="h-vcount">Pending Laboratory Profiles</h5>}
                     {value === 3 && <h5 id="h-vcount">Pending Pharmacy Profiles</h5>}
+                    {value === 4 && <h5 id="h-vcount">Pending Independent Clinics</h5>}
                 </div>
 
 
@@ -242,7 +275,14 @@ function NewVerifications() {
                             <div id="13948" className="col-2 heading-actions table-header-text">Actions</div>
                         </div>
                     )}
+                    {value === 0 && doctorsUnverifiedList.length == 0 ?
 
+                        (<div className="row d-flex justify-content-center nodata" >
+                            No Data Found
+                        </div>
+                        ) : ''
+
+                    }
                     {value === 0 && doctorsUnverifiedList.map((doctor, index) => (
                         <div key={index} className="row user-detailss d-flex card-body">
                             <div id="13952" className="col-2 d-flex">
@@ -291,7 +331,7 @@ function NewVerifications() {
 
                             <div id="13932" className="col-2 d-flex align-items-center">
                                 {/* <button className="provider-submit-btn" id="det-btn">View Details</button> */}
-                                <a className="viewdetails" >
+                                <a className="viewdetails" onClick={() => viewClinicDetails(clinic)}>
                                     <img id="1501346" src="../images/eye.png" className="eyeiconview" alt='eyeiconview' />
                                 </a>
 
@@ -309,6 +349,14 @@ function NewVerifications() {
                             <div id="13976" className="col-2 table-header-text">Actions</div>
                         </div>
                     )}
+                    {value === 2 && labsUnverifiedList.length == 0 ?
+
+                        (<div className="row d-flex justify-content-center nodata" >
+                            No Data Found
+                        </div>
+                        ) : ''
+
+                    }
                     {value === 2 && labsUnverifiedList.map((lab, index) => (
                         <div key={index} className="row user-detailss d-flex card-body">
                             <div id="13980" className="col-2  d-flex">
@@ -335,6 +383,14 @@ function NewVerifications() {
                             <div id="14003" className="col-2 heading-actions table-header-text">Actions</div>
                         </div>
                     )}
+                    {value === 3 && pharmacyUnverifiedList.length == 0 ?
+
+                        (<div className="row d-flex justify-content-center nodata" >
+                            No Data Found
+                        </div>
+                        ) : ''
+
+                    }
                     {value === 3 && pharmacyUnverifiedList.map((pharmacy, index) => (
                         <div key={index} className="row user-detailss d-flex card-body">
                             <div id="14007" className="col-2 col-lg-2 d-flex">
@@ -345,13 +401,51 @@ function NewVerifications() {
                             <div id="14012" className="col-2 user-email table-data-text">{pharmacy.startTime} - {pharmacy.endTime}</div>
                             <div id="14013" className="col-2 d-flex align-items-center">
                                 {/* <button className="provider-submit-btn" id="det-btn">View Details</button> */}
-                                <a className="viewdetails" >
+                                <a className="viewdetails" onClick={() => viewPharmacyDetails(pharmacy)} >
                                     <img id="1501346" src="../images/eye.png" className="eyeiconview" alt='eyeiconview' />
                                 </a>
                             </div>
 
                         </div>
                     ))}
+
+                    {value === 4 && (
+                        <div id="13997" className="row user-headings table-header d-flex">
+                            <div id="13998" className="col-2 heading-label table-header-text">Clinic Name</div>
+                            <div id="13999" className="col-2 heading-id-label table-header-text">Registration No</div>
+                            <div id="14000" className="col-2 heading-label table-header-text">Address</div>
+                            <div id="14001" className="col-2 heading-label table-header-text">Contact Person</div>
+                            <div id="14001" className="col-2 heading-label table-header-text">Contact Number</div>
+                            <div id="14003" className="col-2 heading-actions table-header-text">Actions</div>
+                        </div>
+                    )}
+                    {value === 4 && independentClinicsList.length == 0 ?
+
+                        (<div className="row d-flex justify-content-center nodata" >
+                            No Data Found
+                        </div>
+                        ) : ''
+
+                    }
+                    {
+                        value === 4 && independentClinicsList.map((clinic, index) => (
+                            <div key={index} className="row user-detailss d-flex card-body">
+                                <div id="14007" className="col-2 col-lg-2 d-flex">
+                                    <div id="14009" className="user-name table-data-text">{clinic.clinicName}</div>
+                                </div>
+                                <div id="14010" className="col-2 user-role table-data-text">{clinic.registrationNumber}</div>
+                                <div id="14011" className="col-2 user-mobile table-data-text">{clinic.clinicAddress.city}, {clinic.clinicAddress.state}</div>
+                                <div id="14012" className="col-2 user-email table-data-text">{clinic.ownerInfo.ownerFirstName} {clinic.ownerInfo.ownerLastName}</div>
+                                <div id="14012" className="col-2 user-email table-data-text">{clinic.ownerInfo.phoneNumber}</div>
+                                <div id="14013" className="col-2 d-flex align-items-center">
+                                    {/* <button className="provider-submit-btn" id="det-btn">View Details</button> */}
+                                    <a className="viewdetails" onClick={() => viewIndependentClinicDetails(clinic)} >
+                                        <img id="1501346" src="../images/eye.png" className="eyeiconview" alt='eyeiconview' />
+                                    </a>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
 
@@ -360,6 +454,15 @@ function NewVerifications() {
             }
             {
                 selectedDoctor ? (<AdminSelectedDoctorDetails isOpen={isDoctorDetailsOpen} onClose={closeAllModals} doctor={selectedDoctor} />) : ''
+            }
+            {
+                selectedClinic ? (<AdminSelectedClinicDetails isOpen={isClinicDetailsOpen} onClose={closeAllModals} clinic={selectedClinic} />) : ''
+            }
+            {
+                selectedPharmacy ? (<AdminSelectedPharmacyDetails isOpen={isPharmacyDetailsOpen} onClose={closeAllModals} pharmacy={selectedPharmacy} />) : ''
+            }
+            {
+                selectedIndependentClinic ? (<AdminSelectedIndependentClinicDetails isOpen={isIndependentClinicDetailsOpen} onClose={closeAllModals} independentClinic={selectedIndependentClinic} />) : ''
             }
         </div>
 
