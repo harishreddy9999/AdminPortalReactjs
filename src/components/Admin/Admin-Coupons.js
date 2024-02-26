@@ -6,6 +6,8 @@ import { getAllCouponsDataAPI, activeCouponAPI, getAllUserCouponsAPI, addUserCou
 import { fetchPatientDetailsAPI } from '../../services/patientScreeningSrv';
 import AddNewCoupon from './Admin-AddNewCoupon';
 import Switch from '@material-ui/core/Switch';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 const AdminCoupons = () => {
 
@@ -28,16 +30,20 @@ const AdminCoupons = () => {
         applyCoupon: ''
     });
 
+    const [value, setValue] = useState(0);
     useEffect(() => {
         getList();
 
-    }, [selectedTab, filterStartDate, filterEndDate, filterCouponFor, filterIsActive]);
+    }, [value, filterStartDate, filterEndDate, filterCouponFor, filterIsActive]);
     const onStartDateChange = (e) => {
         // debugger;
         console.log("onStartDateChange", e);
         setFilterStartDate(e.target.value);
 
     };
+    // const handleChange = (event, newValue) => {
+    //     setValue(newValue);
+    // };
 
     const onEndDateChange = (e) => {
         console.log("onEndDateChange", e);
@@ -57,9 +63,9 @@ const AdminCoupons = () => {
 
     };
     const getList = () => {
-        if (selectedTab === "Coupons") {
+        if (value === 0) {
             getAllCouponsData();
-        } else if (selectedTab === "List") {
+        } else if (value === 1) {
             getAllUSerCoupons();
         }
     }
@@ -172,12 +178,18 @@ const AdminCoupons = () => {
 
         <div className="container-fluid">
             <div className='tabs-row'>
-                <p className={`tab-heading ${selectedTab === 'Coupons' ? 'active' : ''}`} onClick={() => showTab('Coupons')}>Coupons</p>
-                <p className={`tab-heading ${selectedTab === 'List' ? 'active' : ''}`} onClick={() => showTab('List')}>Coupons List</p>
+
+                <Tabs value={value} onChange={handleChange} className="vTabs" >
+                    <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0 ? "vselected-text" : "vtabtext"}>Coupons</span>} />
+                    <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1 ? "vselected-text" : "vtabtext"}>Coupons List</span>} />
+
+                </Tabs>
+                {/* <p className={`tab-heading ${selectedTab === 'Coupons' ? 'active' : ''}`} onClick={() => showTab('Coupons')}>Coupons</p>
+                <p className={`tab-heading ${selectedTab === 'List' ? 'active' : ''}`} onClick={() => showTab('List')}>Coupons List</p> */}
             </div>
             <div className='list-row mt-3'>
                 {
-                    selectedTab === 'Coupons' ? (
+                    value === 0 ? (
                         <div className='row'>
                             <div id="13397" className="row">
                                 <div id="13398" className="d-flex justify-content-between">
@@ -191,12 +203,12 @@ const AdminCoupons = () => {
                                 </div>
                             </div>
 
-                            <div className="row">
+                            <div className="row ">
                                 <div className="p-1">
                                     <form>
-                                        <div className="row">
+                                        <div className="row topfields">
                                             <div className="col-3 col-lg-3 col-md-6 col-sm-12 ps-3 pe-3">
-                                                <label className="matLabel">Start Date</label>
+                                                <label className="padd">Start Date</label>
                                                 <input
                                                     type="date"
                                                     className="form-control"
@@ -207,7 +219,7 @@ const AdminCoupons = () => {
 
                                             </div>
                                             <div className="col-3 col-lg-3 col-md-6 col-sm-12 ps-3 pe-3">
-                                                <label className="matLabel">End Date</label>
+                                                <label className="padd">End Date</label>
                                                 <input
                                                     type="date"
                                                     className="form-control"
@@ -217,7 +229,7 @@ const AdminCoupons = () => {
                                                 />
                                             </div>
                                             <div className="col-3 col-lg-3 col-md-6 col-sm-12 ps-3 pe-3">
-                                                <label className="matLabel">Type of Coupon Code</label>
+                                                <label className="padd">Type of Coupon Code</label>
                                                 <select
                                                     className="form-control"
                                                     value={filterCouponFor}
@@ -232,7 +244,7 @@ const AdminCoupons = () => {
 
                                             </div>
                                             <div className="col-3 col-lg-3 col-md-6 col-sm-12 ps-3 pe-3">
-                                                <label className="matLabel">Coupon Status</label>
+                                                <label className="padd">Coupon Status</label>
                                                 <select
                                                     className="form-control"
                                                     value={filterIsActive}
@@ -262,8 +274,16 @@ const AdminCoupons = () => {
                                                 Actions
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className='row tablebody'>
+                                        <div className='pt-1 pb-1 border-bottom'>
+                                            {couponsList.length == 0 ?
+                                                (<div className="row d-flex justify-content-center" >
+                                                    No Data Found
+                                                </div>) : ''}
+                                        </div>
                                         {couponsList.length > 0 && couponsList.map((coupon, index) => (
-                                            <div className='pt-4 pb-4 border-bottom' key={index}>
+                                            <div className='pt-1 pb-1 border-bottom' key={index}>
                                                 <div className="row " >
                                                     <div className="col-lg-3 col-md-3 col-sm-3 clinicDetails d-flex flex-column"
                                                         id="table-patients">
@@ -304,13 +324,14 @@ const AdminCoupons = () => {
                                             </div>
                                         ))}
                                     </div>
+
                                 </div>
                             </div>
                         </div>
                     ) : ''
                 }
                 {
-                    selectedTab === 'List' ? (
+                    value === 1 ? (
                         <div className='user-coupons-card-row'>
                             <div className='row'>
                                 <div className='col-lg-6 col-md-6 col-sm-12 brd-right'>

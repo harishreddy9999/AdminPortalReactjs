@@ -202,7 +202,7 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
                     content: {
                         minWidth: '50%', // Width of the modal content
                         maxWidth: '60%',
-                        minHeight: '400px', // Height of the modal content
+                        minHeight: '450px', // Height of the modal content
                         maxHeight: '600px',
                         margin: '25px auto', // Center the modal
                         overflow: 'hidden',
@@ -478,7 +478,7 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
 
                                 />
                             </div>
-                            <div className='col-12'>
+                            <div className='col-12 rowpadding'>
                                 <label className='form-lbl'>Description</label>
                                 <textarea
                                     type="number"
@@ -490,7 +490,7 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
                                 ></textarea>
                             </div>
                         </div>
-                        <div className='row'>
+                        <div className='row rowpadding'>
                             <div className='col-3'>
                                 <label className='form-lbl'>Coupon Validate :</label>
                             </div>
@@ -522,12 +522,12 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
                                 ) : ('')
                             }
                         </div>
-                        <div className='row'>
-                            <div className='col-4'>
+                        <div className='row rowpadding'>
+                            <div className='col-5'>
                                 <span>Coupon needs to show in DOCISN APP :</span>
                             </div>
                             <div className='col-5'>
-                                <FormControlLabel
+                                <FormControlLabel className='p-0'
                                     control={
                                         <Switch
                                             checked={isShowInDocisn}
@@ -542,13 +542,13 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
                             </div>
 
                         </div>
-                        <div className='row'>
+                        <div className='row rowpadding'>
                             <label className='form-lbl'>Terms & Conditions</label>
                             {
                                 formData.termsConditionsList.map((term, index) => (
-                                    <div key={index} className="py-1">
-                                        <div>
-                                            <div id="2585" className="row aoe-row">
+                                  
+                                        
+                                            <div id="2585" key={index} className="row aoe-row">
                                                 <div className="col-10 p-0">
                                                     <div className="material-textfield">
                                                         <input
@@ -574,11 +574,10 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
                                                     )}
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                    
                                 ))}
                         </div>
-                        <div id="9834" className="flex-container d-flex justify-content-end py-2 mt-5">
+                        <div id="9834" className="flex-container d-flex justify-content-end py-2">
                             <button id="9835" className="save-btn-sdnd  provider-submit-btn" >Submit</button>
                             <button className="cancelbtn  mx-2" id="24">Cancel</button>
                         </div>

@@ -94,6 +94,7 @@ function Verifications() {
             setClinicUnverifiedList([]);
             setLabsUnverifiedList([]);
             setPharmacyUnverifiedList([]);
+            
             // Use functional update to ensure working with the latest state
             setClinicUnverifiedList(prevList => [...prevList, ...data.clinicList]);
             setDoctorsUnverifiedList(prevList => [...prevList, ...data.doctorsList]);
@@ -275,6 +276,15 @@ function Verifications() {
                         <div id="13921" className="col-2 heading-actions table-header-text">Actions</div>
                     </div>
                 )}
+                
+                {value === 1 && clinicUnverifiedList.length==0 ?
+  
+                   ( <div className="row d-flex justify-content-center" >
+                       No Data Found
+                      </div>
+                    ):''
+
+                }
                 {value === 1 && clinicUnverifiedList.map((clinic, index) => (
                     <div key={index} className="row user-details d-flex card-body">
                         <div id="13925" className="col-2  d-flex">

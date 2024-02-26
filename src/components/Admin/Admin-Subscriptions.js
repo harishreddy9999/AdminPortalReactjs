@@ -5,6 +5,9 @@ import { getAllClinicSubscriptionsAPI, getAllPharmacySubscriptionsAPI } from '..
 import moment from 'moment';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
 import UpdateClinicSubscriptionModal from './Admin-UpdateClinicSubscription';
+import UpdatePharmacySubscriptionModal from './UpdatePharmacySubscription';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 const AdminSubscripions = () => {
     const [clinicSubscriptionsData, setclinicSubscriptionsData] = useState([]);
@@ -12,20 +15,28 @@ const AdminSubscripions = () => {
     const [selectedTab, setSelectedTab] = useState('Clinic');
     const [isClinicSubscriptionModal, setisClinicSubscriptionModal] = useState(false);
     const [isClinicSubscriptionModalOpen, setisClinicSubscriptionModalOpen] = useState(false);
+    const [isPharmacySubscriptionModal, setisPharmacySubscriptionModal] = useState(false);
+    const [isPharmacySubscriptionModalOpen, setisPharmacySubscriptionModalOpen] = useState(false);
     const [selectedClinic, setSelectedClinic] = useState(null);
+    const [selectedPharmacy, setSelectedPharmacy] = useState(null);
+    const [value, setValue] = useState(0);
     useEffect(() => {
         getList();
         // getClinicSubscriptions();
-    }, [selectedTab])
+    }, [value])
 
     const showTab = (value) => {
         console.log(value);
         setSelectedTab(value);
     }
+    
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
     const getList = () => {
-        if (selectedTab === "Clinic") {
+        if (value === 0) {
             getClinicSubscriptions();
-        } else if (selectedTab === "Pharmacy") {
+        } else if (value === 1) {
             getpharmacySubscriptions();
         }
     }
@@ -100,23 +111,35 @@ const AdminSubscripions = () => {
     }
     const closeAllModals = () => {
         setSelectedClinic(null)
+        setSelectedPharmacy(null)
         setisClinicSubscriptionModal(false);
         setisClinicSubscriptionModalOpen(false);
+        setisPharmacySubscriptionModal(false);
+        setisPharmacySubscriptionModalOpen(false);
         getList();
     }
     const updatePharmacySubscription = (pharmacy) => {
         console.log("pharmacy", pharmacy);
+        setSelectedPharmacy(pharmacy)
+        setisPharmacySubscriptionModal(true);
+        setisPharmacySubscriptionModalOpen(true);
+        getList();
     }
     return (
         <div className='wellness-main-screen'>
             <div className='row'>
                 <div className='tabs-row'>
-                    <p className={`tab-heading ${selectedTab === 'Clinic' ? 'active' : ''}`} onClick={() => showTab('Clinic')}>Clinic Subscriptions</p>
-                    <p className={`tab-heading ${selectedTab === 'Pharmacy' ? 'active' : ''}`} onClick={() => showTab('Pharmacy')}>Pharmacy Subscriptions</p>
+                <Tabs   value={value} onChange={handleChange} className="vTabs" >
+                    <Tab className={value === 0? "vselected-tab" : "vtab"} label={<span className={value === 0 ? "vselected-text" : "vtabtext"}>Clinic Subscriptions</span>} />
+                    <Tab className={value===1? "vselected-tab" : "vtab"}  label={<span className={value === 1 ? "vselected-text" : "vtabtext"}>Pharmacy Subscriptions</span>} />
+
+                </Tabs>
+                    {/* <p className={`tab-heading ${selectedTab === 'Clinic' ? 'active' : ''}`} onClick={() => showTab('Clinic')}>Clinic Subscriptions</p>
+                    <p className={`tab-heading ${selectedTab === 'Pharmacy' ? 'active' : ''}`} onClick={() => showTab('Pharmacy')}>Pharmacy Subscriptions</p> */}
                 </div>
                 <div className='list-row mt-3'>
                     {
-                        selectedTab === 'Clinic' ? (
+                        value === 0 ? (
                             <div className='panel-list-table'>
                                 <Paper>
                                     <TableContainer>
@@ -165,7 +188,7 @@ const AdminSubscripions = () => {
                         ) : ''
                     }
                     {
-                        selectedTab === 'Pharmacy' ? (
+                        value === 1 ? (
                             <div className='panel-list-table'>
                                 <Paper>
                                     <TableContainer>
@@ -219,6 +242,9 @@ const AdminSubscripions = () => {
             </div>
             {
                 isClinicSubscriptionModal ? (<UpdateClinicSubscriptionModal isOpen={isClinicSubscriptionModalOpen} onClose={closeAllModals} clinic={selectedClinic} />) : ''
+            }
+               {
+                isPharmacySubscriptionModal ? (<UpdatePharmacySubscriptionModal isOpen={isPharmacySubscriptionModalOpen} onClose={closeAllModals} pharmacy={selectedPharmacy} />) : ''
             }
         </div>
     )

@@ -7,6 +7,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import AdminLabDetails from '../Admin/Admin-LabDetails';
 import AdminSelectedDoctorDetails from '../Admin/Admin-SelectedDoctorDetails';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 // import Modal from 'react-modal';
 
 
@@ -115,13 +116,8 @@ function NewVerifications() {
     return (
         <div id="15818" className="row matop">
             <div className='row '>
-                {/* <Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary">
-                    <Tab label="Doctor" />
-                    <Tab label="Clinic" />
-                    <Tab label="Laboratory" />
-                    <Tab label="Pharmacy" />
-                </Tabs> */}
-                <Tabs value={value} onChange={handleChange} className="Tabs" >
+
+                {/* <Tabs value={value} onChange={handleChange} className="Tabs" >
                     <Tab className={value === 0 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 0 ? "../images/line.png" : ""} /> <img id="doctorImg" className="tabimg" src={value === 0 ? "../images/activemedical.svg" : "../images/medical.png"} alt='Doctor' />
                         <span className={value === 0 ? "selected-text" : "tabtext"}>Doctor</span></span>} />
                     <Tab className={value === 1 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 1 ? "../images/line.png" : ""} /><img id="clinicImg" className="tabimg" src={value === 1 ? "../images/activehospital.png" : "../images/hospital.png"} alt='Clinic' />
@@ -130,6 +126,12 @@ function NewVerifications() {
                         <span className={value === 2 ? "selected-text" : "tabtext"}>Laboratory</span></span>} />
                     <Tab className={value === 3 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 3 ? "../images/line.png" : ""} /><img id="pharmacyImg" className="tabimg" src={value === 3 ? "../images/activepharmacy.png" : "../images/pharmacy.png"} alt='Pharmacy' />
                         <span className={value === 3 ? "selected-text" : "tabtext"}>Pharmacy</span></span>} />
+                </Tabs> */}
+                <Tabs value={value} onChange={handleChange} className="vTabs" >
+                    <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0 ? "vselected-text" : "vtabtext"}>Doctor</span>} />
+                    <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1 ? "vselected-text" : "vtabtext"}>Clinic</span>} />
+                    <Tab className={value === 2 ? "vselected-tab" : "vtab"} label={<span className={value === 2 ? "vselected-text" : "vtabtext"}>Laboratory</span>} />
+                    <Tab className={value === 3 ? "vselected-tab" : "vtab"} label={<span className={value === 3 ? "vselected-text" : "vtabtext"}>Pharmacy</span>} />
                 </Tabs>
             </div>
             <div className='row'>
@@ -222,10 +224,10 @@ function NewVerifications() {
             </div>
             <div className="maingriddetails">
                 <div>
-                    {value === 0 && <h4 id="h-vcount">Pending Doctor Profiles</h4>}
-                    {value === 1 && <h4 id="h-vcount">Pending Clinic Profiles</h4>}
-                    {value === 2 && <h4 id="h-vcount">Pending Laboratory Profiles</h4>}
-                    {value === 3 && <h4 id="h-vcount">Pending Pharmacy Profiles</h4>}
+                    {value === 0 && <h5 id="h-vcount">Pending Doctor Profiles</h5>}
+                    {value === 1 && <h5 id="h-vcount">Pending Clinic Profiles</h5>}
+                    {value === 2 && <h5 id="h-vcount">Pending Laboratory Profiles</h5>}
+                    {value === 3 && <h5 id="h-vcount">Pending Pharmacy Profiles</h5>}
                 </div>
 
 
@@ -251,7 +253,7 @@ function NewVerifications() {
                             <div id="13958" className="col-2 user-email table-data-text">{doctor.yearsOfExperience} yrs</div>
                             <div id="13959" className="col-2 user-email table-data-text">{doctor.city}</div>
                             <div id="13960" className="col-2 d-flex align-items-center">
-                                <a className="viewdetails" onClick={() => viewDoctorDetails(doctor)}>View Details
+                                <a className="viewdetails" onClick={() => viewDoctorDetails(doctor)}>
                                     <img id="1501346" src="../images/eye.png" className="eyeiconview" alt='eyeiconview' />
                                 </a>
                                 {/* <button className="provider-submit-btn" id="det-btn" onClick={() => viewDoctorDetails(doctor)}>View Details</button> */}
@@ -269,6 +271,14 @@ function NewVerifications() {
                             <div id="13921" className="col-2 heading-actions table-header-text">Actions</div>
                         </div>
                     )}
+                    {value === 1 && clinicUnverifiedList.length == 0 ?
+
+                        (<div className="row d-flex justify-content-center nodata" >
+                            No Data Found
+                        </div>
+                        ) : ''
+
+                    }
                     {value === 1 && clinicUnverifiedList.map((clinic, index) => (
                         <div key={index} className="row user-detailss d-flex card-body">
                             <div id="13925" className="col-2  d-flex">
@@ -278,7 +288,14 @@ function NewVerifications() {
                             <div id="13929" className="col-2 user-mobile table-data-text">{clinic.clinicAddress.address}</div>
                             <div id="13930" className="col-2 user-email table-data-text">{clinic.nameOfCouncil}</div>
                             <div id="13931" className="col-2 user-email table-data-text">{clinic.GSTNumber}</div>
-                            <div id="13932" className="col-2 d-flex align-items-center"><button className="provider-submit-btn" id="det-btn">View Details</button></div>
+
+                            <div id="13932" className="col-2 d-flex align-items-center">
+                                {/* <button className="provider-submit-btn" id="det-btn">View Details</button> */}
+                                <a className="viewdetails" >
+                                    <img id="1501346" src="../images/eye.png" className="eyeiconview" alt='eyeiconview' />
+                                </a>
+
+                            </div>
 
                         </div>
                     ))}
@@ -302,7 +319,10 @@ function NewVerifications() {
                             <div id="13985" className="col-2 user-email table-data-text">{lab.pathologistName}</div>
                             <div id="13987" className="col-2 user-email table-data-text">{lab.email}</div>
                             <div id="13988" className="col-2 d-flex align-items-center">
-                                <button onClick={() => viewLabDetails(lab)} className="provider-submit-btn" id="det-btn">View Details</button>
+                                {/* <button onClick={() => viewLabDetails(lab)} className="provider-submit-btn" id="det-btn">View Details</button> */}
+                                <a className="viewdetails" onClick={() => viewLabDetails(lab)}>
+                                    <img id="1501346" src="../images/eye.png" className="eyeiconview" alt='eyeiconview' />
+                                </a>
                             </div>
                         </div>
                     ))}
@@ -323,7 +343,12 @@ function NewVerifications() {
                             <div id="14010" className="col-3 user-role table-data-text">{pharmacy.licenseNumber}</div>
                             <div id="14011" className="col-2 user-mobile table-data-text">{pharmacy.mobile}</div>
                             <div id="14012" className="col-2 user-email table-data-text">{pharmacy.startTime} - {pharmacy.endTime}</div>
-                            <div id="14013" className="col-2 d-flex align-items-center"><button className="provider-submit-btn" id="det-btn">View Details</button></div>
+                            <div id="14013" className="col-2 d-flex align-items-center">
+                                {/* <button className="provider-submit-btn" id="det-btn">View Details</button> */}
+                                <a className="viewdetails" >
+                                    <img id="1501346" src="../images/eye.png" className="eyeiconview" alt='eyeiconview' />
+                                </a>
+                            </div>
 
                         </div>
                     ))}

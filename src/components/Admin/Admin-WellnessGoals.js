@@ -7,7 +7,8 @@ import { getGoalsAPI, updateGoalsActiveStatusAPI, updateTrackerActiveStatusAPI, 
 import moment from 'moment';
 import AddNewTracker from './Admin-AddTracker';
 import AddNewGoal from './Admin-AddGoals';
-
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 const WellnessGoals = () => {
 
 
@@ -28,6 +29,7 @@ const WellnessGoals = () => {
     const [isAddNewTrackerOpen, setisAddNewTrackerOpen] = useState(false);
     const [isAddNewGoal, setisAddNewGoal] = useState(false);
     const [isAddNewGoalOpen, setisAddNewGoalOpen] = useState(false);
+    const [value, setValue] = useState(0);
     useEffect(() => {
         getGoals();
     }, [searchtext, page, size])
@@ -39,6 +41,9 @@ const WellnessGoals = () => {
         setSelectedTab(value)
 
     }
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+    };
 
     const getGoals = async () => {
         const goalsListRes = await getGoalsAPI(searchtext, page, size);
@@ -112,12 +117,17 @@ const WellnessGoals = () => {
         <div className='wellness-main-screen'>
             <div className='row'>
                 <div className='tabs-row'>
-                    <p className={`tab-heading ${selectedTab === 'PRO' ? 'active' : ''}`} onClick={() => showTab('PRO')}>Goals</p>
-                    <p className={`tab-heading ${selectedTab === 'PACK' ? 'active' : ''}`} onClick={() => showTab('PACK')}>Trackers</p>
+                <Tabs  value={value} onChange={handleChange} className="vTabs" >
+                    <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0  ? "vselected-text" : "vtabtext"}>Goals</span>} />
+                    <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1  ? "vselected-text" : "vtabtext"}>Trackers</span>} />
+
+                </Tabs>
+                    {/* <p className={`tab-heading ${selectedTab === 'PRO' ? 'active' : ''}`} onClick={() => showTab('PRO')}>Goals</p>
+                    <p className={`tab-heading ${selectedTab === 'PACK' ? 'active' : ''}`} onClick={() => showTab('PACK')}>Trackers</p> */}
                 </div>
             </div>
             <div className='tabs-content'>
-                {selectedTab === 'PRO' ? (
+                {value === 0 ? (
                     <div className='programs-row'>
                         <div className='row programs-heading-row'>
                             <div className='col-3'>
