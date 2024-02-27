@@ -11,11 +11,11 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
 
     useEffect(() => {
         if (independentClinic) {
-            debugger;
-            setIndependentClinicDetailsDetails(independentClinicDetails);
+            // debugger;
+            setIndependentClinicDetailsDetails(independentClinic);
             console.log("independentClinic", independentClinicDetails, independentClinic);
         }
-    }, [independentClinic]);
+    }, []);
 
     const verify = async (approve, id) => {
         let obj = {
@@ -33,6 +33,7 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
         }
     }
     const closePopup = () => {
+        // debugger;
         onClose();
     }
     // const reject = async (approve, id) => {

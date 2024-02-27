@@ -117,3 +117,27 @@ export async function deleteAdminPanelAPI(obj) {
         throw error;
     }
 }
+
+
+export async function getAdmintestsAPI(searchtext, page, size) {
+
+
+    try {
+        const response = await labAPIURL.get('/admin/getDefaultIndependentTest?page=' + page + '&size=' + size + '&searchText=' + searchtext);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAdmintestsAPI request failed');
+        }
+
+
+        // Handle the response data
+        // console.log('getDefaultPanelsRes successful service', getDefaultPanelsRes);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAdmintestsAPI failed:', error);
+        throw error;
+    }
+}

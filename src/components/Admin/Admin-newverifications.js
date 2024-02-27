@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import '../../Styles/Admin-verifications.css';
 import Card from '@mui/material/Card';
-import { getVerificationStats, getAllUnverifiedProfiles } from '../../services/adminportalService';
+import { getVerificationStats, getAllUnverifiedProfiles, getwellnessenrollmentsAPI, verifyWellnessEnrollmnetAPI } from '../../services/adminportalService';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import AdminLabDetails from '../Admin/Admin-LabDetails';
@@ -46,9 +46,13 @@ function NewVerifications() {
     const [selectedPharmacy, setSelectedPharmacy] = useState(null);
     const [isIndependentClinicDetailsOpen, setIsIndependentClinicDetailsOpen] = useState(false);
     const [selectedIndependentClinic, setSelectedIndependentClinic] = useState(null);
+    const [pendingWellnessenrollments, setPendingWellnessenrollments] = useState([]);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
+        if (newValue === 5) {
+            getwellness_enrollmentslist();
+        }
     };
 
     const viewLabDetails = (lab) => {
@@ -69,6 +73,16 @@ function NewVerifications() {
         setSelectedLab(null);
         setSelectedDoctor(null);
         setIsDoctorDetailsOpen(false);
+
+        setSelectedClinic(null);
+        setIsClinicDetailsOpen(false);
+
+        setSelectedPharmacy(null);
+        setIsPharmacyDetailsOpen(false);
+
+        setSelectedIndependentClinic(null);
+        setIsIndependentClinicDetailsOpen(false);
+
         getStats();
         unverifiedProfiles();
         // debugger;
@@ -105,6 +119,7 @@ function NewVerifications() {
             setClinicUnverifiedList([]);
             setLabsUnverifiedList([]);
             setPharmacyUnverifiedList([]);
+            setIndependentClinicUnverifiedList([]);
             // Use functional update to ensure working with the latest state
             setClinicUnverifiedList(prevList => [...prevList, ...data.clinicList]);
             setDoctorsUnverifiedList(prevList => [...prevList, ...data.doctorsList]);
@@ -115,6 +130,13 @@ function NewVerifications() {
         } catch (error) {
             console.error('Error fetching unverified profiles:', error);
         }
+    }
+
+    const getwellness_enrollmentslist = async () => {
+        const apiRes = await getwellnessenrollmentsAPI();
+        console.log("apiRes", apiRes);
+        setPendingWellnessenrollments([]);
+        setPendingWellnessenrollments(prevList => [...prevList, ...apiRes]);
     }
 
     useEffect(() => {
@@ -140,6 +162,20 @@ function NewVerifications() {
         setSelectedIndependentClinic(independentClinic);
         setIsIndependentClinicDetailsOpen(true);
     }
+
+    const action = async (enrollment, verification_status) => {
+        let obj = {
+            programID: enrollment.programID,
+            id: enrollment.objectID,
+            status: verification_status
+        }
+
+        const apiRes = await verifyWellnessEnrollmnetAPI(obj);
+        console.log("apiRes", apiRes);
+        if (apiRes) {
+            getwellness_enrollmentslist();
+        }
+    }
     return (
         <div id="15818" className="row matop">
             <div className='row '>
@@ -160,6 +196,7 @@ function NewVerifications() {
                     <Tab className={value === 2 ? "vselected-tab" : "vtab"} label={<span className={value === 2 ? "vselected-text" : "vtabtext"}>Laboratory</span>} />
                     <Tab className={value === 3 ? "vselected-tab" : "vtab"} label={<span className={value === 3 ? "vselected-text" : "vtabtext"}>Pharmacy</span>} />
                     <Tab className={value === 4 ? "vselected-tab" : "vtab"} label={<span className={value === 4 ? "vselected-text" : "vtabtext"}>Independent Clinics</span>} />
+                    <Tab className={value === 5 ? "vselected-tab" : "vtab"} label={<span className={value === 5 ? "vselected-text" : "vtabtext"}>Wellness Enrollments</span>} />
                 </Tabs>
             </div>
             <div className='row'>
@@ -173,6 +210,7 @@ function NewVerifications() {
                                     {value === 2 && <h5 id="h-vcount">{totalLabProfilesCount}</h5>}
                                     {value === 3 && <h5 id="h-vcount">{totalPharmacyCount}</h5>}
                                     {value === 4 && <h5 id="h-vcount">0</h5>}
+                                    {value === 5 && <h5 id="h-vcount">0</h5>}
                                     <div id="15823" className='totaltext'>Total</div>
                                 </div>
                             </div>
@@ -195,6 +233,7 @@ function NewVerifications() {
                                     {value === 2 && <h5 id="h-vcount">{verifiedLabProfilesCount}</h5>}
                                     {value === 3 && <h5 id="h-vcount">{verifiedPharmacyProfiles}</h5>}
                                     {value === 4 && <h5 id="h-vcount">0</h5>}
+                                    {value === 5 && <h5 id="h-vcount">0</h5>}
                                     <div id="15823" className='verifiedtext'>Verified </div>
                                 </div>
                             </div>
@@ -218,6 +257,7 @@ function NewVerifications() {
                                     {value === 2 && <h5 id="h-vcount">{unVerifiedLabProfilesCount}</h5>}
                                     {value === 3 && <h5 id="h-vcount">0</h5>}
                                     {value === 4 && <h5 id="h-vcount">0</h5>}
+                                    {value === 5 && <h5 id="h-vcount">0</h5>}
                                     <div id="15823" className='unverifiedtext'>Unverified</div>
                                 </div>
                             </div>
@@ -240,6 +280,7 @@ function NewVerifications() {
                                     {value === 2 && <h5 id="h-vcount">{rejectedLabProfilesCount}</h5>}
                                     {value === 3 && <h5 id="h-vcount">0</h5>}
                                     {value === 4 && <h5 id="h-vcount">0</h5>}
+                                    {value === 5 && <h5 id="h-vcount">0</h5>}
                                     <div id="15823" className='rejectedtext'>Rejected</div>
                                 </div>
                             </div>
@@ -261,6 +302,7 @@ function NewVerifications() {
                     {value === 2 && <h5 id="h-vcount">Pending Laboratory Profiles</h5>}
                     {value === 3 && <h5 id="h-vcount">Pending Pharmacy Profiles</h5>}
                     {value === 4 && <h5 id="h-vcount">Pending Independent Clinics</h5>}
+                    {value === 5 && <h5 id="h-vcount">Pending Wellness Enrollments</h5>}
                 </div>
 
 
@@ -275,7 +317,7 @@ function NewVerifications() {
                             <div id="13948" className="col-2 heading-actions table-header-text">Actions</div>
                         </div>
                     )}
-                    {value === 0 && doctorsUnverifiedList.length == 0 ?
+                    {value === 0 && doctorsUnverifiedList.length === 0 ?
 
                         (<div className="row d-flex justify-content-center nodata" >
                             No Data Found
@@ -311,7 +353,7 @@ function NewVerifications() {
                             <div id="13921" className="col-2 heading-actions table-header-text">Actions</div>
                         </div>
                     )}
-                    {value === 1 && clinicUnverifiedList.length == 0 ?
+                    {value === 1 && clinicUnverifiedList.length === 0 ?
 
                         (<div className="row d-flex justify-content-center nodata" >
                             No Data Found
@@ -349,7 +391,7 @@ function NewVerifications() {
                             <div id="13976" className="col-2 table-header-text">Actions</div>
                         </div>
                     )}
-                    {value === 2 && labsUnverifiedList.length == 0 ?
+                    {value === 2 && labsUnverifiedList.length === 0 ?
 
                         (<div className="row d-flex justify-content-center nodata" >
                             No Data Found
@@ -383,7 +425,7 @@ function NewVerifications() {
                             <div id="14003" className="col-2 heading-actions table-header-text">Actions</div>
                         </div>
                     )}
-                    {value === 3 && pharmacyUnverifiedList.length == 0 ?
+                    {value === 3 && pharmacyUnverifiedList.length === 0 ?
 
                         (<div className="row d-flex justify-content-center nodata" >
                             No Data Found
@@ -419,7 +461,7 @@ function NewVerifications() {
                             <div id="14003" className="col-2 heading-actions table-header-text">Actions</div>
                         </div>
                     )}
-                    {value === 4 && independentClinicsList.length == 0 ?
+                    {value === 4 && independentClinicsList.length === 0 ?
 
                         (<div className="row d-flex justify-content-center nodata" >
                             No Data Found
@@ -445,6 +487,43 @@ function NewVerifications() {
                                 </div>
                             </div>
                         ))
+                    }
+
+                    {value === 5 && (
+                        <div id="13997" className="row user-headings table-header d-flex">
+                            <div id="13998" className="col-3 heading-label table-header-text">Doctor Name</div>
+                            <div id="13999" className="col-3 heading-id-label table-header-text">Specialization</div>
+                            <div id="14000" className="col-3 heading-label table-header-text">Program Name</div>
+                            <div id="14003" className="col-3 heading-actions table-header-text">Actions</div>
+                        </div>
+                    )}
+
+                    {value === 5 && pendingWellnessenrollments.length === 0 ?
+
+                        (<div className="row d-flex justify-content-center nodata" >
+                            No Data Found
+                        </div>
+                        ) : ''
+
+                    }
+
+                    {
+                        value === 5 && pendingWellnessenrollments.length > 0 ? (
+                            pendingWellnessenrollments.map((enrollment, index) => (
+                                <div key={index} className="row user-detailss d-flex card-body">
+                                    <div id="14007" className="col-3 d-flex">
+                                        <div id="14009" className="user-name table-data-text">{enrollment.doctorName}</div>
+                                    </div>
+                                    <div id="14010" className="col-3 user-role table-data-text">{enrollment.specialization}</div>
+                                    <div id="14011" className="col-3 user-mobile table-data-text">{enrollment.programName}</div>
+
+                                    <div id="14013" className="col-3 d-flex align-items-center">
+                                        <button className="provider-submit-btn" id="det-btn" onClick={() => action(enrollment, 'VERIFIED')}>Approve</button>
+                                        <button className="provider-cancel-btn ms-3" id="det-btn" onClick={() => action(enrollment, 'REJECTED')}>Reject</button>
+                                    </div>
+                                </div>
+                            ))
+                        ) : ''
                     }
                 </div>
             </div>

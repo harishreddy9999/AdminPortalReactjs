@@ -13,13 +13,14 @@ const PanlesList = ({ handleComponentSelect }) => {
 
     const [searchText, setSearchText] = useState('');
     const [pageNo, setpageNo] = useState(0);
-    const [pageSize, setpageSize] = useState(2);
+    const [pageSize, setpageSize] = useState(5);
     const [panelsList, setPanelsList] = useState([]);
     const [totalPanelsCount, setTotalPanelsCount] = useState(0);
-    const [rowsPerPageOptions, setrowsPerPageOptions] = useState([1, 2, 4, 5, 10, 20])
+    const [rowsPerPageOptions, setrowsPerPageOptions] = useState([2, 5, 10, 20, 50])
     const navigate = useNavigate();
 
     useEffect(() => {
+        sessionStorage.removeItem("editPanelDetails");
         getDefaultPanels();
     }, [pageNo, pageSize]);
 
@@ -50,6 +51,7 @@ const PanlesList = ({ handleComponentSelect }) => {
     }
 
     const addPanel = () => {
+        navigate('/admin-dashboard/AddNewPanel')
         handleComponentSelect('AddNewPanel');
     }
 
@@ -62,9 +64,23 @@ const PanlesList = ({ handleComponentSelect }) => {
         const deleteAdminPanelRes = await deleteAdminPanelAPI(reqObj);
         console.log("deleteAdminPanelRes", deleteAdminPanelRes);
         if (deleteAdminPanelRes) {
-            setpageSize(parseInt(2));
+            setpageSize(parseInt(5));
             setpageNo(0);
         }
+    }
+
+    const editPanel = (panel) => {
+        sessionStorage.setItem("editPanelDetails", JSON.stringify(panel))
+        navigate('/admin-dashboard/AddNewPanel');
+        // debugger;
+        handleComponentSelect('AddNewPanel');
+        // const panelDetails = JSON.stringify(panel);
+        // navigate('/admin-dashboard/AddNewPanel/:' + panelID)
+        // setTimeout(() => {
+        //     navigate('/admin-dashboard/AddNewPanel')
+        //     // handleComponentSelect('AddNewPanel');
+        // }, 1000)
+
     }
     return (
         <div className="row">
@@ -111,7 +127,7 @@ const PanlesList = ({ handleComponentSelect }) => {
                                                 </TableCell>
                                                 <TableCell>{panel.panelShortCode}</TableCell>
                                                 <TableCell>
-                                                    <img className='edit-panel-img' src='../images/Admin-icons/edit-panel.svg' alt='edit-panel' />
+                                                    <img className='edit-panel-img' src='../images/Admin-icons/edit-panel.svg' alt='edit-panel' onClick={() => editPanel(panel)} />
                                                     <img onClick={() => deletePanel(panel.panelID, index)} className='edit-panel-img' src='../images/Admin-icons/delete-panel.svg' alt='delete-panel' />
                                                 </TableCell>
                                             </TableRow>

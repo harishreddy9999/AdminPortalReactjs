@@ -15,6 +15,8 @@ import AdminSubscripions from './Admin-Subscriptions.js';
 export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
     let componentToRender;
     // debugger;
+    console.log("selectedComponent", selectedComponent, handleComponentSelect);
+    // debugger;
     switch (selectedComponent) {
         case 'Verifications':
         case null:
@@ -29,9 +31,11 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
         case 'Panels':
             componentToRender = <PanlesList handleComponentSelect={handleComponentSelect} />;
             break;
+
         case 'AddNewPanel':
-            componentToRender = <CreatePanel />;
+            componentToRender = <CreatePanel handleComponentSelect={handleComponentSelect} />;
             break;
+
         case 'CustomDrugs':
             componentToRender = <CustomDrugs />;
             break;

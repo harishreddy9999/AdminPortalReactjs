@@ -216,6 +216,11 @@ const AdminCoupons = () => {
         return ageOfPatient;
     }
 
+    const editDocisnCoupon = (coupon) => {
+        setIsAddNewCoupon(true);
+
+    }
+
     return (
 
         <div className="container-fluid">
@@ -358,7 +363,7 @@ const AdminCoupons = () => {
 
 
                                                         <img className="edit-icon me-1"
-                                                            src="../images/edit.svg" alt='edit-coupon' />
+                                                            src="../images/edit.svg" alt='edit-coupon' onClick={() => editDocisnCoupon(coupon)} />
                                                         <img className="delete-icon ms-1" onClick={() => deleteCoupon(coupon)}
                                                             src="../images/delete.png" alt='delete-coupon' />
                                                     </div>
