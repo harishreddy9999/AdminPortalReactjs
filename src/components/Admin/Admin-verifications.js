@@ -7,6 +7,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import AdminLabDetails from '../Admin/Admin-LabDetails';
 import AdminSelectedDoctorDetails from '../Admin/Admin-SelectedDoctorDetails';
+import AdminSelectedClinicDetails from './Admin-SelectedClinicDetails';
 // import Modal from 'react-modal';
 
 
@@ -35,6 +36,9 @@ function Verifications() {
     const [selectedLab, setSelectedLab] = useState(null);
     const [isDoctorDetailsOpen, setIsDoctorDetailsOpen] = useState(false);
     const [selectedDoctor, setSelectedDoctor] = useState(null);
+    const [selectedClinic, setSelectedClinic] = useState(null);
+    const [isClinicDetailsOpen, setIsClinicDetailsOpen] = useState(false);
+
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -52,6 +56,12 @@ function Verifications() {
         console.log("doctordetails", doctor)
         setSelectedDoctor(doctor);
         setIsDoctorDetailsOpen(true);
+    }
+
+    const viewClinicDetails = (clinic) => {
+        debugger;
+        setSelectedClinic(clinic);
+        setIsClinicDetailsOpen(true);
     }
     const closeAllModals = () => {
         setIsLabDetailsOpen(false);
@@ -94,7 +104,7 @@ function Verifications() {
             setClinicUnverifiedList([]);
             setLabsUnverifiedList([]);
             setPharmacyUnverifiedList([]);
-            
+
             // Use functional update to ensure working with the latest state
             setClinicUnverifiedList(prevList => [...prevList, ...data.clinicList]);
             setDoctorsUnverifiedList(prevList => [...prevList, ...data.doctorsList]);
@@ -276,13 +286,13 @@ function Verifications() {
                         <div id="13921" className="col-2 heading-actions table-header-text">Actions</div>
                     </div>
                 )}
-                
-                {value === 1 && clinicUnverifiedList.length==0 ?
-  
-                   ( <div className="row d-flex justify-content-center" >
-                       No Data Found
-                      </div>
-                    ):''
+
+                {value === 1 && clinicUnverifiedList.length == 0 ?
+
+                    (<div className="row d-flex justify-content-center" >
+                        No Data Found
+                    </div>
+                    ) : ''
 
                 }
                 {value === 1 && clinicUnverifiedList.map((clinic, index) => (
@@ -294,7 +304,7 @@ function Verifications() {
                         <div id="13929" className="col-2 user-mobile table-data-text">{clinic.clinicAddress.address}</div>
                         <div id="13930" className="col-2 user-email table-data-text">{clinic.nameOfCouncil}</div>
                         <div id="13931" className="col-2 user-email table-data-text">{clinic.GSTNumber}</div>
-                        <div id="13932" className="col-2 d-flex align-items-center"><button className="provider-submit-btn" id="det-btn">View Details</button></div>
+                        <div id="13932" className="col-2 d-flex align-items-center"><button className="provider-submit-btn" id="det-btn" onClick={() => viewClinicDetails(clinic)}>View Details</button></div>
 
                     </div>
                 ))}
@@ -349,6 +359,9 @@ function Verifications() {
             }
             {
                 selectedDoctor ? (<AdminSelectedDoctorDetails isOpen={isDoctorDetailsOpen} onClose={closeAllModals} doctor={selectedDoctor} />) : ''
+            }
+            {
+                selectedClinic ? (<AdminSelectedClinicDetails isOpen={isClinicDetailsOpen} onClose={closeAllModals} clinic={selectedClinic} />) : ''
             }
         </div>
 

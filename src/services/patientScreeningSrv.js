@@ -84,3 +84,25 @@ export async function updateVitalAPI(obj) {
         throw error;
     }
 }
+
+
+export async function fetchPatientDetailsAPI(value) {
+
+
+    try {
+        const response = await api.get('/appointment/V1/fetchPatient?phoneNumber=' + value);
+        // debugger;
+        if (!response.statusText === "OK") {
+            throw new Error('fetchPatientDetailsAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('fetchPatientDetailsAPI service', response.data);
+        return response.data;
+
+    } catch (error) {
+        console.error('updateVitalAPI failed:', error);
+        throw error;
+    }
+}

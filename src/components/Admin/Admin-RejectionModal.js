@@ -3,19 +3,15 @@ import { Modal, TextField, Button } from '@material-ui/core';
 import { verifyProfiles } from '../../services/adminportalService';
 
 const RejectionModalComponent = ({ isOpen, onClose, id, type, status }) => {
-    const [open, setOpen] = useState(false);
+
     const [rejectionComments, setRejectionComments] = useState('');
 
-    const handleOpen = () => {
-        setOpen(true);
-    };
 
-    const handleClose = () => {
-        setOpen(false);
-    };
+
+
 
     const handleDismiss = () => {
-        handleClose(); // Close the modal on dismiss button click
+        onClose(); // Close the modal on dismiss button click
     };
 
     const handleSubmit = async () => {
@@ -30,14 +26,14 @@ const RejectionModalComponent = ({ isOpen, onClose, id, type, status }) => {
         const verifyProfilesRes = await verifyProfiles(obj);
         console.log("verifyProfilesRes", verifyProfilesRes)
         if (verifyProfilesRes) {
-            handleClose(); // Close the modal after submission
+            onClose(); // Close the modal after submission
         }
 
     };
 
     return (
         <div>
-            <Modal open={open} onClose={handleClose}
+            <Modal isOpen={isOpen} onRequestClose={onClose}
                 style={{
                     overlay: {
                         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Overlay background color

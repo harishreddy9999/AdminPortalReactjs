@@ -4,17 +4,17 @@ import PatientsList from './PatientsList';
 
 export function MainContent({ selectedComponent, handleComponentSelect }) {
     let componentToRender;
-    debugger;
+    // debugger;
     switch (selectedComponent) {
         case 'Patients':
         case null:
             componentToRender = <PatientsList />;
             break;
-    
+
         // case 'Panels':
-            // componentToRender = <PanlesList handleComponentSelect={handleComponentSelect} />;
-            // break;
-  
+        // componentToRender = <PanlesList handleComponentSelect={handleComponentSelect} />;
+        // break;
+
 
         default:
             componentToRender = null;

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import '../../Styles/AdminCoupons.css';
 import moment from 'moment';
-import { getAllCouponsDataAPI, activeCouponAPI, getAllUserCouponsAPI } from '../../services/adminportalService';
+import { getAllCouponsDataAPI, activeCouponAPI, getAllUserCouponsAPI, addUserCouponAPI } from '../../services/adminportalService';
+import { fetchPatientDetailsAPI } from '../../services/patientScreeningSrv';
 import AddNewCoupon from './Admin-AddNewCoupon';
 import Switch from '@material-ui/core/Switch';
 import Tabs from '@mui/material/Tabs';
@@ -19,6 +20,19 @@ const AdminCoupons = () => {
     const [isAddNewCoupon, setIsAddNewCoupon] = useState(false);
     const [selectedTab, setSelectedTab] = useState('Coupons');
     const [userCouponsData, setUserCouponData] = useState([]);
+    const [primaryPatientUser, setPrimaryUser] = useState(null);
+    const [showPatientDetails, setShowPatientDetails] = useState(false);
+    const [selectedPatientID, setselectedPatientID] = useState('');
+    const [couponFor, setCouponFor] = useState('');
+    const [couponID, setCouponID] = useState('');
+
+    const [applyCouponForm, setApplyCouponForm] = useState({
+        mobileNumber: '',
+        patientName: '',
+        patientAge: '',
+        applyCoupon: ''
+    });
+
     const [value, setValue] = useState(0);
     useEffect(() => {
         getList();
@@ -30,7 +44,7 @@ const AdminCoupons = () => {
         setFilterStartDate(e.target.value);
 
     };
-    const handleChange = (event, newValue) => {
+    const handleTabChange = (event, newValue) => {
         setValue(newValue);
     };
 
@@ -110,24 +124,111 @@ const AdminCoupons = () => {
         }
     }
 
-    const showTab = (value) => {
-        console.log(value);
-        setSelectedTab(value);
-    }
+
 
     const handleApplyCoupon = (data) => {
+        // debugger;
+
+        setApplyCouponForm({ ...applyCouponForm, applyCoupon: data.couponNumber });
+        setCouponID(data._id);
+        setCouponFor(data.couponFor);
         // Handle applying the coupon here
         console.log('Applying coupon:', data);
     };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setApplyCouponForm({ ...applyCouponForm, [name]: value });
+        if (name === "mobileNumber") {
+            if (value.length === 10) {
+                fetchPatient(value);
+            } else {
+                setPrimaryUser(null);
+                setShowPatientDetails(false);
+            }
+        }
+    }
+
+    const fetchPatient = async (value) => {
+        const apiRes = await fetchPatientDetailsAPI(value);
+        console.log("apiRes", apiRes)
+        if (apiRes) {
+            let primaryUserDetailsObj = {
+                patientID: apiRes.primaryUserDetails[0]._id,
+                patientName: apiRes.primaryUserDetails[0].demographicInfo.firstName + " " + apiRes.primaryUserDetails[0].demographicInfo.lastName,
+                patientAge: apiRes.primaryUserDetails[0].demographicInfo.dOB
+            }
+            setPrimaryUser(primaryUserDetailsObj);
+            setShowPatientDetails(true);
+            // setTimeout(() => {
+
+            // }, 1000)
+
+        }
+    }
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        let obj = {
+            couponID: couponID,
+            patientID: selectedPatientID,
+            couponNumber: applyCouponForm.applyCoupon,
+            couponFor: couponFor
+        };
+        console.log("applyCouponForm", applyCouponForm, obj);
+        // return;
+        const apiRes = await addUserCouponAPI(obj);
+        console.log("apiRes", apiRes);
+        if (apiRes.message == 'Coupon code already used') {
+
+        }
+        else {
+            setApplyCouponForm({
+                mobileNumber: '',
+                patientName: '',
+                patientAge: '',
+                applyCoupon: ''
+            });
+            setCouponFor('');
+            setCouponID('');
+            setselectedPatientID('');
+        }
+        getList();
+
+
+
+    }
+
+    const selectPatient = () => {
+        console.log(primaryPatientUser);
+
+        const patientAge = calculateAge(primaryPatientUser.patientAge)
+        setselectedPatientID(primaryPatientUser.patientID);
+        setShowPatientDetails(false);
+        // debugger;
+        setApplyCouponForm({ ...applyCouponForm, patientName: primaryPatientUser.patientName, patientAge: patientAge });
+        // setApplyCouponForm({ ...applyCouponForm,  });
+    }
+
+    const calculateAge = (dob) => {
+        var formattedDate = moment(dob).format('YYYY-MM-DD');
+        const today = moment();
+        const ageOfPatient = today.diff(formattedDate, 'years', false);
+        return ageOfPatient;
+    }
+
+    const editDocisnCoupon = (coupon) => {
+        setIsAddNewCoupon(true);
+
+    }
 
     return (
 
         <div className="container-fluid">
             <div className='tabs-row'>
 
-            <Tabs  value={value} onChange={handleChange} className="vTabs" >
-                    <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0  ? "vselected-text" : "vtabtext"}>Coupons</span>} />
-                    <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1  ? "vselected-text" : "vtabtext"}>Coupons List</span>} />
+                <Tabs value={value} onChange={handleTabChange} className="vTabs" >
+                    <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0 ? "vselected-text" : "vtabtext"}>Coupons</span>} />
+                    <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1 ? "vselected-text" : "vtabtext"}>Coupons List</span>} />
 
                 </Tabs>
                 {/* <p className={`tab-heading ${selectedTab === 'Coupons' ? 'active' : ''}`} onClick={() => showTab('Coupons')}>Coupons</p>
@@ -220,14 +321,14 @@ const AdminCoupons = () => {
                                                 Actions
                                             </div>
                                         </div>
-                                        </div>
-                                        <div className='row tablebody'>
+                                    </div>
+                                    <div className='row tablebody'>
                                         <div className='pt-1 pb-1 border-bottom'>
-                                        {couponsList.length == 0 ?
-                                        ( <div className="row d-flex justify-content-center" >
-                                            No Data Found
-                                                    </div>):''}
-                                                    </div>
+                                            {couponsList.length == 0 ?
+                                                (<div className="row d-flex justify-content-center" >
+                                                    No Data Found
+                                                </div>) : ''}
+                                        </div>
                                         {couponsList.length > 0 && couponsList.map((coupon, index) => (
                                             <div className='pt-1 pb-1 border-bottom' key={index}>
                                                 <div className="row " >
@@ -262,15 +363,15 @@ const AdminCoupons = () => {
 
 
                                                         <img className="edit-icon me-1"
-                                                            src="../images/edit.svg" alt='edit-coupon' />
+                                                            src="../images/edit.svg" alt='edit-coupon' onClick={() => editDocisnCoupon(coupon)} />
                                                         <img className="delete-icon ms-1" onClick={() => deleteCoupon(coupon)}
                                                             src="../images/delete.png" alt='delete-coupon' />
                                                     </div>
                                                 </div>
                                             </div>
                                         ))}
-                                        </div>
-                                  
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -317,6 +418,70 @@ const AdminCoupons = () => {
                                 <div className='col-lg-6 col-md-6 col-sm-12'>
                                     <div className='row-heading'>
                                         <p className='sub-heading'>Apply Coupon</p>
+
+                                    </div>
+                                    <div className='apply-coupon-row'>
+                                        <form onSubmit={handleSubmit}>
+                                            <div className='row position-relative' >
+                                                <label className='form-lbl'>Mobile Number</label>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="mobileNumber"
+                                                    value={applyCouponForm.mobileNumber}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                                {showPatientDetails ? (
+                                                    <div className='patients-list'>
+
+
+                                                        <p className='patient-name' onClick={selectPatient} >
+                                                            {primaryPatientUser.patientName}
+                                                        </p>
+
+
+                                                    </div>
+                                                ) : ''
+                                                }
+                                            </div>
+                                            <div className='row'>
+                                                <label className='form-lbl'>Patient Name</label>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="patientName"
+                                                    value={applyCouponForm.patientName}
+                                                    onChange={handleChange}
+                                                    required readOnly
+                                                />
+                                            </div>
+                                            <div className='row'>
+                                                <label className='form-lbl'>Patient Age</label>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="patientAge"
+                                                    value={applyCouponForm.patientAge}
+                                                    onChange={handleChange}
+                                                    required readOnly
+                                                />
+                                            </div>
+                                            <div className='row'>
+                                                <label className='form-lbl'>Coupon Code</label>
+                                                <input
+                                                    type="text"
+                                                    className="form-control"
+                                                    name="patientName"
+                                                    value={applyCouponForm.applyCoupon}
+                                                    onChange={handleChange}
+                                                    required
+                                                />
+                                            </div>
+                                            <div className='row d-flex justify-content-end'>
+                                                <button type='submit' className='provider-submit-btn'>Submit</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

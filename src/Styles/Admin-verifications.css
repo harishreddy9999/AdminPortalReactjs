@@ -46,7 +46,7 @@
 
 .user-detailss {
     margin: 0px !important;
-    padding:2px 10px !important;
+    padding: 2px 10px !important;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     /* border: 1px solid #CBC9CF; */
     border-radius: 0px !important;
@@ -82,7 +82,7 @@
     opacity: 1;
     margin: 0px !important;
     border-bottom: 1px solid #CBC9CF;
-    background :#ffffff !important;
+    background: #ffffff !important;
     color: black !important;
 }
 
@@ -114,116 +114,136 @@
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
     width: 85% !important;
 }
-h4{
+
+h4 {
     padding: 14px;
 }
-.iconbackground{
+
+.iconbackground {
     background-color: #E8FAFC;
     padding: 15px;
     border-radius: 16px;
     height: 60px;
 }
-.vereifyiconbackground{
+
+.vereifyiconbackground {
     background-color: #c5ebaa;
     padding: 15px;
     border-radius: 16px;
     height: 60px;
 }
-.rejecticonbackground{
+
+.rejecticonbackground {
     background-color: #dce0e5;
     padding: 15px;
     border-radius: 16px;
     height: 60px;
 }
-.rejectediconbackground{
+
+.rejectediconbackground {
     background-color: #dac0c0;
     padding: 15px;
     border-radius: 16px;
     height: 60px;
 }
-.tabimg{
-    width:30px;
+
+.tabimg {
+    width: 30px;
     padding: 0px 5px;
-    
-}
-.lineimg{
-    height:30px;
-    width:3px;
+
 }
 
-.vselected-text{
-    color:#162786;
+.lineimg {
+    height: 30px;
+    width: 3px;
+}
+
+.vselected-text {
+    color: #162786;
     font-size: 14px;
-    font-family:poppins;
+    font-family: poppins;
     text-align: center !important;
 }
-.vtabtext{
+
+.vtabtext {
     font-size: 14px !important;
-    font-family:poppins;
+    font-family: poppins;
     text-align: center !important;
     display: flex !important;
     padding: 2px !important;
 }
-.vselected-tab{
-  /* border: none !important; */
-  /* border-left: 4px solid #FF817F !important; */
-  margin: 5px !important;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
-  border-radius: 10px !important;
-  padding: 2px !important;
-  font-size: 14px !important;
-  min-height:35px !important;
-  height: 35px !important;
+
+.vselected-tab {
+    /* border: none !important; */
+    /* border-left: 4px solid #FF817F !important; */
+    margin: 5px !important;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
+    border-radius: 10px !important;
+    padding: 2px !important;
+    font-size: 14px !important;
+    min-height: 35px !important;
+    height: 35px !important;
 }
-.vtab{
-    border: none !important; 
-  margin: 5px !important;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
-  border-radius: 10px !important;
-  padding: 4px !important;
-  min-height:35px !important;
-  height: 35px !important;
+
+.vtab {
+    border: none !important;
+    margin: 5px !important;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19) !important;
+    border-radius: 10px !important;
+    padding: 4px !important;
+    min-height: 35px !important;
+    height: 35px !important;
 }
-.vTabs{
+
+.vTabs {
     border-bottom: 1px solid #efe3e3 !important;
     margin-bottom: 10px;
     padding: 2px !important;
     font-size: 14px !important;
 
 }
-.maingriddetails{
+
+.maingriddetails {
     border: 1px solid #ebe3e3;
     margin-top: 15px;
     border-radius: 20px;
 }
-.gridview{
+
+.gridview {
     border: 1px solid #ebe3e3;
     border-radius: 20px;
     padding: 0px !important;
 }
-.viewdetails{
-    color:#3C678C;
+
+.viewdetails {
+    color: #3C678C;
     font-size: 17px;
     font-weight: 600;
     cursor: pointer;
 
 }
-.eyeiconview{
-    width:20px;
+
+.eyeiconview {
+    width: 20px;
     padding-left: 5px;
 }
-.unverifiedtext{
+
+.unverifiedtext {
     color: #64748B;
 }
-.rejectedtext{
+
+.rejectedtext {
     color: #B91C1C;
 }
-.verifiedtext{
-    color:#31680A
+
+.verifiedtext {
+    color: #31680A
 }
-.totaltext{
+
+.totaltext {
     color: #17335D;
 }
+
 .complaint-eyeicon {
     /* position: absolute;
     right: 23px;
@@ -232,6 +252,16 @@ h4{
     height: 24px;
     cursor: pointer;
 }
-.nodata{
+
+.nodata {
     padding: 10px !important;
+}
+
+.provider-cancel-btn {
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 100px;
+    height: 30px;
+    border: none;
 }

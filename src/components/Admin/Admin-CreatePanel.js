@@ -1,16 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../../App.css';
 import '../../Styles/Admin-AddPanels.css';
-import { getDefaultSamplesAPI, addDefaultPanelsAPI } from '../../services/adminPortalPanelsService';
+import { getDefaultSamplesAPI, addDefaultPanelsAPI, getAdmintestsAPI } from '../../services/adminPortalPanelsService';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 
-const CreatePanel = () => {
-
-    useEffect(() => {
-        getDefaultSamples();
-        addTestForm();
-    }, []);
+const CreatePanel = ({ handleComponentSelect }) => {
 
     const [sampletypes, setsampletypes] = useState([]);
     const [panelForm, setPanelFormData] = useState({
@@ -23,21 +19,42 @@ const CreatePanel = () => {
         comments: '',
     });
     const [panelID, setpanelID] = useState('');
-
+    // const [editPanelDetails, setEditPanelDetails] = useState(null);
 
     const { register, handleSubmit } = useForm();
-    const [testForms, setTestForms] = useState([{ testName: '', testShortCode: '' }]);
-    const testRef = useRef([]);
+    const [testForms, setTestForms] = useState([{ testName: '', testShortCode: '', testID: '' }]);
+    // const testRef = useRef([]);
+    const [editPanelID, setEditPanelID] = useState('');
+    const [testslist, setTestslist] = useState([]);
+    const [testNameChangeIndex, settestNameChangeIndex] = useState(-1);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // debugger;
+        getDefaultSamples();
+        addTestForm();
+        // debugger;
+        if (sessionStorage.getItem("editPanelDetails")) {
+            const editPanelDetails = JSON.parse(sessionStorage.getItem("editPanelDetails"));
+            // setEditPanelDetails(editPanelDetails);
+            setEditPanelID(editPanelDetails.panelID)
+            bindPanelData(editPanelDetails)
+        }
+    }, [editPanelID]);
+    // const [panelID, setPanelID] = useState('')
+
 
     const addTestForm = () => {
         // debugger;
-        setTestForms([...testForms, { testName: '', testShortCode: '' }]);
-        testRef.current.push(React.createRef());
+        setTestForms([...testForms, { testName: '', testShortCode: '', testID: '' }]);
+        // testRef.current.push(React.createRef());
     };
+
+
 
     const removeTestForm = (index) => {
         setTestForms((prevForms) => prevForms.filter((_, i) => i !== index));
-        testRef.current.splice(index, 1);
+        // testRef.current.splice(index, 1);
     };
     const getDefaultSamples = async () => {
         const getDefaultSamplesRes = await getDefaultSamplesAPI();
@@ -52,12 +69,21 @@ const CreatePanel = () => {
             [name]: type === 'checkbox' ? checked : value
         }));
     }
-    const handleTestFormChange = (value, index) => {
+    const handleTestFormChange = async (value, index) => {
         console.log("testForms", testForms, value, index);
         const newTestForms = [...testForms]; // Create a copy of the testForms array
         newTestForms[index] = { ...newTestForms[index], testName: value }; // Update the specific testName at the given index
         setTestForms(newTestForms); // Update the state with the new array
         console.log(testForms);
+        if (value.length > 2) {
+            const apiRes = await getAdmintestsAPI(value, 0, 100);
+            console.log("apiRes", apiRes);
+            setTestslist(apiRes.independentTests);
+            settestNameChangeIndex(index)
+        } else {
+            setTestslist([]);
+            settestNameChangeIndex(-1)
+        }
     };
 
     const handleTestShortCodeChange = (value, index) => {
@@ -69,7 +95,7 @@ const CreatePanel = () => {
     };
 
     const onSubmit = async () => {
-        console.log(testForms, panelForm, testRef);
+        console.log(testForms, panelForm);
         let reqObj = {
             panelID: panelID,
             panelName: panelForm.profileName,
@@ -82,7 +108,8 @@ const CreatePanel = () => {
             tests: testForms
 
         }
-
+        console.log("reqObj", reqObj);
+        // return;
         const addDefaultPanelsRes = await addDefaultPanelsAPI(reqObj);
         console.log(addDefaultPanelsRes);
         if (addDefaultPanelsRes.message.includes('Succes')) {
@@ -95,12 +122,46 @@ const CreatePanel = () => {
                 notes: '',
                 comments: '',
             });
-            setTestForms([{ testName: '', testShortCode: '' }]);
+            setTestForms([{ testName: '', testShortCode: '', testID: '' }]);
+            navigate('/admin-dashboard/Panels');
+            // debugger;
+
+            handleComponentSelect('Panels');
         }
         // Add your form submission logic here
     };
 
+    const bindPanelData = (panelDetails) => {
+        if (panelDetails) {
+            console.log("panelDetails", panelDetails);
+            setpanelID(panelDetails.panelID);
+            const mappedTests = panelDetails.tests.map(test => {
+                return { testName: test.testName, testShortCode: test.testShortCode, testID: test.testID };
+            });
+            setPanelFormData({
+                ...panelForm,
+                profileName: panelDetails.panelName,
+                department: panelDetails.department,
+                price: panelDetails.price,
+                sampleType: panelDetails.sampleType,
+                profileCode: panelDetails.panelShortCode,
+                notes: panelDetails.notes,
+                comments: panelDetails.comments,
+            });
+            console.log("mappedTests", mappedTests)
+            setTestForms(mappedTests);
+        }
+        // debugger;
+    }
 
+    const selectTestName = (test, index) => {
+        console.log(test, index)
+        const updatedTestForms = [...testForms]; // Create a copy of the testForms array
+        updatedTestForms[index] = { ...updatedTestForms[index], testName: test.testName, testShortCode: test.testShortCode, testID: test.testID }; // Update the testName at the specified index
+        setTestForms(updatedTestForms);
+        setTestslist([]);
+        settestNameChangeIndex(-1)
+    }
 
     return (
         <div className='row'>
@@ -188,13 +249,26 @@ const CreatePanel = () => {
 
                             {testForms.map((test, index) => (
                                 <div key={index} className='row'>
-                                    <div className='col-4 mt-3'>
+                                    <div className='col-4 mt-3 test-name-row'>
                                         <input placeholder='Search Test Name' className='form-control' type="text" name={test.testName}
-                                            onChange={(e) => handleTestFormChange(e.target.value, index)} />
+                                            value={test.testName} onChange={(e) => handleTestFormChange(e.target.value, index)} />
+                                        {
+                                            testNameChangeIndex === index && testslist.length > 0 ? (
+                                                <div className='test-list-container'>
+                                                    {testslist.map((test, testIndex) => (
+                                                        <div key={testIndex} className='test-list'>
+                                                            <div className='test-name' onClick={() => selectTestName(test, index)}>{test.testName}</div>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            ) : null
+                                        }
+
+
                                     </div>
                                     <div className='col-4 mt-3'>
                                         <input placeholder='Test Short Code' className='form-control' type="text" name={test.testShortCode}
-                                            onChange={(e) => handleTestShortCodeChange(e.target.value, index)} />
+                                            value={test.testShortCode} onChange={(e) => handleTestShortCodeChange(e.target.value, index)} />
                                     </div>
                                     <div className='col-1 mt-3'>
                                         {
