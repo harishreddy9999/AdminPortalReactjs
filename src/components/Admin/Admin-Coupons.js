@@ -25,7 +25,7 @@ const AdminCoupons = () => {
     const [selectedPatientID, setselectedPatientID] = useState('');
     const [couponFor, setCouponFor] = useState('');
     const [couponID, setCouponID] = useState('');
-
+    const [editCouponDetails, setEditCouponDetails] = useState(null);
     const [applyCouponForm, setApplyCouponForm] = useState({
         mobileNumber: '',
         patientName: '',
@@ -91,12 +91,14 @@ const AdminCoupons = () => {
         setUserCouponData(apiRes.coupons);
     }
     const addNewCoupon = () => {
+        setEditCouponDetails(null);
         setIsAddNewCoupon(true);
     }
 
     const closeAllModals = () => {
         // setSelectedComplaint(null);
         setIsAddNewCoupon(false);
+        setEditCouponDetails(null);
         // debugger;
     };
     const upddateActiveStatus = async (event, index, program) => {
@@ -217,6 +219,7 @@ const AdminCoupons = () => {
     }
 
     const editDocisnCoupon = (coupon) => {
+        setEditCouponDetails(coupon);
         setIsAddNewCoupon(true);
 
     }
@@ -490,7 +493,7 @@ const AdminCoupons = () => {
                 }
             </div>
 
-            {isAddNewCoupon ? (<AddNewCoupon isOpen={isAddNewCoupon} onClose={closeAllModals} />) : ''}
+            {isAddNewCoupon ? (<AddNewCoupon isOpen={isAddNewCoupon} onClose={closeAllModals} couponDetails={editCouponDetails} />) : ''}
 
         </div>
     )
