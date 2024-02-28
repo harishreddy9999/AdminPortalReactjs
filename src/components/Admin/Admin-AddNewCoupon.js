@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import '../../Styles/AddNewCoupon.css';
 import Modal from 'react-modal';
 import { FormControlLabel, Switch } from '@mui/material';
 import { createCouponAPI } from '../../services/adminportalService';
 
-// import moment from 'moment';
+import moment from 'moment';
 
 
-const AddNewCoupon = ({ isOpen, onClose }) => {
+const AddNewCoupon = ({ isOpen, onClose, couponDetails }) => {
 
     const [couponCodeForApt, setCouponCodeForApt] = useState(false);
     const [couponCodeForScans, setCouponCodeForScans] = useState(false);
@@ -17,6 +17,8 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
     const [duraiondropHide, setduraiondropHide] = useState(false);
     const [isCorporate, setIsCorporate] = useState(false);
     const [isShowInDocisn, setisShowInDocisn] = useState(false);
+    const [editCouponDetails, setEditCouponDetails] = useState(false);
+    const [couponDataID, setCouponDataID] = useState('');
     const [formData, setFormData] = useState({
         titleName: '',
         typeOfBenefits: '',
@@ -43,8 +45,85 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
         termsConditionsList: [''],
         showInDocisn: false
     });
+
+    useEffect(() => {
+        if (couponDetails) {
+            // debugger;
+
+            setEditCouponDetails(true);
+            bindFormData(couponDetails);
+        } else {
+            setEditCouponDetails(false);
+        }
+    }, [couponDetails])
     let durationarray = [{ name: 'Days', value: 0 }, { name: 'Weeks', value: 0 }, { name: 'Months', value: 0 }, { name: 'Years', value: 0 }]
-    const [durationList, setDurationList] = useState(durationarray)
+    const [durationList, setDurationList] = useState(durationarray);
+
+    const bindFormData = (couponDetails) => {
+        setEditCouponDetails(true);
+        setCouponDataID(couponDetails._id);
+        console.log("couponDetails", couponDetails);
+        setFormData({
+            ...formData,
+            titleName: couponDetails.titleName,
+            typeOfBenefits: couponDetails.typeOfBenefits,
+            couponNumber: couponDetails.couponNumber,
+            startDate: moment(new Date(couponDetails.startDate)).format("YYYY-MM-DD"),
+            endDate: moment(new Date(couponDetails.endDate)).format("YYYY-MM-DD"),
+            couponCodeForApt: couponDetails.couponFor,
+            isDiscountApplicable: couponDetails.isDiscountApplicable,
+            maxDiscountAmount: couponDetails.maxDiscountAmount,
+            minDiscountAmount: couponDetails.minDiscountAmount,
+            videoAppointment: couponDetails.videoCount,
+            walkAppointment: couponDetails.walkinCount,
+            noOfScans: couponDetails.noOfScans,
+            actualPrice: couponDetails.actualPrice,
+            discountPrice: couponDetails.discountPrice,
+            isDiscountDateSame: couponDetails.isDiscountDateSame,
+            validStartDate: moment(new Date(couponDetails.dicountStartDate)).format("YYYY-MM-DD"),
+            validEndDate: moment(new Date(couponDetails.dicountEndDate)).format("YYYY-MM-DD"),
+            description: couponDetails.description,
+            noOfTimeUSage: couponDetails.noOfUsages,
+            usageGapTime: couponDetails.usageGapTime,
+            isCorporate: couponDetails.isCorporate,
+            emailDomain: couponDetails.emailDomain,
+            termsConditionsList: couponDetails.termsAndConditions,
+            showInDocisn: couponDetails.showInDocisn
+        });
+
+        if (couponDetails.couponFor === "APPOINTMENTS") {
+            setCouponCodeForApt(true);
+            setCouponCodeForScans(false);
+            setCouponCodeForLAP(false);
+            setIsDiscountApplicable(false);
+        } else if (couponDetails.couponFor === "SCANS") {
+            setCouponCodeForApt(false);
+            setCouponCodeForScans(true);
+            setCouponCodeForLAP(false);
+            setIsDiscountApplicable(false);
+        } else if (couponDetails.couponFor === "LABORDERS" || couponDetails.couponFor === "PHARMACYORDERS") {
+            setCouponCodeForApt(false);
+            setCouponCodeForScans(false);
+            setCouponCodeForLAP(true);
+            setIsDiscountApplicable(false);
+        }
+        if (couponDetails.showInDocisn) {
+            setisShowInDocisn(true);
+        } else {
+            setisShowInDocisn(false);
+        }
+        if (couponDetails.isCorporate) {
+            setIsCorporate(true);
+        } else {
+            setIsCorporate(false);
+        }
+        if (couponDetails.isDiscountApplicable) {
+            setIsDiscountApplicable(true);
+        } else {
+            setIsDiscountApplicable(false);
+        }
+
+    }
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         // debugger;
@@ -140,37 +219,97 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let reqObj = {
-            titleName: formData.titleName,
-            typeOfBenefits: formData.typeOfBenefits,
-            couponNumber: formData.couponNumber,
-            startDate: formData.startDate,
-            endDate: formData.endDate,
-            couponFor: formData.couponCodeForApt,
-            actualPrice: formData.actualPrice,
-            discountPrice: formData.discountPrice,
-            isDiscountApplicable: formData.isDiscountApplicable,
-            maxDiscountAmount: formData.maxDiscountAmount,
-            minDiscountAmount: formData.minDiscountAmount,
-            description: formData.description,
-            noOfScans: formData.noOfScans,
-            dicountStartDate: formData.validStartDate,
-            dicountEndDate: formData.validEndDate,
-            isDiscountDateSame: formData.isDiscountDateSame,
-            termsAndConditions: formData.termsConditionsList,
-            // listOfInstructions: formData,
-            videoCount: formData.videoAppointment,
-            walkinCount: formData.walkAppointment,
-            noOfUsages: formData.noOfTimeUSage,
-            usageGapTime: formData.usageGapTime,
-            isCorporate: formData.isCorporate,
-            emailDomain: formData.emailDomain,
-            showInDocisn: formData.showInDocisn
+        let reqObj = {};
+        if (editCouponDetails) {
+            reqObj = {
+                _id: couponDataID,
+                titleName: formData.titleName,
+                typeOfBenefits: formData.typeOfBenefits,
+                couponNumber: formData.couponNumber,
+                startDate: formData.startDate,
+                endDate: formData.endDate,
+                couponFor: formData.couponCodeForApt,
+                actualPrice: formData.actualPrice,
+                discountPrice: formData.discountPrice,
+                isDiscountApplicable: formData.isDiscountApplicable,
+                maxDiscountAmount: formData.maxDiscountAmount,
+                minDiscountAmount: formData.minDiscountAmount,
+                description: formData.description,
+                noOfScans: formData.noOfScans,
+                dicountStartDate: formData.validStartDate,
+                dicountEndDate: formData.validEndDate,
+                isDiscountDateSame: formData.isDiscountDateSame,
+                termsAndConditions: formData.termsConditionsList,
+                // listOfInstructions: formData,
+                videoCount: formData.videoAppointment,
+                walkinCount: formData.walkAppointment,
+                noOfUsages: formData.noOfTimeUSage,
+                usageGapTime: formData.usageGapTime,
+                isCorporate: formData.isCorporate,
+                emailDomain: formData.emailDomain,
+                showInDocisn: formData.showInDocisn
+            }
+        } else {
+            reqObj = {
+                titleName: formData.titleName,
+                typeOfBenefits: formData.typeOfBenefits,
+                couponNumber: formData.couponNumber,
+                startDate: formData.startDate,
+                endDate: formData.endDate,
+                couponFor: formData.couponCodeForApt,
+                actualPrice: formData.actualPrice,
+                discountPrice: formData.discountPrice,
+                isDiscountApplicable: formData.isDiscountApplicable,
+                maxDiscountAmount: formData.maxDiscountAmount,
+                minDiscountAmount: formData.minDiscountAmount,
+                description: formData.description,
+                noOfScans: formData.noOfScans,
+                dicountStartDate: formData.validStartDate,
+                dicountEndDate: formData.validEndDate,
+                isDiscountDateSame: formData.isDiscountDateSame,
+                termsAndConditions: formData.termsConditionsList,
+                // listOfInstructions: formData,
+                videoCount: formData.videoAppointment,
+                walkinCount: formData.walkAppointment,
+                noOfUsages: formData.noOfTimeUSage,
+                usageGapTime: formData.usageGapTime,
+                isCorporate: formData.isCorporate,
+                emailDomain: formData.emailDomain,
+                showInDocisn: formData.showInDocisn
+            }
         }
-        console.log(formData, reqObj);
+        console.log("reqObj", reqObj);
+        // return;
         try {
             const createCouponRes = await createCouponAPI(reqObj);
             console.log("createCouponRes", createCouponRes);
+            setFormData({
+                titleName: '',
+                typeOfBenefits: '',
+                couponNumber: '',
+                startDate: '',
+                endDate: '',
+                couponCodeForApt: '',
+                isDiscountApplicable: false,
+                maxDiscountAmount: '',
+                minDiscountAmount: '',
+                videoAppointment: '',
+                walkAppointment: '',
+                noOfScans: '',
+                actualPrice: '',
+                discountPrice: '',
+                isDiscountDateSame: false,
+                validStartDate: '',
+                validEndDate: '',
+                description: '',
+                noOfTimeUSage: '',
+                usageGapTime: '',
+                isCorporate: false,
+                emailDomain: '',
+                termsConditionsList: [''],
+                showInDocisn: false
+
+            });
             onClose();
         } catch {
             console.error("Error creating coupon:");
@@ -200,10 +339,10 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
                         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Overlay background color
                     },
                     content: {
-                        minWidth: '50%', // Width of the modal content
-                        maxWidth: '60%',
-                        minHeight: '450px', // Height of the modal content
-                        maxHeight: '600px',
+                        minWidth: '60%', // Width of the modal content
+                        maxWidth: '80%',
+                        minHeight: '550px', // Height of the modal content
+                        maxHeight: '700px',
                         margin: '25px auto', // Center the modal
                         overflow: 'hidden',
                         padding: '0',
@@ -212,7 +351,9 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
                 }}
             >
                 <div className="couponformdiv p-2">
-                    <div id="pt-Coupons">Add Coupons</div>
+                    <div id="pt-Coupons">
+                        Add Coupons
+                    </div>
                 </div>
                 <div className="form-coupon">
 
@@ -483,8 +624,8 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
                                 <textarea
                                     type="number"
                                     className="form-control"
-                                    name="couponDescription"
-                                    value={formData.couponDescription}
+                                    name="description"
+                                    value={formData.description}
                                     onChange={handleChange}
 
                                 ></textarea>
@@ -546,35 +687,35 @@ const AddNewCoupon = ({ isOpen, onClose }) => {
                             <label className='form-lbl'>Terms & Conditions</label>
                             {
                                 formData.termsConditionsList.map((term, index) => (
-                                  
-                                        
-                                            <div id="2585" key={index} className="row aoe-row">
-                                                <div className="col-10 p-0">
-                                                    <div className="material-textfield">
-                                                        <input
-                                                            type="text"
-                                                            id="expertise-name"
-                                                            className="form-control form-control-sm matInput"
-                                                            value={term}
-                                                            maxLength="100"
-                                                            minLength="2"
-                                                            onChange={(e) => handleTermsChange(e.target.value, index)}
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="col-2 d-flex align-items-center">
-                                                    <img src='../images/add_schedule.png' onClick={handleAddTerm} className='add-terms-img ms-3' alt='add-terms' />
-                                                    {index !== 0 && (
-                                                        <img
-                                                            src="../images/delete.png"
-                                                            alt="Delete"
-                                                            className="delete-terms ms-2"
-                                                            onClick={() => handleRemoveTerm(index)}
-                                                        />
-                                                    )}
-                                                </div>
+
+
+                                    <div id="2585" key={index} className="row aoe-row">
+                                        <div className="col-10 p-0">
+                                            <div className="material-textfield">
+                                                <input
+                                                    type="text"
+                                                    id="expertise-name"
+                                                    className="form-control form-control-sm matInput"
+                                                    value={term}
+                                                    maxLength="100"
+                                                    minLength="2"
+                                                    onChange={(e) => handleTermsChange(e.target.value, index)}
+                                                />
                                             </div>
-                                    
+                                        </div>
+                                        <div className="col-2 d-flex align-items-center">
+                                            <img src='../images/add_schedule.png' onClick={handleAddTerm} className='add-terms-img ms-3' alt='add-terms' />
+                                            {index !== 0 && (
+                                                <img
+                                                    src="../images/delete.png"
+                                                    alt="Delete"
+                                                    className="delete-terms ms-2"
+                                                    onClick={() => handleRemoveTerm(index)}
+                                                />
+                                            )}
+                                        </div>
+                                    </div>
+
                                 ))}
                         </div>
                         <div id="9834" className="flex-container d-flex justify-content-end py-2">
