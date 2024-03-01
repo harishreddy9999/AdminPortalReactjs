@@ -1,4 +1,5 @@
 import { labAPIURL, api } from './httpHeaderInterceptor';
+import { adminAPIURL,clinicalAPIURL } from './httpHeaderInterceptor';
 
 export async function getDefaultPanelsAPI(text, page, size) {
 
@@ -141,3 +142,56 @@ export async function getAdmintestsAPI(searchtext, page, size) {
         throw error;
     }
 }
+export async function getWellnessProgramsAPI() {
+
+
+    try {
+        const response = await adminAPIURL.get('/wellness/getWellnessPrograms?programID=');
+        const getWellnessProgramsRes = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getWellnessProgramsRes request failed');
+        }
+        return getWellnessProgramsRes;
+
+    } catch (error) {
+        console.error('getWellnessProgramsRes failed:', error);
+        throw error;
+    }
+}
+export async function getspecalityAPI() {
+
+
+    try {
+        const response = await clinicalAPIURL.get('/specialtyDropDown');
+        const getspecalityRes = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getspecalityRes request failed');
+        }
+        return getspecalityRes;
+
+    } catch (error) {
+        console.error('getspecalityRes failed:', error);
+        throw error;
+    }
+}
+export async function savePackageAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/wellness/wellnessPackage',obj);
+        const savePackageRes = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('savePackageRes request failed');
+        }
+        return savePackageRes;
+
+    } catch (error) {
+        console.error('savePackageRes failed:', error);
+        throw error;
+    }
+}
+
+

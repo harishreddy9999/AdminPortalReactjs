@@ -51,27 +51,27 @@ function NewComplaints() {
 
     const handleChange = useCallback((newValue) => {
         // if(newValue.target.innerText === )
-        console.log("innerText", newValue.target.innerText)
+        // console.log("innerText", newValue.target.innerText)
 
-        // debugger;
+        //  debugger;
         let complaintsFrom = "";
-        if (newValue.target.innerText === "DOCISN PLUS WEB") {
+        if (newValue === "Docisn Plus Web") {
             setValue(0);
             complaintsFrom = "DOCISNPLUSWEB";
-        } else if (newValue.target.innerText === "DOCISN PLUS APP") {
+        } else if (newValue === "Docisn Plus App") {
             setValue(1);
             complaintsFrom = "DOCISNPLUSAPP";
         }
-        else if (newValue.target.innerText === "DOCISN PATIENTS") {
+        else if (newValue === "Docisn Patients") {
             setValue(2);
             complaintsFrom = "DOCISN";
-        } else if (newValue.target.innerText === "DOCISN CLINIC") {
+        } else if (newValue === "Docisn Clinic") {
             setValue(3);
             complaintsFrom = "DOCISNFRONTDESK";
-        } else if (newValue.target.innerText === "DOCISN LABORATORY") {
+        } else if (newValue === "Docisn Laboratory") {
             setValue(4);
             complaintsFrom = "DOCISNLAB";
-        } else if (newValue.target.innerText === "DOCISN RX") {
+        } else if (newValue === "Docisn Rx") {
             setValue(5);
             complaintsFrom = "DOCISNAREX";
         }
@@ -279,14 +279,36 @@ function NewComplaints() {
                     <Tab className={value === 5 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 5 ? "../images/line.png" : ""} /><img id="pharmacyImg" className="tabimg" src={value === 5 ? "../images/activepharmacy.png" : "../images/pharmacy.png"} alt='Pharmacy' />
                         <span className={value === 5 ? "selected-text" : "tabtext"}>Docisn Rx</span></span>} />
                 </Tabs> */}
-                 <Tabs value={value} onChange={handleChange} className="cTabs" >
+                 {/* <Tabs value={value} onChange={handleChange} className="cTabs" >
                     <Tab className={value === 0 ? "cselected-tab" : "ctab"} label={<span className={value === 0 ? "cselected-text" : "ctabtext"}>Docisn Plus Web</span>} />
                     <Tab className={value === 1 ? "cselected-tab" : "ctab"} label={<span className={value === 1 ? "cselected-text" : "ctabtext"}>Docisn Plus App</span>} />
                     <Tab className={value === 2 ? "cselected-tab" : "ctab"} label={<span className={value === 2 ? "cselected-text" : "ctabtext"}>Docisn Patients </span>} />
                     <Tab className={value === 3 ? "cselected-tab" : "ctab"} label={<span className={value === 3 ? "cselected-text" : "ctabtext"}>Docisn Clinic</span> }/>
                     <Tab className={value === 4 ? "cselected-tab" : "ctab"} label={<span className={value === 4 ? "cselected-text" : "ctabtext"}>Docisn Laboratory</span>}/>
                     <Tab className={value === 5 ? "cselected-tab" : "ctab"} label={<span className={value === 5 ? "cselected-text" : "ctabtext"}>Docisn Rx</span>}/>
-                </Tabs>
+                </Tabs> */}
+
+<div class="col-8 tabsContainers">
+                    <div id="13399" className={value === 0 ? 'activetabs' : "tabSections"}
+                    onClick={() => handleChange('Docisn Plus Web')} >
+                        <span id="doc">Docisn Plus Web</span></div>
+                    <div id="13400" className={value === 1 ? 'activetabs' : "tabSections"}
+                     onClick={() => handleChange('Docisn Plus App')}>
+                        <span id="pat">Docisn Plus App</span></div>
+                    <div id="13401" className={value === 2 ? 'activetabs' : "tabSections"}
+                     onClick={() => handleChange('Docisn Patients')}>
+                        <span id="pharma">Docisn Patients</span>
+                    </div>
+                    <div id="13402" className={value === 3 ? 'activetabs' : "tabSections"}
+                     onClick={() => handleChange('Docisn Clinic')}>
+                        <span id="labs">Docisn Clinic</span></div>
+                    <div id="13403" className={value === 4 ? 'activetabs' : "tabSections"}
+                     onClick={() => handleChange('Docisn Laboratory')}>
+                        <span id="clinics">Docisn Laboratory</span></div>
+                        <div id="13403" className={value === 5 ? 'activetabs' : "tabSections"}
+                     onClick={() => handleChange('Docisn Rx')}>
+                        <span id="clinics">Docisn Rx</span></div>
+                </div>
             </div>
 
             <div className='row'>

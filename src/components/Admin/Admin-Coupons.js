@@ -37,15 +37,15 @@ const AdminCoupons = () => {
     useEffect(() => {
         getList();
 
-    }, [value, filterStartDate, filterEndDate, filterCouponFor, filterIsActive]);
+    }, [selectedTab, filterStartDate, filterEndDate, filterCouponFor, filterIsActive]);
     const onStartDateChange = (e) => {
         // debugger;
         console.log("onStartDateChange", e);
         setFilterStartDate(e.target.value);
 
     };
-    const handleTabChange = (event, newValue) => {
-        setValue(newValue);
+    const handleTabClick = (newValue) => {
+        setSelectedTab(newValue);
     };
 
     const onEndDateChange = (e) => {
@@ -66,9 +66,9 @@ const AdminCoupons = () => {
 
     };
     const getList = () => {
-        if (value === 0) {
+        if (selectedTab === "Coupons") {
             getAllCouponsData();
-        } else if (value === 1) {
+        } else if (selectedTab === "List") {
             getAllUSerCoupons();
         }
     }
@@ -226,17 +226,26 @@ const AdminCoupons = () => {
         <div className="container-fluid">
             <div className='tabs-row'>
 
-                <Tabs value={value} onChange={handleTabChange} className="vTabs" >
+                {/* <Tabs value={value} onChange={handleTabChange} className="vTabs" >
                     <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0 ? "vselected-text" : "vtabtext"}>Coupons</span>} />
                     <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1 ? "vselected-text" : "vtabtext"}>Coupons List</span>} />
 
-                </Tabs>
+                </Tabs> */}
                 {/* <p className={`tab-heading ${selectedTab === 'Coupons' ? 'active' : ''}`} onClick={() => showTab('Coupons')}>Coupons</p>
                 <p className={`tab-heading ${selectedTab === 'List' ? 'active' : ''}`} onClick={() => showTab('List')}>Coupons List</p> */}
+                  <div class="col-2 tabsContainers my-3">
+                    <div id="13399" className={selectedTab === "Coupons" ? 'activetabs' : "tabSections"}
+                    onClick={() => handleTabClick('Coupons')} >
+                        <span id="doc">Coupons</span></div>
+                    <div id="13400" className={selectedTab === "List" ? 'activetabs' : "tabSections"}
+                     onClick={() => handleTabClick('List')}>
+                        <span id="pat">Coupons List</span></div>
+                   
+                </div>
             </div>
             <div className='list-row mt-3'>
                 {
-                    value === 0 ? (
+                    selectedTab === "Coupons" ? (
                         <div className='row'>
                             <div id="13397" className="row">
                                 <div id="13398" className="d-flex justify-content-between">
@@ -378,7 +387,7 @@ const AdminCoupons = () => {
                     ) : ''
                 }
                 {
-                    value === 1 ? (
+                    selectedTab === "List" ? (
                         <div className='user-coupons-card-row'>
                             <div className='row'>
                                 <div className='col-lg-6 col-md-6 col-sm-12 brd-right'>
