@@ -37,7 +37,7 @@ const Wellness = () => {
         console.log("response", response);
         setPackagesList(response);
     }
-    const showTab = (value) => {
+    const handleTabClick = (value) => {
         console.log(value);
         setSelectedTab(value)
 
@@ -93,17 +93,26 @@ const Wellness = () => {
         <div className='wellness-main-screen'>
             <div className='row'>
                 <div className='tabs-row'>
-                <Tabs  value={value} onChange={handleChange} className="vTabs" >
+                {/* <Tabs  value={value} onChange={handleChange} className="vTabs" >
                     <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0  ? "vselected-text" : "vtabtext"}>Programmes</span>} />
                     <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1  ? "vselected-text" : "vtabtext"}>Packages</span>} />
 
-                </Tabs>
+                </Tabs> */}
                     {/* <p className={`tab-heading ${selectedTab === 'PRO' ? 'active' : ''}`} onClick={() => showTab('PRO')}>Programmes</p>
                     <p className={`tab-heading ${selectedTab === 'PACK' ? 'active' : ''}`} onClick={() => showTab('PACK')}>Packages</p> */}
+                  <div class="col-2 tabsContainers">
+                    <div id="13399" className={selectedTab === "PRO" ? 'activetabs' : "tabSections"}
+                    onClick={() => handleTabClick('PRO')} >
+                        <span id="doc">Programmes</span></div>
+                    <div id="13400" className={selectedTab === "PACK" ? 'activetabs' : "tabSections"}
+                     onClick={() => handleTabClick('PACK')}>
+                        <span id="pat">Packages</span></div>
+                   
+                </div>
                 </div>
             </div>
             <div className='tabs-content'>
-                {value === 0 ? (
+                {selectedTab === "PRO" ? (
                     <div className='programs-row'>
                         <div className='row programs-heading-row'>
                             <div className='col-6'>

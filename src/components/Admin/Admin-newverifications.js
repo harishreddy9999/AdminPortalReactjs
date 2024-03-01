@@ -48,7 +48,7 @@ function NewVerifications() {
     const [selectedIndependentClinic, setSelectedIndependentClinic] = useState(null);
     const [pendingWellnessenrollments, setPendingWellnessenrollments] = useState([]);
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (newValue) => {
         setValue(newValue);
         if (newValue === 5) {
             getwellness_enrollmentslist();
@@ -190,14 +190,30 @@ function NewVerifications() {
                     <Tab className={value === 3 ? "selected-tab" : "tab"} label={<span><img id="doctorImg" className="lineimg" src={value === 3 ? "../images/line.png" : ""} /><img id="pharmacyImg" className="tabimg" src={value === 3 ? "../images/activepharmacy.png" : "../images/pharmacy.png"} alt='Pharmacy' />
                         <span className={value === 3 ? "selected-text" : "tabtext"}>Pharmacy</span></span>} />
                 </Tabs> */}
-                <Tabs value={value} onChange={handleChange} className="vTabs" >
+                {/* <Tabs value={value} onChange={handleChange} className="vTabs" >
                     <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0 ? "vselected-text" : "vtabtext"}>Doctor</span>} />
                     <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1 ? "vselected-text" : "vtabtext"}>Clinic</span>} />
                     <Tab className={value === 2 ? "vselected-tab" : "vtab"} label={<span className={value === 2 ? "vselected-text" : "vtabtext"}>Laboratory</span>} />
                     <Tab className={value === 3 ? "vselected-tab" : "vtab"} label={<span className={value === 3 ? "vselected-text" : "vtabtext"}>Pharmacy</span>} />
                     <Tab className={value === 4 ? "vselected-tab" : "vtab"} label={<span className={value === 4 ? "vselected-text" : "vtabtext"}>Independent Clinics</span>} />
                     <Tab className={value === 5 ? "vselected-tab" : "vtab"} label={<span className={value === 5 ? "vselected-text" : "vtabtext"}>Wellness Enrollments</span>} />
-                </Tabs>
+                </Tabs> */}
+                   <div class="col-7 tabsContainers">
+                    <div id="13399" className={value === 0 ? 'activetabs' : "tabSections"}
+                    onClick={() => handleChange(0)} >Doctor</div>
+                    <div id="13400" className={value === 1 ? 'activetabs' : "tabSections"}
+                     onClick={() => handleChange(1)}>Clinic</div>
+                    <div id="13401" className={value === 2 ? 'activetabs' : "tabSections"}
+                     onClick={() => handleChange(2)}>Laboratory</div>
+                    <div id="13402" className={value === 3 ? 'activetabs' : "tabSections"}
+                     onClick={() => handleChange(3)}>Pharmacy</div>
+                    <div id="13403" className={value === 4 ? 'activetabs' : "tabSections"}
+                     onClick={() => handleChange(4)}>Independent Clinics</div>
+                        <div id="13403" className={value === 5 ? 'activetabs' : "tabSections"}
+                     onClick={() => handleChange(5)}>Wellness Enrollments</div>
+                </div>
+              
+
             </div>
             <div className='row'>
                 <div id="15855" className="col-lg-3 col-md-3 col-6">

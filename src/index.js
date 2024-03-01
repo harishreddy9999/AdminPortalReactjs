@@ -6,15 +6,22 @@ import reportWebVitals from './reportWebVitals';
 import Modal from 'react-modal';
 import { Provider } from 'react-redux';
 import store from './Store/store';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 // import { LoaderProvider } from '../src/services/LoaderContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const client = new ApolloClient({
+  uri: 'https://dev.docisn.com/graphql',
+  cache: new InMemoryCache(),
+});
 Modal.setAppElement('#root');
 root.render(
   <React.StrictMode>
+    <ApolloProvider client={client}>
     <Provider store={store}>
       <App />
     </Provider>
+    </ApolloProvider>
   </React.StrictMode>
 );
 

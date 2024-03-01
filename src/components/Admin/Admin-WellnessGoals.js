@@ -13,7 +13,7 @@ const WellnessGoals = () => {
 
 
 
-    const [selectedTab, setSelectedTab] = useState('PRO');
+    const [selectedTab, setSelectedTab] = useState('Goals');
     const [searchtext, setsearchtext] = useState('');
     const [page, setPage] = useState(0);
     const [size, setRowsPerPage] = useState(5);
@@ -41,8 +41,8 @@ const WellnessGoals = () => {
         setSelectedTab(value)
 
     }
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
+    const handleTabClick = (newValue) => {
+        setSelectedTab(newValue);
     };
 
     const getGoals = async () => {
@@ -117,17 +117,26 @@ const WellnessGoals = () => {
         <div className='wellness-main-screen'>
             <div className='row'>
                 <div className='tabs-row'>
-                <Tabs  value={value} onChange={handleChange} className="vTabs" >
+                {/* <Tabs  value={value} onChange={handleChange} className="vTabs" >
                     <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0  ? "vselected-text" : "vtabtext"}>Goals</span>} />
                     <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1  ? "vselected-text" : "vtabtext"}>Trackers</span>} />
 
-                </Tabs>
+                </Tabs> */}
                     {/* <p className={`tab-heading ${selectedTab === 'PRO' ? 'active' : ''}`} onClick={() => showTab('PRO')}>Goals</p>
                     <p className={`tab-heading ${selectedTab === 'PACK' ? 'active' : ''}`} onClick={() => showTab('PACK')}>Trackers</p> */}
+                         <div class="col-2 tabsContainers">
+                    <div id="13399" className={selectedTab === "Goals" ? 'activetabs' : "tabSections"}
+                    onClick={() => handleTabClick('Goals')} >
+                        <span id="doc">Goals</span></div>
+                    <div id="13400" className={selectedTab === "Trackers" ? 'activetabs' : "tabSections"}
+                     onClick={() => handleTabClick('Trackers')}>
+                        <span id="pat">Trackers</span></div>
+                   
+                </div>
                 </div>
             </div>
             <div className='tabs-content'>
-                {value === 0 ? (
+                {selectedTab === "Goals" ? (
                     <div className='programs-row'>
                         <div className='row programs-heading-row'>
                             <div className='col-3'>
