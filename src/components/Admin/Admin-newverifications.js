@@ -543,6 +543,7 @@ function NewVerifications() {
                     }
                 </div>
             </div>
+            
 
             {
                 selectedLab ? (<AdminLabDetails isOpen={isLabDetailsOpen} onClose={closeAllModals} lab={selectedLab} />) : ''
