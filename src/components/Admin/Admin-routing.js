@@ -15,6 +15,9 @@ import AdminSubscripions from './Admin-Subscriptions.js';
 export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
     let componentToRender;
     // debugger;
+    if (!selectedComponent) {
+        selectedComponent = sessionStorage.getItem("activeLink")
+    }
     console.log("selectedComponent", selectedComponent, handleComponentSelect);
     // debugger;
     switch (selectedComponent) {
@@ -22,7 +25,7 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
         case null:
             componentToRender = <Verifications />;
             break;
-        case 'NewComplaints':
+        case 'Complaints':
             componentToRender = <NewComplaints />;
             break;
         case 'Coupons':

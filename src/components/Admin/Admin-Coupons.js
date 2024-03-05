@@ -236,14 +236,14 @@ const AdminCoupons = () => {
                 </Tabs> */}
                 {/* <p className={`tab-heading ${selectedTab === 'Coupons' ? 'active' : ''}`} onClick={() => showTab('Coupons')}>Coupons</p>
                 <p className={`tab-heading ${selectedTab === 'List' ? 'active' : ''}`} onClick={() => showTab('List')}>Coupons List</p> */}
-                  <div class="col-2 tabsContainers my-3">
+                <div className="col-2 tabsContainers my-3">
                     <div id="13399" className={selectedTab === "Coupons" ? 'activetabs' : "tabSections"}
-                    onClick={() => handleTabClick('Coupons')} >
+                        onClick={() => handleTabClick('Coupons')} >
                         <span id="doc">Coupons</span></div>
                     <div id="13400" className={selectedTab === "List" ? 'activetabs' : "tabSections"}
-                     onClick={() => handleTabClick('List')}>
+                        onClick={() => handleTabClick('List')}>
                         <span id="pat">Coupons List</span></div>
-                   
+
                 </div>
             </div>
             <div className='list-row mt-3'>

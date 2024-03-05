@@ -51,12 +51,12 @@ function AdminLogin() {
 
 
     return (
-        <div id="224" className="container-fluid">
+        <div id="224" className="container-fluid p-0">
             <div id="225" className="row ">
                 <div id="226" className="col-lg-5 col-md-6 col-sm-5  col-12 pdleft">
                     <div id="227" className="leftside-section">
                         <div>
-                            <img className="imgdiv" alt='loginbg' src="../images/loginreg_bg.png" />
+                            <img className="login-imgdiv" alt='loginbg' src="../images/loginreg_bg.png" />
                         </div>
                         <div id="228" className="innerpic">
                             <img className="doctorinnerpic" alt='login-doctor' src="../images/login_doctor_bg.png" id="doctorinner" />
@@ -68,7 +68,7 @@ function AdminLogin() {
                         <div id="231" className="logo-row">
                             <img src="../images/docisn_logo.png" id="docisnlogo" className="logo" alt='docisn-logo' />
                         </div>
-                        <div id="232" className="login padd">Admin Login</div>
+                        <div id="232" className="login login-screen-header">Admin Login</div>
                         <form className="custom-form" onSubmit={handleSubmit}>
                             <div>
                                 <label htmlFor="userType">User Type</label>

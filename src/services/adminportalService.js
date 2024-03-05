@@ -926,3 +926,27 @@ export async function verifyWellnessEnrollmnetAPI(obj) {
         throw error;
     }
 }
+
+
+export async function updateWellnessProgramsAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/wellness/wellnessPrograms', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('addUserCouponAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('addUserCouponAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('addUserCouponAPI failed:', error);
+        throw error;
+    }
+}

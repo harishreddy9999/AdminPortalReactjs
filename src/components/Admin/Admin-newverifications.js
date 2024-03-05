@@ -198,21 +198,21 @@ function NewVerifications() {
                     <Tab className={value === 4 ? "vselected-tab" : "vtab"} label={<span className={value === 4 ? "vselected-text" : "vtabtext"}>Independent Clinics</span>} />
                     <Tab className={value === 5 ? "vselected-tab" : "vtab"} label={<span className={value === 5 ? "vselected-text" : "vtabtext"}>Wellness Enrollments</span>} />
                 </Tabs> */}
-                   <div class="col-7 tabsContainers">
+                <div className="col-lg-8 col-md-9 col-sm-12 tabsContainers">
                     <div id="13399" className={value === 0 ? 'activetabs' : "tabSections"}
-                    onClick={() => handleChange(0)} >Doctor</div>
+                        onClick={() => handleChange(0)} >Doctor</div>
                     <div id="13400" className={value === 1 ? 'activetabs' : "tabSections"}
-                     onClick={() => handleChange(1)}>Clinic</div>
+                        onClick={() => handleChange(1)}>Clinic</div>
                     <div id="13401" className={value === 2 ? 'activetabs' : "tabSections"}
-                     onClick={() => handleChange(2)}>Laboratory</div>
+                        onClick={() => handleChange(2)}>Laboratory</div>
                     <div id="13402" className={value === 3 ? 'activetabs' : "tabSections"}
-                     onClick={() => handleChange(3)}>Pharmacy</div>
+                        onClick={() => handleChange(3)}>Pharmacy</div>
                     <div id="13403" className={value === 4 ? 'activetabs' : "tabSections"}
-                     onClick={() => handleChange(4)}>Independent Clinics</div>
-                        <div id="13403" className={value === 5 ? 'activetabs' : "tabSections"}
-                     onClick={() => handleChange(5)}>Wellness Enrollments</div>
+                        onClick={() => handleChange(4)}>Independent Clinics</div>
+                    <div id="13403" className={value === 5 ? 'activetabs' : "tabSections"}
+                        onClick={() => handleChange(5)}>Wellness Enrollments</div>
                 </div>
-              
+
 
             </div>
             <div className='row'>
