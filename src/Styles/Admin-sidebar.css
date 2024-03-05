@@ -311,3 +311,12 @@
 .sidebartext {
     margin-left: 10px;
 }
+
+.activeRouteLink {
+    background: white;
+    border-radius: 6px;
+
+    .sidebartext {
+        color: #FF817F !important;
+    }
+}

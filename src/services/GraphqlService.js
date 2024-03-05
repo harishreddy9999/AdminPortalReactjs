@@ -1,5 +1,5 @@
 // import React from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { gql } from '@apollo/client';
 
 export const GET_DIABETIC_TIMELINE = gql`
   query DiabeticTimeLine($slug: String!) {

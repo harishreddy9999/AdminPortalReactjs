@@ -56,15 +56,15 @@ const AdminUsersList = () => {
         getList();
     }, [selectedTab, searchText, pageNo, pageSize])
     const getList = () => {
-        if (selectedTab==='doctor') {
+        if (selectedTab === 'doctor') {
             getDoctorsList();
-        } else if (selectedTab==='Patients') {
+        } else if (selectedTab === 'Patients') {
             getPatientsList();
-        } else if (selectedTab==='Pharmacies') {
+        } else if (selectedTab === 'Pharmacies') {
             getPharmaciesList();
-        } else if (selectedTab==='Labs') {
+        } else if (selectedTab === 'Labs') {
             getLabsList();
-        } else if (selectedTab==='Clinics') {
+        } else if (selectedTab === 'Clinics') {
             getClinicsList();
         }
     }
@@ -119,9 +119,9 @@ const AdminUsersList = () => {
     }
     return (
         <div className='wellness-main-screen'>
-          
-                {/* <div className='tabs-row'> */}
-                {/* <Tabs  value={value} onChange={handleChange} className="vTabs" >
+
+            {/* <div className='tabs-row'> */}
+            {/* <Tabs  value={value} onChange={handleChange} className="vTabs" >
                     <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0  ? "vselected-text" : "vtabtext"}>Doctors</span>} />
                     <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1  ? "vselected-text" : "vtabtext"}>Patients</span>} />
                     <Tab className={value === 2 ? "vselected-tab" : "vtab"} label={<span className={value === 2  ? "vselected-text" : "vtabtext"}>Pharmacies</span>} />
@@ -129,267 +129,267 @@ const AdminUsersList = () => {
                     <Tab className={value === 4 ? "vselected-tab" : "vtab"} label={<span className={value === 4  ? "vselected-text" : "vtabtext"}>Clinics</span>} />
                 </Tabs> */}
 
-                
-                    {/* <p className={`tab-heading ${selectedTab === 'Doctors' ? 'active' : ''}`} onClick={() => showTab('Doctors')}>Doctors</p>
+
+            {/* <p className={`tab-heading ${selectedTab === 'Doctors' ? 'active' : ''}`} onClick={() => showTab('Doctors')}>Doctors</p>
                     <p className={`tab-heading ${selectedTab === 'Patients' ? 'active' : ''}`} onClick={() => showTab('Patients')}>Patients</p>
                     <p className={`tab-heading ${selectedTab === 'Pharmacies' ? 'active' : ''}`} onClick={() => showTab('Pharmacies')}>Pharmacies</p>
                     <p className={`tab-heading ${selectedTab === 'Labs' ? 'active' : ''}`} onClick={() => showTab('Labs')}>Labs</p>
                     <p className={`tab-heading ${selectedTab === 'Clinics' ? 'active' : ''}`} onClick={() => showTab('Clinics')}>Clinics</p> */}
-                {/* </div> */}
-                {/* className="ms-0 tabSections d-flex justify-content-center provider-tabs itab" */}
-                <div class="col-4 tabsContainers">
-                    <div id="13399" className={selectedTab === "doctor" ? 'activetabs' : "tabSections"}
+            {/* </div> */}
+            {/* className="ms-0 tabSections d-flex justify-content-center provider-tabs itab" */}
+            <div className="col-4 tabsContainers">
+                <div id="13399" className={selectedTab === "doctor" ? 'activetabs' : "tabSections"}
                     onClick={() => handleTabClick('doctor')} >
-                        <span id="doc">Doctors</span></div>
-                    <div id="13400" className={selectedTab === "Patients" ? 'activetabs' : "tabSections"}
-                     onClick={() => handleTabClick('Patients')}>
-                        <span id="pat">Patients</span></div>
-                    <div id="13401" className={selectedTab === "Pharmacies" ? 'activetabs' : "tabSections"}
-                     onClick={() => handleTabClick('Pharmacies')}>
-                        <span id="pharma">Pharmacies</span>
-                    </div>
-                    <div id="13402" className={selectedTab === "Labs" ? 'activetabs' : "tabSections"}
-                     onClick={() => handleTabClick('Labs')}>
-                        <span id="labs">Labs</span></div>
-                    <div id="13403" className={selectedTab === "Clinics" ? 'activetabs' : "tabSections"}
-                     onClick={() => handleTabClick('Clinics')}>
-                        <span id="clinics">Clinics</span></div>
+                    <span id="doc">Doctors</span></div>
+                <div id="13400" className={selectedTab === "Patients" ? 'activetabs' : "tabSections"}
+                    onClick={() => handleTabClick('Patients')}>
+                    <span id="pat">Patients</span></div>
+                <div id="13401" className={selectedTab === "Pharmacies" ? 'activetabs' : "tabSections"}
+                    onClick={() => handleTabClick('Pharmacies')}>
+                    <span id="pharma">Pharmacies</span>
                 </div>
-                <div className='search-row'>
-                    <div className="user-searchdiv d-flex justify-content-center mb-3" id="searchdiv">
-                        <div className="form-control d-flex justify-content-between users-searchInput">
-                            <input type="text" className="users-search" placeholder="Search"
-                                name='searchText' value={searchText} onChange={handleSearchChange} />
-                            <img className="searchicon" src="../images/search.svg" alt='search' />
+                <div id="13402" className={selectedTab === "Labs" ? 'activetabs' : "tabSections"}
+                    onClick={() => handleTabClick('Labs')}>
+                    <span id="labs">Labs</span></div>
+                <div id="13403" className={selectedTab === "Clinics" ? 'activetabs' : "tabSections"}
+                    onClick={() => handleTabClick('Clinics')}>
+                    <span id="clinics">Clinics</span></div>
+            </div>
+            <div className='search-row'>
+                <div className="user-searchdiv d-flex justify-content-center mb-3" id="searchdiv">
+                    <div className="form-control d-flex justify-content-between users-searchInput">
+                        <input type="text" className="users-search" placeholder="Search"
+                            name='searchText' value={searchText} onChange={handleSearchChange} />
+                        <img className="searchicon" src="../images/search.svg" alt='search' />
+                    </div>
+                </div>
+            </div>
+            <div className='list-row'>
+                {
+                    selectedTab === 'doctor' ? (
+                        <div className='panel-list-table'>
+                            <Paper>
+                                <TableContainer>
+                                    <Table className='custom-drugs-tbl'>
+                                        <TableHead className='custom-drugs-tbl-header-row'>
+                                            <TableRow className=''>
+                                                <TableCell className='custom-drugs-tbl-header'>#</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>DOCTORS</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>MOBILE NUMBER</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>EMAIL</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>Gender</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>SPECIALIZATION</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>STATUS</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody className='custom-drugs-tbl-body'>
+                                            {doctorsList.map((doctorrow, index) => (
+                                                <TableRow key={index} className='custom-drugs-tbl-body-td'>
+                                                    <TableCell>{index + 1}</TableCell>
+                                                    <TableCell>{doctorrow.firstName + " " + doctorrow?.lastName}</TableCell>
+                                                    <TableCell>{doctorrow.phoneNumber}</TableCell>
+                                                    <TableCell>{doctorrow.email}</TableCell>
+                                                    <TableCell>{doctorrow.gender === 'F' ? 'Female' : 'Male'}</TableCell>
+                                                    <TableCell>{doctorrow.primarySpecialization[0]}</TableCell>
+                                                    <TableCell>{doctorrow.isDoctorVerified == true ? 'VERIFIED' : 'PENDING'}</TableCell>
+                                                </TableRow>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <TablePagination
+                                    rowsPerPageOptions={rowsPerPageOptions}
+                                    component="div"
+                                    count={totalListCount}
+                                    rowsPerPage={pageSize}
+                                    page={pageNo}
+                                    onPageChange={handlePageChange}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                />
+                            </Paper>
                         </div>
-                    </div>
-                </div>
-                <div className='list-row'>
-                    {
-                        selectedTab === 'doctor' ? (
-                            <div className='panel-list-table'>
-                                <Paper>
-                                    <TableContainer>
-                                        <Table className='custom-drugs-tbl'>
-                                            <TableHead className='custom-drugs-tbl-header-row'>
-                                                <TableRow className=''>
-                                                    <TableCell className='custom-drugs-tbl-header'>#</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>DOCTORS</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>MOBILE NUMBER</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>EMAIL</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>Gender</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>SPECIALIZATION</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>STATUS</TableCell>
+                    ) : ('')
+                }
+                {
+                    selectedTab === 'Patients' ? (
+                        <div className='panel-list-table'>
+                            <Paper>
+                                <TableContainer>
+                                    <Table className='custom-drugs-tbl'>
+                                        <TableHead className='custom-drugs-tbl-header-row'>
+                                            <TableRow className=''>
+                                                <TableCell className='custom-drugs-tbl-header'>#</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>PATIENTS</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>MOBILE NUMBER</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>EMAIL</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>GENDER</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>PATIENT NUMBER</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody className='custom-drugs-tbl-body'>
+                                            {patientsList.map((patrow, index) => (
+                                                <TableRow key={index} className='custom-drugs-tbl-body-td'>
+                                                    <TableCell>{index + 1}</TableCell>
+                                                    <TableCell>{patrow.demographicInfo.firstName + " " + patrow.demographicInfo.lastName}</TableCell>
+                                                    <TableCell>{patrow.phoneNumber}</TableCell>
+                                                    <TableCell>{patrow.email}</TableCell>
+                                                    <TableCell>{patrow.demographicInfo.gender}</TableCell>
+                                                    <TableCell>{patrow.patientNumber}</TableCell>
                                                 </TableRow>
-                                            </TableHead>
-                                            <TableBody className='custom-drugs-tbl-body'>
-                                                {doctorsList.map((doctorrow, index) => (
-                                                    <TableRow key={index} className='custom-drugs-tbl-body-td'>
-                                                        <TableCell>{index + 1}</TableCell>
-                                                        <TableCell>{doctorrow.firstName + " " + doctorrow?.lastName}</TableCell>
-                                                        <TableCell>{doctorrow.phoneNumber}</TableCell>
-                                                        <TableCell>{doctorrow.email}</TableCell>
-                                                        <TableCell>{doctorrow.gender === 'F' ? 'Female' : 'Male'}</TableCell>
-                                                        <TableCell>{doctorrow.primarySpecialization[0]}</TableCell>
-                                                        <TableCell>{doctorrow.isDoctorVerified == true ? 'VERIFIED' : 'PENDING'}</TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                    <TablePagination
-                                        rowsPerPageOptions={rowsPerPageOptions}
-                                        component="div"
-                                        count={totalListCount}
-                                        rowsPerPage={pageSize}
-                                        page={pageNo}
-                                        onPageChange={handlePageChange}
-                                        onRowsPerPageChange={handleChangeRowsPerPage}
-                                    />
-                                </Paper>
-                            </div>
-                        ) : ('')
-                    }
-                    {
-                        selectedTab === 'Patients' ? (
-                            <div className='panel-list-table'>
-                                <Paper>
-                                    <TableContainer>
-                                        <Table className='custom-drugs-tbl'>
-                                            <TableHead className='custom-drugs-tbl-header-row'>
-                                                <TableRow className=''>
-                                                    <TableCell className='custom-drugs-tbl-header'>#</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>PATIENTS</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>MOBILE NUMBER</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>EMAIL</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>GENDER</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>PATIENT NUMBER</TableCell>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <TablePagination
+                                    rowsPerPageOptions={rowsPerPageOptions}
+                                    component="div"
+                                    count={totalListCount}
+                                    rowsPerPage={pageSize}
+                                    page={pageNo}
+                                    onPageChange={handlePageChange}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                />
+                            </Paper>
+                        </div>
+                    ) : ('')
+                }
+                {
+                    selectedTab === 'Pharmacies' ? (
+                        <div className='panel-list-table'>
+                            <Paper>
+                                <TableContainer>
+                                    <Table className='custom-drugs-tbl'>
+                                        <TableHead className='custom-drugs-tbl-header-row'>
+                                            <TableRow className=''>
+                                                <TableCell className='custom-drugs-tbl-header'>#</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>PHARMACIES</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>MOBILE NUMBER</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>EMAIL</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>TIMINGS</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>LICENSE NUMBER</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>STATUS</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody className='custom-drugs-tbl-body'>
+                                            {pharmaciesList.map((pharmacyrow, index) => (
+                                                <TableRow key={index} className='custom-drugs-tbl-body-td'>
+                                                    <TableCell>{index + 1}</TableCell>
+                                                    <TableCell>{pharmacyrow.pharmacyName}</TableCell>
+                                                    <TableCell>{pharmacyrow.mobile}</TableCell>
+                                                    <TableCell>{pharmacyrow.email}</TableCell>
+                                                    <TableCell>{pharmacyrow.startTime} - {pharmacyrow.endTime}</TableCell>
+                                                    <TableCell>{pharmacyrow.licenseNumber}</TableCell>
+                                                    <TableCell>{pharmacyrow.accountStatus}</TableCell>
                                                 </TableRow>
-                                            </TableHead>
-                                            <TableBody className='custom-drugs-tbl-body'>
-                                                {patientsList.map((patrow, index) => (
-                                                    <TableRow key={index} className='custom-drugs-tbl-body-td'>
-                                                        <TableCell>{index + 1}</TableCell>
-                                                        <TableCell>{patrow.demographicInfo.firstName + " " + patrow.demographicInfo.lastName}</TableCell>
-                                                        <TableCell>{patrow.phoneNumber}</TableCell>
-                                                        <TableCell>{patrow.email}</TableCell>
-                                                        <TableCell>{patrow.demographicInfo.gender}</TableCell>
-                                                        <TableCell>{patrow.patientNumber}</TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                    <TablePagination
-                                        rowsPerPageOptions={rowsPerPageOptions}
-                                        component="div"
-                                        count={totalListCount}
-                                        rowsPerPage={pageSize}
-                                        page={pageNo}
-                                        onPageChange={handlePageChange}
-                                        onRowsPerPageChange={handleChangeRowsPerPage}
-                                    />
-                                </Paper>
-                            </div>
-                        ) : ('')
-                    }
-                    {
-                         selectedTab === 'Pharmacies' ? (
-                            <div className='panel-list-table'>
-                                <Paper>
-                                    <TableContainer>
-                                        <Table className='custom-drugs-tbl'>
-                                            <TableHead className='custom-drugs-tbl-header-row'>
-                                                <TableRow className=''>
-                                                    <TableCell className='custom-drugs-tbl-header'>#</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>PHARMACIES</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>MOBILE NUMBER</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>EMAIL</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>TIMINGS</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>LICENSE NUMBER</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>STATUS</TableCell>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <TablePagination
+                                    rowsPerPageOptions={rowsPerPageOptions}
+                                    component="div"
+                                    count={totalListCount}
+                                    rowsPerPage={pageSize}
+                                    page={pageNo}
+                                    onPageChange={handlePageChange}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                />
+                            </Paper>
+                        </div>
+                    ) : ('')
+                }
+                {
+                    selectedTab === 'Labs' ? (
+                        <div className='panel-list-table'>
+                            <Paper>
+                                <TableContainer>
+                                    <Table className='custom-drugs-tbl'>
+                                        <TableHead className='custom-drugs-tbl-header-row'>
+                                            <TableRow className=''>
+                                                <TableCell className='custom-drugs-tbl-header'>#</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>LABS</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>MOBILE NUMBER</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>EMAIL</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>CONTACT PERSON</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>LAB ID</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>STATUS</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody className='custom-drugs-tbl-body'>
+                                            {labsList.map((labrow, index) => (
+                                                <TableRow key={index} className='custom-drugs-tbl-body-td'>
+                                                    <TableCell>{index + 1}</TableCell>
+                                                    <TableCell>{labrow.Lab_Name}</TableCell>
+                                                    <TableCell>{labrow.mobile_number}</TableCell>
+                                                    <TableCell>{labrow.email_id}</TableCell>
+                                                    <TableCell>{labrow.contactPerson}</TableCell>
+                                                    <TableCell>{labrow.licenseNumber}</TableCell>
+                                                    <TableCell>{labrow.accountStatus == 'A' ? 'VERIFIED' : ''}</TableCell>
                                                 </TableRow>
-                                            </TableHead>
-                                            <TableBody className='custom-drugs-tbl-body'>
-                                                {pharmaciesList.map((pharmacyrow, index) => (
-                                                    <TableRow key={index} className='custom-drugs-tbl-body-td'>
-                                                        <TableCell>{index + 1}</TableCell>
-                                                        <TableCell>{pharmacyrow.pharmacyName}</TableCell>
-                                                        <TableCell>{pharmacyrow.mobile}</TableCell>
-                                                        <TableCell>{pharmacyrow.email}</TableCell>
-                                                        <TableCell>{pharmacyrow.startTime} - {pharmacyrow.endTime}</TableCell>
-                                                        <TableCell>{pharmacyrow.licenseNumber}</TableCell>
-                                                        <TableCell>{pharmacyrow.accountStatus}</TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                    <TablePagination
-                                        rowsPerPageOptions={rowsPerPageOptions}
-                                        component="div"
-                                        count={totalListCount}
-                                        rowsPerPage={pageSize}
-                                        page={pageNo}
-                                        onPageChange={handlePageChange}
-                                        onRowsPerPageChange={handleChangeRowsPerPage}
-                                    />
-                                </Paper>
-                            </div>
-                        ) : ('')
-                    }
-                    {
-                        selectedTab === 'Labs' ? (
-                            <div className='panel-list-table'>
-                                <Paper>
-                                    <TableContainer>
-                                        <Table className='custom-drugs-tbl'>
-                                            <TableHead className='custom-drugs-tbl-header-row'>
-                                                <TableRow className=''>
-                                                    <TableCell className='custom-drugs-tbl-header'>#</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>LABS</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>MOBILE NUMBER</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>EMAIL</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>CONTACT PERSON</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>LAB ID</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>STATUS</TableCell>
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <TablePagination
+                                    rowsPerPageOptions={rowsPerPageOptions}
+                                    component="div"
+                                    count={totalListCount}
+                                    rowsPerPage={pageSize}
+                                    page={pageNo}
+                                    onPageChange={handlePageChange}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                />
+                            </Paper>
+                        </div>
+                    ) : ('')
+                }
+                {
+                    selectedTab === 'Clinics' ? (
+                        <div className='panel-list-table'>
+                            <Paper>
+                                <TableContainer>
+                                    <Table className='custom-drugs-tbl'>
+                                        <TableHead className='custom-drugs-tbl-header-row'>
+                                            <TableRow className=''>
+                                                <TableCell className='custom-drugs-tbl-header'>#</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>CLINICS</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>MOBILE NUMBER</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>EMAIL</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>INCHARGE</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>REGISTRATION NUMBER</TableCell>
+                                                <TableCell className='custom-drugs-tbl-header'>STATUS</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody className='custom-drugs-tbl-body'>
+                                            {clinicsList.map((clinicrow, index) => (
+                                                <TableRow key={index} className='custom-drugs-tbl-body-td'>
+                                                    <TableCell>{index + 1}</TableCell>
+                                                    <TableCell>{clinicrow.clinicName}</TableCell>
+                                                    <TableCell>{clinicrow.phoneNumber}</TableCell>
+                                                    <TableCell>{clinicrow.email}</TableCell>
+                                                    <TableCell>{clinicrow.inChargeName}</TableCell>
+                                                    <TableCell>{clinicrow.registrationNumber}</TableCell>
+                                                    <TableCell>{clinicrow.accountStatus}</TableCell>
                                                 </TableRow>
-                                            </TableHead>
-                                            <TableBody className='custom-drugs-tbl-body'>
-                                                {labsList.map((labrow, index) => (
-                                                    <TableRow key={index} className='custom-drugs-tbl-body-td'>
-                                                        <TableCell>{index + 1}</TableCell>
-                                                        <TableCell>{labrow.Lab_Name}</TableCell>
-                                                        <TableCell>{labrow.mobile_number}</TableCell>
-                                                        <TableCell>{labrow.email_id}</TableCell>
-                                                        <TableCell>{labrow.contactPerson}</TableCell>
-                                                        <TableCell>{labrow.licenseNumber}</TableCell>
-                                                        <TableCell>{labrow.accountStatus == 'A' ? 'VERIFIED' : ''}</TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                    <TablePagination
-                                        rowsPerPageOptions={rowsPerPageOptions}
-                                        component="div"
-                                        count={totalListCount}
-                                        rowsPerPage={pageSize}
-                                        page={pageNo}
-                                        onPageChange={handlePageChange}
-                                        onRowsPerPageChange={handleChangeRowsPerPage}
-                                    />
-                                </Paper>
-                            </div>
-                        ) : ('')
-                    }
-                    {
-                         selectedTab === 'Clinics' ? (
-                            <div className='panel-list-table'>
-                                <Paper>
-                                    <TableContainer>
-                                        <Table className='custom-drugs-tbl'>
-                                            <TableHead className='custom-drugs-tbl-header-row'>
-                                                <TableRow className=''>
-                                                    <TableCell className='custom-drugs-tbl-header'>#</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>CLINICS</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>MOBILE NUMBER</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>EMAIL</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>INCHARGE</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>REGISTRATION NUMBER</TableCell>
-                                                    <TableCell className='custom-drugs-tbl-header'>STATUS</TableCell>
-                                                </TableRow>
-                                            </TableHead>
-                                            <TableBody className='custom-drugs-tbl-body'>
-                                                {clinicsList.map((clinicrow, index) => (
-                                                    <TableRow key={index} className='custom-drugs-tbl-body-td'>
-                                                        <TableCell>{index + 1}</TableCell>
-                                                        <TableCell>{clinicrow.clinicName}</TableCell>
-                                                        <TableCell>{clinicrow.phoneNumber}</TableCell>
-                                                        <TableCell>{clinicrow.email}</TableCell>
-                                                        <TableCell>{clinicrow.inChargeName}</TableCell>
-                                                        <TableCell>{clinicrow.registrationNumber}</TableCell>
-                                                        <TableCell>{clinicrow.accountStatus}</TableCell>
-                                                    </TableRow>
-                                                ))}
-                                            </TableBody>
-                                        </Table>
-                                    </TableContainer>
-                                    <TablePagination
-                                        rowsPerPageOptions={rowsPerPageOptions}
-                                        component="div"
-                                        count={totalListCount}
-                                        rowsPerPage={pageSize}
-                                        page={pageNo}
-                                        onPageChange={handlePageChange}
-                                        onRowsPerPageChange={handleChangeRowsPerPage}
-                                    />
-                                </Paper>
-                            </div>
-                        ) : ('')
-                    }
-                </div>
-            
+                                            ))}
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
+                                <TablePagination
+                                    rowsPerPageOptions={rowsPerPageOptions}
+                                    component="div"
+                                    count={totalListCount}
+                                    rowsPerPage={pageSize}
+                                    page={pageNo}
+                                    onPageChange={handlePageChange}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                />
+                            </Paper>
+                        </div>
+                    ) : ('')
+                }
+            </div>
+
         </div>
     )
 }

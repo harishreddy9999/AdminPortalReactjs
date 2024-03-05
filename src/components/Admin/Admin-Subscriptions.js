@@ -29,7 +29,7 @@ const AdminSubscripions = () => {
         console.log(value);
         setSelectedTab(value);
     }
-    
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -129,22 +129,22 @@ const AdminSubscripions = () => {
         <div className='wellness-main-screen'>
             <div className='row'>
                 <div className='tabs-row'>
-                {/* <Tabs   value={value} onChange={handleChange} className="vTabs" >
+                    {/* <Tabs   value={value} onChange={handleChange} className="vTabs" >
                     <Tab className={value === 0? "vselected-tab" : "vtab"} label={<span className={value === 0 ? "vselected-text" : "vtabtext"}>Clinic Subscriptions</span>} />
                     <Tab className={value===1? "vselected-tab" : "vtab"}  label={<span className={value === 1 ? "vselected-text" : "vtabtext"}>Pharmacy Subscriptions</span>} />
 
                 </Tabs> */}
                     {/* <p className={`tab-heading ${selectedTab === 'Clinic' ? 'active' : ''}`} onClick={() => showTab('Clinic')}>Clinic Subscriptions</p>
                     <p className={`tab-heading ${selectedTab === 'Pharmacy' ? 'active' : ''}`} onClick={() => showTab('Pharmacy')}>Pharmacy Subscriptions</p> */}
-                     <div class="col-4 tabsContainers">
-                    <div id="13399" className={selectedTab === "Clinic" ? 'activetabs' : "tabSections"}
-                    onClick={() => handleTabClick('Clinic')} >
-                        <span id="doc">Clinic Subscriptions</span></div>
-                    <div id="13400" className={selectedTab === "Pharmacy" ? 'activetabs' : "tabSections"}
-                     onClick={() => handleTabClick('Pharmacy')}>
-                        <span id="pat">Pharmacy Subscriptions</span></div>
-                   
-                </div>
+                    <div className="col-4 tabsContainers">
+                        <div id="13399" className={selectedTab === "Clinic" ? 'activetabs' : "tabSections"}
+                            onClick={() => handleTabClick('Clinic')} >
+                            <span id="doc">Clinic Subscriptions</span></div>
+                        <div id="13400" className={selectedTab === "Pharmacy" ? 'activetabs' : "tabSections"}
+                            onClick={() => handleTabClick('Pharmacy')}>
+                            <span id="pat">Pharmacy Subscriptions</span></div>
+
+                    </div>
                 </div>
                 <div className='list-row mt-3'>
                     {
@@ -252,7 +252,7 @@ const AdminSubscripions = () => {
             {
                 isClinicSubscriptionModal ? (<UpdateClinicSubscriptionModal isOpen={isClinicSubscriptionModalOpen} onClose={closeAllModals} clinic={selectedClinic} />) : ''
             }
-               {
+            {
                 isPharmacySubscriptionModal ? (<UpdatePharmacySubscriptionModal isOpen={isPharmacySubscriptionModalOpen} onClose={closeAllModals} pharmacy={selectedPharmacy} />) : ''
             }
         </div>

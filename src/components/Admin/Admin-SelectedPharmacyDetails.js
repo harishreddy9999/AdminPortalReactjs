@@ -73,13 +73,13 @@ const AdminSelectedPharmacyDetails = ({ isOpen, onClose, pharmacy }) => {
                             <div id="12044" className="row">
                                 <div id="12045" className="col-lg-12">
                                     <div id="12046" className="row" >
-                                        <div id="14091" class="col-lg-12">
-                                            <div id="14092" class="d-flex">
-                                                <div id="14093" class="pharmacyName flex-grow-1">{pharmacyDetails.pharmacyName}</div>
-                                                <div id="14094" class="accountStatus">{pharmacyDetails.accountStatus}</div>
+                                        <div id="14091" className="col-lg-12">
+                                            <div id="14092" className="d-flex">
+                                                <div id="14093" className="pharmacyName flex-grow-1">{pharmacyDetails.pharmacyName}</div>
+                                                <div id="14094" className="accountStatus">{pharmacyDetails.accountStatus}</div>
                                             </div>
                                             <div id="14096" >
-                                                <div id="14097" class="flex-grow1">
+                                                <div id="14097" className="flex-grow1">
                                                     {
                                                         pharmacyDetails.street ? (
                                                             <div id="strt">{pharmacyDetails.street}</div>
