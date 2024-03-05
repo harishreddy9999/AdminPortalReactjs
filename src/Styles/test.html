@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editable Dynamic Table</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .subheading {
+            font-weight: normal;
+            background-color: #f0f0f0;
+        }
+        .editable {
+            background-color: #fffbea;
+        }
+    </style>
+</head>
+<body>
+
+<div id="tableContainer"></div>
+
+<script>
+    // Your array of objects
+    var data = [
+        {subpin: '1', municipal: 'sdf', 'legal description': {lot: '123', plannumber: '12', municipality: '34'}, depth: '234', frontage: '3434'},
+        {subpin: '1', municipal: 'sdf', 'legal description': {lot: '123', plannumber: '12', municipality: '34'}, depth: '234', frontage: '3434'},
+        {subpin: '1', municipal: 'sdf', 'legal description': {lot: '123', plannumber: '12', municipality: '34'}, depth: '234', frontage: '3434'},
+        {subpin: '1', municipal: 'sdf', 'legal description': {lot: '123', plannumber: '12', municipality: '34'}, depth: '234', frontage: '3434'}
+    ];
+
+    function createTable(data) {
+        var table = document.createElement('table');
+
+        // Main Header Row
+        var headerRow = document.createElement('tr');
+        var headers = ['Sub-PIN', 'Municipal', 'Legal Description', 'Depth', 'Frontage'];
+        headers.forEach(headerText => {
+            var header = document.createElement('th');
+            if (headerText === 'Legal Description') {
+                header.setAttribute('colspan', '3');
+            }
+            header.appendChild(document.createTextNode(headerText));
+            headerRow.appendChild(header);
+        });
+        table.appendChild(headerRow);
+
+        // Subheading Row for Legal Description
+        var subHeaderRow = document.createElement('tr');
+        subHeaderRow.innerHTML = '<td></td><td></td><td>Lot</td><td>Plan Number</td><td>Municipality</td><td></td><td></td>';
+        subHeaderRow.childNodes.forEach(node => {
+            if(node.nodeName === 'TD') {
+                node.className = 'subheading';
+            }
+        });
+        table.appendChild(subHeaderRow);
+
+        // Data Rows
+        data.forEach(item => {
+            var row = document.createElement('tr');
+            
+            row.innerHTML = `
+                <td class="editable" contenteditable="true">${item.subpin}</td>
+                <td class="editable" contenteditable="true">${item.municipal}</td>
+                <td class="editable" contenteditable="true">${item['legal description'].lot}</td>
+                <td class="editable" contenteditable="true">${item['legal description'].plannumber}</td>
+                <td class="editable" contenteditable="true">${item['legal description'].municipality}</td>
+                <td class="editable" contenteditable="true">${item.depth}</td>
+                <td class="editable" contenteditable="true">${item.frontage}</td>
+            `;
+
+            table.appendChild(row);
+        });
+
+        return table;
+    }
+
+    document.getElementById('tableContainer').appendChild(createTable(data));
+</script>
+
+</body>
+</html>

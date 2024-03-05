@@ -8,6 +8,9 @@ import moment from 'moment';
 
 const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentClinic }) => {
     const [independentClinicDetails, setIndependentClinicDetailsDetails] = useState(null);
+    const [isRejectOpenModel, setisRejectOpenModel] = useState(false);
+    const [resonforrejection, setresonforrejection] = useState('');
+
 
     useEffect(() => {
         if (independentClinic) {
@@ -16,13 +19,17 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
             console.log("independentClinic", independentClinicDetails, independentClinic);
         }
     }, []);
+    const rejectindependentclinic = () => {
+      debugger
+        setisRejectOpenModel(true);
+    }
 
     const verify = async (approve, id) => {
         let obj = {
             id: id,
             status: approve,
             type: "CLINIC",
-            comments: ""
+            comments: resonforrejection
         };
         console.log("obj", obj)
         // return;
@@ -30,10 +37,13 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
         console.log("verifyProfilesRes", verifyProfilesRes)
         if (verifyProfilesRes) {
             closePopup();
+            setisRejectOpenModel(false)
         }
     }
+   
     const closePopup = () => {
         // debugger;
+        setisRejectOpenModel(false)
         onClose();
     }
     // const reject = async (approve, id) => {
@@ -109,7 +119,7 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
                                 <div id="12071" className="col-12 edit space d-flex justify-content-end">
                                     <button id="12072" className="provider-submit-btn me-2" onClick={() => verify('APPROVED', independentClinicDetails._id)}
                                     >Approve</button>
-                                    <button id="12073" className="reject-btn provider-cancel-btn me-2">Reject</button>
+                                    <button id="12073" className="reject-btn provider-cancel-btn me-2"  onClick={() => rejectindependentclinic()}>Reject</button>
                                     <button className="canceldismiss provider-cancel-btn me-1" id="no" onClick={closePopup}>Dismiss</button>
 
                                 </div>
@@ -117,7 +127,37 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
                         </Card>
                     </div>
                 </div>
+                {
+                isRejectOpenModel ? (
+                    <div className='initiateComp-popup'>
+                        <div className='initiateComp-overlay'>
+                            <div className='popup-header'>
+                                <p className='popup-header-label'>Are you sure you want to Reject?</p>
+                            </div>
+                            <div className='row popup-content'>
+
+                                <div className='row'>
+                                    <label className='select-lbl'>Reason For Rejection</label>
+                                    <input className='form-control' type="text"
+                                        value={resonforrejection}
+                                        
+                                        onChange={(e) => setresonforrejection(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className='d-flex justify-content-end mt-4'>
+                                    <button className='submit-btn' onClick={verify('REJECTED',independentClinicDetails._id)}>Reject</button>
+                                    <button className='cancel-btn' onClick={closePopup}>Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                ) : ''
+            }
             </Modal>
+
+       
 
         </div>
     );
