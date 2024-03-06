@@ -22,6 +22,7 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
     const rejectindependentclinic = () => {
       debugger
         setisRejectOpenModel(true);
+        console.log(isRejectOpenModel)
     }
 
     const verify = async (approve, id) => {
@@ -146,7 +147,7 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
                                     />
                                 </div>
                                 <div className='d-flex justify-content-end mt-4'>
-                                    <button className='submit-btn' onClick={verify('REJECTED',independentClinicDetails._id)}>Reject</button>
+                                    <button className='submit-btn' onClick={()=>verify('REJECTED',independentClinicDetails._id)}>Reject</button>
                                     <button className='cancel-btn' onClick={closePopup}>Cancel</button>
                                 </div>
                             </div>

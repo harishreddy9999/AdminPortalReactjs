@@ -8,6 +8,8 @@ import moment from 'moment';
 
 const AdminSelectedClinicDetails = ({ isOpen, onClose, clinic }) => {
     const [clinicDetails, setClinicDetails] = useState(null);
+    const [isRejectOpenModel, setisRejectOpenModel] = useState(false);
+    const [resonforrejection, setresonforrejection] = useState('');
 
     useEffect(() => {
         if (clinic) {
@@ -22,7 +24,7 @@ const AdminSelectedClinicDetails = ({ isOpen, onClose, clinic }) => {
             id: id,
             status: approve,
             type: "CLINIC",
-            comments: ""
+            comments: resonforrejection
         };
         console.log("obj", obj)
         // return;
@@ -33,15 +35,17 @@ const AdminSelectedClinicDetails = ({ isOpen, onClose, clinic }) => {
         }
     }
     const closePopup = () => {
+        setisRejectOpenModel(false);
         onClose();
     }
-    // const reject = async (approve, id) => {
-    //     setisRejectionModalOpen(true);
-    // }
+    const reject = async (approve, id) => {
+        setisRejectOpenModel(true);
+    }
 
-    // const closeRejectionModal = () => {
-    //     setisRejectionModalOpen(false);
-    // }
+    const closeRejectionModal = () => {
+        setisRejectOpenModel(false);
+        onClose();
+    }
 
     return (
         <div>
@@ -151,6 +155,34 @@ const AdminSelectedClinicDetails = ({ isOpen, onClose, clinic }) => {
                         </Card>
                     </div>
                 </div>
+                {
+                isRejectOpenModel ? (
+                    <div className='initiateComp-popup'>
+                        <div className='initiateComp-overlay'>
+                            <div className='popup-header'>
+                                <p className='popup-header-label'>Are you sure you want to Reject?</p>
+                            </div>
+                            <div className='row popup-content'>
+
+                                <div className='row'>
+                                    <label className='select-lbl'>Reason For Rejection</label>
+                                    <input className='form-control' type="text"
+                                        value={resonforrejection}
+                                        
+                                        onChange={(e) => setresonforrejection(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className='d-flex justify-content-end mt-4'>
+                                    <button className='submit-btn' onClick={()=>verify('REJECTED',clinicDetails._id)}>Reject</button>
+                                    <button className='cancel-btn' onClick={closePopup}>Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                ) : ''
+            }
             </Modal>
 
         </div>

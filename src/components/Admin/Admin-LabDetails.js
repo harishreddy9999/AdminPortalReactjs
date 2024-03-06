@@ -11,6 +11,7 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
     const [labLogo, setLabLogo] = useState('');
     const [locality, setlocality] = useState([]);
     const [isRejectionModalOpen, setisRejectionModalOpen] = useState(false);
+    const [resonforrejection, setresonforrejection] = useState('');
 
     useEffect(() => {
         if (lab) {
@@ -30,7 +31,7 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
             id: id,
             status: approve,
             type: "LAB",
-            comments: ""
+            comments: resonforrejection
         };
 
         const verifyProfilesRes = await verifyProfiles(obj);
@@ -46,6 +47,11 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
 
     const closeRejectionModal = () => {
         setisRejectionModalOpen(false);
+    }
+    const closePopup = () => {
+        // debugger;
+        setisRejectionModalOpen(false)
+        onClose();
     }
 
     return (
@@ -160,7 +166,34 @@ const AdminLabDetails = ({ isOpen, onClose, lab }) => {
                         </Card>
                     </div>
                 </div>
+                {
+                isRejectionModalOpen ? (
+                    <div className='initiateComp-popup'>
+                        <div className='initiateComp-overlay'>
+                            <div className='popup-header'>
+                                <p className='popup-header-label'>Are you sure you want to Reject?</p>
+                            </div>
+                            <div className='row popup-content'>
 
+                                <div className='row'>
+                                    <label className='select-lbl'>Reason For Rejection</label>
+                                    <input className='form-control' type="text"
+                                        value={resonforrejection}
+                                        
+                                        onChange={(e) => setresonforrejection(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className='d-flex justify-content-end mt-4'>
+                                    <button className='submit-btn' onClick={()=>verify('REJECTED',labDetails._id)}>Reject</button>
+                                    <button className='cancel-btn' onClick={closePopup}>Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                ) : ''
+            }
             </Modal>
 
 
