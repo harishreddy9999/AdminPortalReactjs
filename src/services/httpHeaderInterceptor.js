@@ -40,17 +40,17 @@ const createAxiosInstance = (baseURL, loaderContext) => {
 };
 
 // Example usage with different base URLs
-const api = createAxiosInstance('https://acianadocisnclinicapiprodv1-staging.azurewebsites.net');
-const adminAPIURL = createAxiosInstance('https://acianadocisnadminapiprod-staging.azurewebsites.net');
-const labAPIURL = createAxiosInstance('https://acianadocisnlabapiprod-staging.azurewebsites.net');
-const clinicalAPIURL = createAxiosInstance('https://acianadocisnclinicapiprodv1-staging.azurewebsites.net');
+// const api = createAxiosInstance('https://acianadocisnclinicapiprodv1-staging.azurewebsites.net');
+// const adminAPIURL = createAxiosInstance('https://acianadocisnadminapiprod-staging.azurewebsites.net');
+// const labAPIURL = createAxiosInstance('https://acianadocisnlabapiprod-staging.azurewebsites.net');
+// const clinicalAPIURL = createAxiosInstance('https://acianadocisnclinicapiprodv1-staging.azurewebsites.net');
 // const clinicalAPIURL= createAxiosInstance('https://acianadocisnclinicapiprodv1-staging.azurewebsites.net');
 
 
-// const api = createAxiosInstance('http://20.193.129.237:7080/api/clinicapi');
-// const adminAPIURL = createAxiosInstance('http://20.193.129.237:7080/api/adminapi');
-// const labAPIURL = createAxiosInstance('http://20.193.129.237:7080/api/labapi');
-// const clinicalAPIURL = createAxiosInstance('http://20.193.129.237:7080/api/clinicapi');
+const api = createAxiosInstance('http://20.193.129.237:7080/api/clinicapi');
+const adminAPIURL = createAxiosInstance('http://20.193.129.237:7080/api/adminapi');
+const labAPIURL = createAxiosInstance('http://20.193.129.237:7080/api/labapi');
+const clinicalAPIURL = createAxiosInstance('http://20.193.129.237:7080/api/clinicapi');
 const apiInstance4 = createAxiosInstance('https://yetanotherapi.com/api');
 
 

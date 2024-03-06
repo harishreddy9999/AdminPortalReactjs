@@ -1,4 +1,4 @@
-import { adminAPIURL } from './httpHeaderInterceptor';
+import { adminAPIURL, labAPIURL } from './httpHeaderInterceptor';
 
 export async function getVerificationStats() {
 
@@ -942,6 +942,30 @@ export async function updateWellnessProgramsAPI(obj) {
 
         // Handle the response data
         console.log('addUserCouponAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('addUserCouponAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function addRadiologyTestAPI(obj) {
+
+
+    try {
+        const response = await labAPIURL.post('/xray/addXrayTemplates', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('addRadiologyTestAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('addRadiologyTestAPI successful service', data);
         // debugger;
         return data;
 

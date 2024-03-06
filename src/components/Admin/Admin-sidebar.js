@@ -107,6 +107,33 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
                     </Link>
 
                 </li>
+
+                <li className="menuRow col-lg-12" id="menu-profile" >
+                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Tests' ? 'activeRouteLink' : ''}`}
+                        id="a-verify" to="/admin-dashboard/Tests" onClick={() => handleLinkClick('Tests')}>
+                        <span className="changepassword">
+                            {selectedActiveLink === 'Tests' ?
+                                (
+                                    <img src="../images/Admin-sidebar-icons/testconfiguration-active.svg"
+                                        className="iconsize" alt='Tests' />) : (
+                                    <img src="../images/Admin-sidebar-icons/testconfiguration.svg"
+                                        className="iconsize" alt='Tests' />
+                                )
+                            }
+
+                        </span>
+                        {
+                            tooltipv ? (
+                                <span id="span-lbl" className="sidebartext">Tests</span>
+                            ) : (
+                                <span className="ctooltip" id="s-tPanelsverify">Tests</span>
+                            )
+                        }
+                    </Link>
+
+                </li>
+
+
                 <li className="menuRow col-lg-12" id="menu-profile" >
                     <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Subscriptions' ? 'activeRouteLink' : ''}`}
                         id="a-verify" to="/admin-dashboard/Subscriptions" onClick={() => handleLinkClick('Subscriptions')}>
