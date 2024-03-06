@@ -38,3 +38,27 @@ export function calculateAge(patientDOB) {
         throw error;
     }
 }
+
+
+export async function getSpecialitiesAPI() {
+
+
+    try {
+        const response = await api.get('/specialtyDropDown');
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getSpecialitiesAPI request failed');
+        }
+
+
+        // Handle the response data
+        // console.log('getDefaultPanelsRes successful service', getDefaultPanelsRes);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('searchMyPatientsRes failed:', error);
+        throw error;
+    }
+}

@@ -9,6 +9,7 @@ import PackageDetails from './Admin-PackageDetails';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import CreateWellnessPackage from './Admin-AddWellnessPackage';
+import CreateWellnessProgramme from './Admin-AddWellnessProgramme';
 
 const Wellness = () => {
 
@@ -20,7 +21,8 @@ const Wellness = () => {
     const [value, setValue] = useState(0);
     const [isAddNewPackage, setisAddNewPackage] = useState(false);
     const [isAddWellnessPackageOpen, setisAddWellnessPackageOpen] = useState(false);
-
+    const [IsAddNewProgramme, setIsAddNewProgramme] = useState(false);
+    const [IsAddWellnessProgrammeOpen, setIsAddWellnessProgrammeOpen] = useState(false);
     useEffect(() => {
         getWellnessProgrammes();
         getWellnessPackages();
@@ -83,32 +85,41 @@ const Wellness = () => {
         setIsDPackageDetailsOpen(false);
         setisAddNewPackage(false);
         setisAddWellnessPackageOpen(false);
+        setIsAddNewProgramme(false);
+        setIsAddWellnessProgrammeOpen(false);
+        getWellnessProgrammes();
+        getWellnessPackages();
     }
 
     const addNewPackage = () => {
         setisAddNewPackage(true);
         setisAddWellnessPackageOpen(true);
     }
+
+    const addNewProgramme = () => {
+        setIsAddNewProgramme(true);
+        setIsAddWellnessProgrammeOpen(true);
+    }
     return (
         <div className='wellness-main-screen'>
             <div className='row'>
                 <div className='tabs-row'>
-                {/* <Tabs  value={value} onChange={handleChange} className="vTabs" >
+                    {/* <Tabs  value={value} onChange={handleChange} className="vTabs" >
                     <Tab className={value === 0 ? "vselected-tab" : "vtab"} label={<span className={value === 0  ? "vselected-text" : "vtabtext"}>Programmes</span>} />
                     <Tab className={value === 1 ? "vselected-tab" : "vtab"} label={<span className={value === 1  ? "vselected-text" : "vtabtext"}>Packages</span>} />
 
                 </Tabs> */}
                     {/* <p className={`tab-heading ${selectedTab === 'PRO' ? 'active' : ''}`} onClick={() => showTab('PRO')}>Programmes</p>
                     <p className={`tab-heading ${selectedTab === 'PACK' ? 'active' : ''}`} onClick={() => showTab('PACK')}>Packages</p> */}
-                  <div class="col-2 tabsContainers">
-                    <div id="13399" className={selectedTab === "PRO" ? 'activetabs' : "tabSections"}
-                    onClick={() => handleTabClick('PRO')} >
-                        <span id="doc">Programmes</span></div>
-                    <div id="13400" className={selectedTab === "PACK" ? 'activetabs' : "tabSections"}
-                     onClick={() => handleTabClick('PACK')}>
-                        <span id="pat">Packages</span></div>
-                   
-                </div>
+                    <div className="col-2 tabsContainers">
+                        <div id="13399" className={selectedTab === "PRO" ? 'activetabs' : "tabSections"}
+                            onClick={() => handleTabClick('PRO')} >
+                            <span id="doc">Programmes</span></div>
+                        <div id="13400" className={selectedTab === "PACK" ? 'activetabs' : "tabSections"}
+                            onClick={() => handleTabClick('PACK')}>
+                            <span id="pat">Packages</span></div>
+
+                    </div>
                 </div>
             </div>
             <div className='tabs-content'>
@@ -119,7 +130,7 @@ const Wellness = () => {
                                 <p className='wellness-screen-heading'>Wellness Programmes</p>
                             </div>
                             <div className='col-6 d-flex justify-content-end'>
-                                <button className='wellness-add-btn'>Add</button>
+                                <button className='wellness-add-btn' onClick={addNewProgramme}>Add</button>
                             </div>
                         </div>
                         <div className='row programs-table-row'>
@@ -234,6 +245,9 @@ const Wellness = () => {
             }
             {
                 isAddNewPackage ? (<CreateWellnessPackage isOpen={isAddWellnessPackageOpen} onClose={closeAllModals} />) : ''
+            }
+            {
+                IsAddNewProgramme ? (<CreateWellnessProgramme isOpen={IsAddWellnessProgrammeOpen} onClose={closeAllModals} />) : ''
             }
         </div>
 

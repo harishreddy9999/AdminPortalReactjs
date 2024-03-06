@@ -1,5 +1,5 @@
 import { labAPIURL, api } from './httpHeaderInterceptor';
-import { adminAPIURL,clinicalAPIURL } from './httpHeaderInterceptor';
+import { adminAPIURL, clinicalAPIURL } from './httpHeaderInterceptor';
 
 export async function getDefaultPanelsAPI(text, page, size) {
 
@@ -180,7 +180,7 @@ export async function savePackageAPI(obj) {
 
 
     try {
-        const response = await adminAPIURL.post('/wellness/wellnessPackage',obj);
+        const response = await adminAPIURL.post('/wellness/wellnessPackage', obj);
         const savePackageRes = response.data;
 
         if (!response.statusText === "OK") {
@@ -190,6 +190,78 @@ export async function savePackageAPI(obj) {
 
     } catch (error) {
         console.error('savePackageRes failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getDefaultIndependentTestAPI(searchtext, page, size) {
+
+
+    try {
+        const response = await labAPIURL.get('/admin/getDefaultIndependentTest?page=' + page + '&size=' + size + '&searchText=' + searchtext);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getDefaultIndependentTestAPI request failed');
+        }
+
+
+        // Handle the response data
+        // console.log('getDefaultPanelsRes successful service', getDefaultPanelsRes);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAdmintestsAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function getDefaultXrayTemplatesAPI(searchtext, page, size) {
+
+
+    try {
+        const response = await labAPIURL.get('/xray/getDefaultXrayTemplates?searchText=' + searchtext + '&page=' + page + '&size=' + size);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getDefaultXrayTemplatesAPI request failed');
+        }
+
+
+        // Handle the response data
+        // console.log('getDefaultPanelsRes successful service', getDefaultPanelsRes);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAdmintestsAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function deleteRadiologyTestAPI(obj) {
+
+
+    try {
+        const response = await labAPIURL.post('/xray/deleteXrayTemplate', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('deleteRadiologyTestAPI request failed');
+        }
+
+
+        // Handle the response data
+        // console.log('getDefaultPanelsRes successful service', getDefaultPanelsRes);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('deleteRadiologyTestAPI failed:', error);
         throw error;
     }
 }

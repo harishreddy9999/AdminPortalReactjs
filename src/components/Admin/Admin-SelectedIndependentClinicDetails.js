@@ -20,7 +20,7 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
         }
     }, []);
     const rejectindependentclinic = () => {
-      debugger
+        debugger
         setisRejectOpenModel(true);
         console.log(isRejectOpenModel)
     }
@@ -41,7 +41,7 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
             setisRejectOpenModel(false)
         }
     }
-   
+
     const closePopup = () => {
         // debugger;
         setisRejectOpenModel(false)
@@ -120,7 +120,7 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
                                 <div id="12071" className="col-12 edit space d-flex justify-content-end">
                                     <button id="12072" className="provider-submit-btn me-2" onClick={() => verify('APPROVED', independentClinicDetails._id)}
                                     >Approve</button>
-                                    <button id="12073" className="reject-btn provider-cancel-btn me-2"  onClick={() => rejectindependentclinic()}>Reject</button>
+                                    <button id="12073" className="reject-btn provider-cancel-btn me-2" onClick={() => rejectindependentclinic()}>Reject</button>
                                     <button className="canceldismiss provider-cancel-btn me-1" id="no" onClick={closePopup}>Dismiss</button>
 
                                 </div>
@@ -129,13 +129,13 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
                     </div>
                 </div>
                 {
-                isRejectOpenModel ? (
-                    <div className='initiateComp-popup'>
-                        <div className='initiateComp-overlay'>
-                            <div className='popup-header'>
-                                <p className='popup-header-label'>Are you sure you want to Reject?</p>
-                            </div>
-                            <div className='row popup-content'>
+                    isRejectOpenModel ? (
+                        <div className='initiateComp-popup'>
+                            <div className='initiateComp-overlay'>
+                                <div className='popup-header'>
+                                    <p className='popup-header-label'>Are you sure you want to Reject?</p>
+                                </div>
+                                <div className='row popup-content'>
 
                                 <div className='row'>
                                     <label className='select-lbl'>Reason For Rejection</label>
@@ -151,14 +151,14 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
                                     <button className='cancel-btn' onClick={closePopup}>Cancel</button>
                                 </div>
                             </div>
-                        </div>
 
-                    </div>
-                ) : ''
-            }
+                        </div>
+                        </div>
+                    ) : ''
+                }
             </Modal>
 
-       
+
 
         </div>
     );

@@ -85,7 +85,7 @@ const AdminSelectedPharmacyDetails = ({ isOpen, onClose, pharmacy }) => {
                                                 <div id="14094" class="accountStatus">{pharmacyDetails?.accountStatus}</div>
                                             </div>
                                             <div id="14096" >
-                                                <div id="14097" class="flex-grow1">
+                                                <div id="14097" className="flex-grow1">
                                                     {
                                                         pharmacyDetails?.street ? (
                                                             <div id="strt">{pharmacyDetails?.street}</div>

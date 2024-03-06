@@ -10,11 +10,15 @@ import Wellness from './Admin-Wellness.js';
 import WellnessGoals from './Admin-WellnessGoals.js';
 import AdminUsersList from './Admin-UsersList.js';
 import AdminSubscripions from './Admin-Subscriptions.js';
+import AdminTests from './Admin-Tests.js';
 
 
 export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
     let componentToRender;
     // debugger;
+    if (!selectedComponent) {
+        selectedComponent = sessionStorage.getItem("activeLink")
+    }
     console.log("selectedComponent", selectedComponent, handleComponentSelect);
     // debugger;
     switch (selectedComponent) {
@@ -22,7 +26,7 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
         case null:
             componentToRender = <Verifications />;
             break;
-        case 'NewComplaints':
+        case 'Complaints':
             componentToRender = <NewComplaints />;
             break;
         case 'Coupons':
@@ -53,6 +57,9 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
             break;
         case 'Subscriptions':
             componentToRender = <AdminSubscripions />;
+            break;
+        case 'Tests':
+            componentToRender = <AdminTests />;
             break;
 
         default:
