@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../App.css';
 import '../../Styles/Admins/Admin-login.css';
 // import '../../Styles/Admin-dupfile.css';
@@ -13,7 +13,11 @@ function AdminLogin() {
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
+    useEffect(() => {
+        sessionStorage.clear();
+    }, [])
     const handleSubmit = async (e) => {
+
         e.preventDefault();
         setIsLoading(true);
 
@@ -33,8 +37,10 @@ function AdminLogin() {
                 sessionStorage.setItem('token', adminToken);
                 sessionStorage.setItem('role', userDetails.role);
                 if (userDetails.role === "SUPERADMIN") {
-                    navigate('/admin-dashboard');
+                    sessionStorage.setItem("activeLink", "Admins");
+                    navigate('/admin-dashboard/Admins');
                 } else {
+                    sessionStorage.setItem("activeLink", "Verifications");
                     navigate('/admin-dashboard/Verifications');
                 }
 

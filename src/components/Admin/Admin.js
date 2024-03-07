@@ -4,8 +4,8 @@ import { AdminSidebar } from './Admin-sidebar';
 import AdminHeader from './Admin-header';
 import '../../App.css';
 import '../../Styles/Admin-dashboard.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import CreatePanel from './Admin-CreatePanel';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import CreatePanel from './Admin-CreatePanel';
 
 
 function AdminDashboard() {
