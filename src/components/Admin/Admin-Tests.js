@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { getDefaultIndependentTestAPI, getDefaultXrayTemplatesAPI, deleteRadiologyTestAPI } from '../../services/adminPortalPanelsService';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TablePagination, Paper } from '@mui/material';
 import CreateRadiologyTest from "./Admin-CreateRadiologyTest";
+import '../../Styles/test.css';
+import { useNavigate } from 'react-router-dom';
 
-const AdminTests = () => {
+const AdminTests = ({handleComponentSelect}) => {
 
     const [selectedTab, setSelectedTab] = useState('Independent');
     const [searchText, setSearchText] = useState('');
@@ -16,6 +18,8 @@ const AdminTests = () => {
     const [isAddNewRadiologyTest, setIsAddNewRadiologyTest] = useState(false);
     const [isAddRadiologyTestOpen, setIsAddRadiologyTestOpen] = useState(false);
     const [selectedRadiologyTest, setSelectedRadiologyTest] = useState(null);
+    const [isAddNewIndependentTest, setisAddNewIndependentTest] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (selectedTab === "Independent") {
@@ -68,7 +72,7 @@ const AdminTests = () => {
 
     const addNewTest = () => {
         if (selectedTab === "Independent") {
-
+            setisAddNewIndependentTest(true);
         } else if (selectedTab === "Radiology") {
             setIsAddNewRadiologyTest(true);
             setIsAddRadiologyTestOpen(true);
@@ -106,6 +110,10 @@ const AdminTests = () => {
         setpageSize(20);
         getDefaultXrayTemplates();
         // setSelectedTab(value);
+    }
+    const singleParamenterTest = () => {
+        navigate('/admin-dashboard/AddSingleParameterTest')
+        handleComponentSelect('AddSingleParameterTest');
     }
     return (
         <div className='wellness-main-screen'>
@@ -238,6 +246,30 @@ const AdminTests = () => {
             {
                 isAddNewRadiologyTest ? (<CreateRadiologyTest isOpen={isAddRadiologyTestOpen} onClose={closeAllModals} radiologyTestDetails={selectedRadiologyTest} />) : ''
             }
+               {
+                isAddNewIndependentTest ? (
+                    <div className='initiateComp-popup'>
+                        <div className='Addtest-overlay'>
+                       
+                            <div className='row popup-content'>
+
+                                <div className='row tests'  onClick={singleParamenterTest} >
+                                    <div className='select-lbl'>Single Parameter Test</div>
+                                    <div className='select-lbl'>Ex: Haemoglobin</div>
+                               
+                                </div>
+                                <div className='row tests'>
+                                    <div className='select-lbl'>Multi Parameter Test</div>
+                                    <div className='select-lbl'>Ex: Urine Routine Test</div>
+                               
+                                </div>
+                           
+                            </div>
+                        </div>
+
+                    </div>
+                ) : ''
+            } 
         </div>
     )
 }

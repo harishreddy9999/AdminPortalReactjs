@@ -1,0 +1,14 @@
+.Addtest-overlay {
+    background-color: #fff;
+    width: 450px;
+    height: 210px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.tests{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px !important;
+    margin: 5px !important;
+    cursor: pointer;
+}
