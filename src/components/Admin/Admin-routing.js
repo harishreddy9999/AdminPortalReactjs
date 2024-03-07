@@ -11,6 +11,8 @@ import WellnessGoals from './Admin-WellnessGoals.js';
 import AdminUsersList from './Admin-UsersList.js';
 import AdminSubscripions from './Admin-Subscriptions.js';
 import AdminTests from './Admin-Tests.js';
+import AdminsList from './Admin-AdminsList.js';
+import SubscriptionPackages from './Admin-SubscriptionPackages.js';
 
 
 export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
@@ -60,6 +62,12 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
             break;
         case 'Tests':
             componentToRender = <AdminTests />;
+            break;
+        case 'Admins':
+            componentToRender = <AdminsList />;
+            break;
+        case 'SubscriptionPackages':
+            componentToRender = <SubscriptionPackages />;
             break;
 
         default:

@@ -75,34 +75,34 @@ const AdminSelectedPharmacyDetails = ({ isOpen, onClose, pharmacy }) => {
                                     <div id="12046" className="row" >
                                         <div id="14091" className="col-lg-12">
                                             <div id="14092" className="d-flex">
-                                                <div id="14093" className="pharmacyName flex-grow-1">{pharmacyDetails.pharmacyName}</div>
-                                                <div id="14094" className="accountStatus">{pharmacyDetails.accountStatus}</div>
+                                                <div id="14093" className="pharmacyName flex-grow-1">{pharmacyDetails?.pharmacyName}</div>
+                                                <div id="14094" className="accountStatus">{pharmacyDetails?.accountStatus}</div>
                                             </div>
                                             <div id="14096" >
                                                 <div id="14097" className="flex-grow1">
                                                     {
-                                                        pharmacyDetails.street ? (
-                                                            <div id="strt">{pharmacyDetails.street}</div>
+                                                        pharmacyDetails?.street ? (
+                                                            <div id="strt">{pharmacyDetails?.street}</div>
                                                         ) : ''
                                                     }
                                                     {
-                                                        pharmacyDetails.landMark ? (
-                                                            <div id="strt">{pharmacyDetails.landMark}</div>
+                                                        pharmacyDetails?.landMark ? (
+                                                            <div id="strt">{pharmacyDetails?.landMark}</div>
                                                         ) : ''
                                                     }
                                                     {
-                                                        pharmacyDetails.city ? (
-                                                            <div id="strt">{pharmacyDetails.city}</div>
+                                                        pharmacyDetails?.city ? (
+                                                            <div id="strt">{pharmacyDetails?.city}</div>
                                                         ) : ''
                                                     }
                                                     {
-                                                        pharmacyDetails.state ? (
-                                                            <div id="strt">{pharmacyDetails.state}</div>
+                                                        pharmacyDetails?.state ? (
+                                                            <div id="strt">{pharmacyDetails?.state}</div>
                                                         ) : ''
                                                     }
                                                     {
-                                                        pharmacyDetails.pinCode ? (
-                                                            <div id="strt">{pharmacyDetails.pinCode}</div>
+                                                        pharmacyDetails?.pinCode ? (
+                                                            <div id="strt">{pharmacyDetails?.pinCode}</div>
                                                         ) : ''
                                                     }
                                                 </div>

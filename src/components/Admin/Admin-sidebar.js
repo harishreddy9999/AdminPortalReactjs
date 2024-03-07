@@ -8,8 +8,10 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
     // const navigate = useNavigate();
     const [tooltipv, settooltipv] = useState(false);
     const [selectedActiveLink, setSelectedActiveLink] = useState('');
-    useEffect(() => {
+    const [userRole, setUserRole] = useState('');
 
+    useEffect(() => {
+        setUserRole(sessionStorage.getItem("role"))
         if (dataReceived) {
             settooltipv((prevMenuCollapse) => !prevMenuCollapse);
             console.log('Data Received adminsidebar:', dataReceived);
@@ -33,279 +35,337 @@ export function AdminSidebar({ handleComponentSelect, dataReceived }) {
 
         <div className="sidebarMenu" id="sidemenu" style={{ paddingTop: '50px', paddingInline: '0px' }} >
 
-            <ul className="sideMenuList row" id="ul-menu">
+            {
+                userRole === "ADMIN" ? (
+                    <ul className="sideMenuList row" id="ul-menu">
 
 
-                <li className="menuRow col-lg-12" id="menu-profile">
-                    <Link className={`d-block fs1 tduh text-nowrap verfications ${selectedActiveLink === 'Verifications' ? 'activeRouteLink' : ''}`}
-                        id="a-verify" to="/admin-dashboard/Verifications" onClick={() => handleLinkClick('Verifications')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'Verifications' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/verifications-active-icon.svg"
-                                        className="iconsizeactive" alt='verification' />) : (
-                                    <img src="../images/Admin-sidebar-icons/verifications-icon.svg"
-                                        className="iconsizeactive" alt='verification' />
-                                )
-                            }
+                        <li className="menuRow col-lg-12" id="menu-profile">
+                            <Link className={`d-block fs1 tduh text-nowrap verfications ${selectedActiveLink === 'Verifications' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/Verifications" onClick={() => handleLinkClick('Verifications')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'Verifications' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/verifications-active-icon.svg"
+                                                className="iconsizeactive" alt='verification' />) : (
+                                            <img src="../images/Admin-sidebar-icons/verifications-icon.svg"
+                                                className="iconsizeactive" alt='verification' />
+                                        )
+                                    }
 
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl" className="sidebartext">Verifications</span>
-                            ) : (
-                                <span className="ctooltip" id="s-tverify">Verifications</span>
-                            )
-                        }
-                    </Link>
-                </li>
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Complaints' ? 'activeRouteLink' : ''}`}
-                        id="a-verify" to="/admin-dashboard/Complaints" onClick={() => handleLinkClick('Complaints')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'Complaints' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/complaints-icon-active.svg"
-                                        className="iconsize" alt='complaints' />) : (
-                                    <img src="../images/Admin-sidebar-icons/complaints-icon.svg"
-                                        className="iconsize" alt='complaints' />
-                                )
-                            }
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl" className="sidebartext">Verifications</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-tverify">Verifications</span>
+                                    )
+                                }
+                            </Link>
+                        </li>
+                        <li className="menuRow col-lg-12" id="menu-profile" >
+                            <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Complaints' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/Complaints" onClick={() => handleLinkClick('Complaints')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'Complaints' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/complaints-icon-active.svg"
+                                                className="iconsize" alt='complaints' />) : (
+                                            <img src="../images/Admin-sidebar-icons/complaints-icon.svg"
+                                                className="iconsize" alt='complaints' />
+                                        )
+                                    }
 
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl" className="sidebartext">Complaints</span>
-                            ) : (
-                                <span className="ctooltip" id="s-tverify">Complaints</span>
-                            )
-                        }
-                    </Link>
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl" className="sidebartext">Complaints</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-tverify">Complaints</span>
+                                    )
+                                }
+                            </Link>
 
-                </li>
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Panels' ? 'activeRouteLink' : ''}`}
-                        id="a-verify" to="/admin-dashboard/Panels" onClick={() => handleLinkClick('Panels')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'Panels' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/panels-icon-active.svg"
-                                        className="iconsize" alt='Panels' />) : (
-                                    <img src="../images/Admin-sidebar-icons/panels-icon.svg"
-                                        className="iconsize" alt='Panels' />
-                                )
-                            }
+                        </li>
+                        <li className="menuRow col-lg-12" id="menu-profile" >
+                            <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Panels' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/Panels" onClick={() => handleLinkClick('Panels')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'Panels' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/panels-icon-active.svg"
+                                                className="iconsize" alt='Panels' />) : (
+                                            <img src="../images/Admin-sidebar-icons/panels-icon.svg"
+                                                className="iconsize" alt='Panels' />
+                                        )
+                                    }
 
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl" className="sidebartext">Panels</span>
-                            ) : (
-                                <span className="ctooltip" id="s-tPanelsverify">Panels</span>
-                            )
-                        }
-                    </Link>
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl" className="sidebartext">Panels</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-tPanelsverify">Panels</span>
+                                    )
+                                }
+                            </Link>
 
-                </li>
+                        </li>
 
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Tests' ? 'activeRouteLink' : ''}`}
-                        id="a-verify" to="/admin-dashboard/Tests" onClick={() => handleLinkClick('Tests')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'Tests' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/testconfiguration-active.svg"
-                                        className="iconsize" alt='Tests' />) : (
-                                    <img src="../images/Admin-sidebar-icons/testconfiguration.svg"
-                                        className="iconsize" alt='Tests' />
-                                )
-                            }
+                        <li className="menuRow col-lg-12" id="menu-profile" >
+                            <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Tests' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/Tests" onClick={() => handleLinkClick('Tests')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'Tests' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/testconfiguration-active.svg"
+                                                className="iconsize" alt='Tests' />) : (
+                                            <img src="../images/Admin-sidebar-icons/testconfiguration.svg"
+                                                className="iconsize" alt='Tests' />
+                                        )
+                                    }
 
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl" className="sidebartext">Tests</span>
-                            ) : (
-                                <span className="ctooltip" id="s-tPanelsverify">Tests</span>
-                            )
-                        }
-                    </Link>
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl" className="sidebartext">Tests</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-tPanelsverify">Tests</span>
+                                    )
+                                }
+                            </Link>
 
-                </li>
-
-
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Subscriptions' ? 'activeRouteLink' : ''}`}
-                        id="a-verify" to="/admin-dashboard/Subscriptions" onClick={() => handleLinkClick('Subscriptions')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'Subscriptions' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/subscriptionactive.svg"
-                                        className="iconsize" alt='Subscriptions' />) : (
-                                    <img src="../images/Admin-sidebar-icons/subscription.svg"
-                                        className="iconsize" alt='Subscriptions' />
-                                )
-                            }
-
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lblSubscriptions" className="sidebartext">Subscriptions</span>
-                            ) : (
-                                <span className="ctooltip" id="s-Subscriptionsverify">Subscriptions</span>
-                            )
-                        }
-                    </Link>
-
-                </li>
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Coupons' ? 'activeRouteLink' : ''}`}
-                        id="a-verify" to="/admin-dashboard/Coupons" onClick={() => handleLinkClick('Coupons')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'Coupons' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/coupon-active.svg"
-                                        className="iconsize" alt='coupon' />) : (
-                                    <img src="../images/Admin-sidebar-icons/coupon-icon.svg"
-                                        className="iconsize" alt='coupon' />
-                                )
-                            }
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lblCoupons" className="sidebartext">Coupons</span>
-                            ) : (
-                                <span className="ctooltip" id="s-tCouponsverify">Coupons</span>
-                            )
-                        }
-                    </Link>
-
-                </li>
+                        </li>
 
 
+                        <li className="menuRow col-lg-12" id="menu-profile" >
+                            <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Subscriptions' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/Subscriptions" onClick={() => handleLinkClick('Subscriptions')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'Subscriptions' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/subscriptionactive.svg"
+                                                className="iconsize" alt='Subscriptions' />) : (
+                                            <img src="../images/Admin-sidebar-icons/subscription.svg"
+                                                className="iconsize" alt='Subscriptions' />
+                                        )
+                                    }
 
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Users' ? 'activeRouteLink' : ''}`}
-                        id="a-verify" to="/admin-dashboard/Users" onClick={() => handleLinkClick('Users')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'Users' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/users-icon-active.svg"
-                                        className="iconsize" alt='Users' />) : (
-                                    <img src="../images/Admin-sidebar-icons/users-icon.svg"
-                                        className="iconsize" alt='Users' />
-                                )
-                            }
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lblSubscriptions" className="sidebartext">Subscriptions</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-Subscriptionsverify">Subscriptions</span>
+                                    )
+                                }
+                            </Link>
 
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl-Users" className="sidebartext">Users</span>
-                            ) : (
-                                <span className="ctooltip" id="s-Usersverify">Users</span>
-                            )
-                        }
-                    </Link>
+                        </li>
+                        <li className="menuRow col-lg-12" id="menu-profile" >
+                            <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Coupons' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/Coupons" onClick={() => handleLinkClick('Coupons')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'Coupons' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/coupon-active.svg"
+                                                className="iconsize" alt='coupon' />) : (
+                                            <img src="../images/Admin-sidebar-icons/coupon-icon.svg"
+                                                className="iconsize" alt='coupon' />
+                                        )
+                                    }
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lblCoupons" className="sidebartext">Coupons</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-tCouponsverify">Coupons</span>
+                                    )
+                                }
+                            </Link>
 
-                </li>
-
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'CustomDrugs' ? 'activeRouteLink' : ''}`}
-                        id="a-verify" to="/admin-dashboard/CustomDrugs" onClick={() => handleLinkClick('CustomDrugs')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'CustomDrugs' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/customdrugs-icon-active.svg"
-                                        className="iconsize" alt='CustomDrugs' />) : (
-                                    <img src="../images/Admin-sidebar-icons/customdrugs-icon.svg"
-                                        className="iconsize" alt='CustomDrugs' />
-                                )
-                            }
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl" className="sidebartext">Custom Drugs</span>
-                            ) : (
-                                <span className="ctooltip" id="s-tDrugsverify">Custom Drugs</span>
-                            )
-                        }
-                    </Link>
-
-                </li>
+                        </li>
 
 
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Wellness' ? 'activeRouteLink' : ''}`}
-                        id="a-wellness" to="/admin-dashboard/Wellness" onClick={() => handleLinkClick('Wellness')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'Wellness' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/verifications-active-icon.svg"
-                                        className="iconsize" alt='Wellness' />) : (
-                                    <img src="../images/Admin-sidebar-icons/verifications-icon.svg"
-                                        className="iconsize" alt='Wellness' />
-                                )
-                            }
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl-Wellness" className="sidebartext">Wellness</span>
-                            ) : (
-                                <span className="ctooltip" id="s-Wellness">Wellness</span>
-                            )
-                        }
-                    </Link>
 
-                </li>
+                        <li className="menuRow col-lg-12" id="menu-profile" >
+                            <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Users' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/Users" onClick={() => handleLinkClick('Users')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'Users' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/users-icon-active.svg"
+                                                className="iconsize" alt='Users' />) : (
+                                            <img src="../images/Admin-sidebar-icons/users-icon.svg"
+                                                className="iconsize" alt='Users' />
+                                        )
+                                    }
 
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'WellnessGoals' ? 'activeRouteLink' : ''}`}
-                        id="a-wellness-goals" to="/admin-dashboard/WellnessGoals" onClick={() => handleLinkClick('WellnessGoals')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'WellnessGoals' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/verifications-active-icon.svg"
-                                        className="iconsize" alt='WellnessGoals' />) : (
-                                    <img src="../images/Admin-sidebar-icons/verifications-icon.svg"
-                                        className="iconsize" alt='WellnessGoals' />
-                                )
-                            }
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl-Wellness-goals" className="sidebartext">Wellness Goals</span>
-                            ) : (
-                                <span className="ctooltip" id="s-Wellness-goals">Wellness Goals</span>
-                            )
-                        }
-                    </Link>
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl-Users" className="sidebartext">Users</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-Usersverify">Users</span>
+                                    )
+                                }
+                            </Link>
 
-                </li>
-                <li className="menuRow col-lg-12" id="menu-profile" >
-                    <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Healthtips' ? 'activeRouteLink' : ''}`}
-                        id="a-verify" to="/admin-dashboard/Healthtips" onClick={() => handleLinkClick('Healthtips')}>
-                        <span className="changepassword">
-                            {selectedActiveLink === 'Healthtips' ?
-                                (
-                                    <img src="../images/Admin-sidebar-icons/healthtip-active.svg"
-                                        className="iconsize" alt='Healthtips' />) : (
-                                    <img src="../images/Admin-sidebar-icons/healthtip.svg"
-                                        className="iconsize" alt='Healthtips' />
-                                )
-                            }
-                        </span>
-                        {
-                            tooltipv ? (
-                                <span id="span-lbl" className="sidebartext">Health Tips</span>
-                            ) : (
-                                <span className="ctooltip" id="s-tTipsverify">Health Tips</span>
-                            )
-                        }
-                    </Link>
+                        </li>
 
-                </li>
+                        <li className="menuRow col-lg-12" id="menu-profile" >
+                            <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'CustomDrugs' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/CustomDrugs" onClick={() => handleLinkClick('CustomDrugs')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'CustomDrugs' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/customdrugs-icon-active.svg"
+                                                className="iconsize" alt='CustomDrugs' />) : (
+                                            <img src="../images/Admin-sidebar-icons/customdrugs-icon.svg"
+                                                className="iconsize" alt='CustomDrugs' />
+                                        )
+                                    }
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl" className="sidebartext">Custom Drugs</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-tDrugsverify">Custom Drugs</span>
+                                    )
+                                }
+                            </Link>
 
-            </ul>
+                        </li>
+
+
+                        <li className="menuRow col-lg-12" id="menu-profile" >
+                            <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Wellness' ? 'activeRouteLink' : ''}`}
+                                id="a-wellness" to="/admin-dashboard/Wellness" onClick={() => handleLinkClick('Wellness')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'Wellness' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/verifications-active-icon.svg"
+                                                className="iconsize" alt='Wellness' />) : (
+                                            <img src="../images/Admin-sidebar-icons/verifications-icon.svg"
+                                                className="iconsize" alt='Wellness' />
+                                        )
+                                    }
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl-Wellness" className="sidebartext">Wellness</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-Wellness">Wellness</span>
+                                    )
+                                }
+                            </Link>
+
+                        </li>
+
+                        <li className="menuRow col-lg-12" id="menu-profile" >
+                            <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'WellnessGoals' ? 'activeRouteLink' : ''}`}
+                                id="a-wellness-goals" to="/admin-dashboard/WellnessGoals" onClick={() => handleLinkClick('WellnessGoals')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'WellnessGoals' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/verifications-active-icon.svg"
+                                                className="iconsize" alt='WellnessGoals' />) : (
+                                            <img src="../images/Admin-sidebar-icons/verifications-icon.svg"
+                                                className="iconsize" alt='WellnessGoals' />
+                                        )
+                                    }
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl-Wellness-goals" className="sidebartext">Wellness Goals</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-Wellness-goals">Wellness Goals</span>
+                                    )
+                                }
+                            </Link>
+
+                        </li>
+                        <li className="menuRow col-lg-12" id="menu-profile" >
+                            <Link className={`d-block fs1  tduh text-nowrap complaints ${selectedActiveLink === 'Healthtips' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/Healthtips" onClick={() => handleLinkClick('Healthtips')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'Healthtips' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/healthtip-active.svg"
+                                                className="iconsize" alt='Healthtips' />) : (
+                                            <img src="../images/Admin-sidebar-icons/healthtip.svg"
+                                                className="iconsize" alt='Healthtips' />
+                                        )
+                                    }
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl" className="sidebartext">Health Tips</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-tTipsverify">Health Tips</span>
+                                    )
+                                }
+                            </Link>
+
+                        </li>
+
+                    </ul>
+                ) : ''
+            }
+            {
+                userRole === "SUPERADMIN" ? (
+                    <ul className="sideMenuList row" id="ul-menu">
+
+
+                        <li className="menuRow col-lg-12" id="menu-profile">
+                            <Link className={`d-block fs1 tduh text-nowrap verfications ${selectedActiveLink === 'Admins' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/Admins" onClick={() => handleLinkClick('Admins')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'Admins' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/users-icon-active.svg"
+                                                className="iconsizeactive" alt='Admins' />) : (
+                                            <img src="../images/Admin-sidebar-icons/users-icon.svg"
+                                                className="iconsizeactive" alt='Admins' />
+                                        )
+                                    }
+
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl" className="sidebartext">Users List</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-tverify">Users List</span>
+                                    )
+                                }
+                            </Link>
+                        </li>
+                        <li className="menuRow col-lg-12" id="menu-profile">
+                            <Link className={`d-block fs1 tduh text-nowrap verfications ${selectedActiveLink === 'SubscriptionPackages' ? 'activeRouteLink' : ''}`}
+                                id="a-verify" to="/admin-dashboard/SubscriptionPackages" onClick={() => handleLinkClick('SubscriptionPackages')}>
+                                <span className="changepassword">
+                                    {selectedActiveLink === 'SubscriptionPackages' ?
+                                        (
+                                            <img src="../images/Admin-sidebar-icons/users-icon-active.svg"
+                                                className="iconsizeactive" alt='SubscriptionPackages' />) : (
+                                            <img src="../images/Admin-sidebar-icons/users-icon.svg"
+                                                className="iconsizeactive" alt='SubscriptionPackages' />
+                                        )
+                                    }
+
+                                </span>
+                                {
+                                    tooltipv ? (
+                                        <span id="span-lbl" className="sidebartext">Subscription Packages</span>
+                                    ) : (
+                                        <span className="ctooltip" id="s-tverify">Subscription Packages</span>
+                                    )
+                                }
+                            </Link>
+                        </li>
+                    </ul>
+                ) : ''
+            }
 
         </div>
     );

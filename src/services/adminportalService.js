@@ -974,3 +974,147 @@ export async function addRadiologyTestAPI(obj) {
         throw error;
     }
 }
+
+
+export async function getAllAdminsListAPI() {
+
+
+    try {
+        const response = await adminAPIURL.get('/admin/getAllAdminsList');
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getAllAdminsListAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('getAllAdminsListAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('getAllAdminsListAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function deleteAdminUserAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/admin/deleteAdminUser', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('deleteAdminUserAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('deleteAdminUserAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('deleteAdminUserAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function inActivateAdminAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/admin/deleteAdmin', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('deleteAdminUserAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('deleteAdminUserAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('deleteAdminUserAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function adminSendOTPAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/admin/sendOTP', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('adminSendOTPAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('adminSendOTPAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('adminSendOTPAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function adminverifyOTPAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/admin/verifyOTP', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('adminverifyOTPAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('adminverifyOTPAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('adminverifyOTPAPI failed:', error);
+        throw error;
+    }
+}
+
+
+export async function deleteSubscriptionAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/subscription/deleteSubscription', obj);
+        const data = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('deleteSubscriptionAPI request failed');
+        }
+
+
+        // Handle the response data
+        console.log('deleteSubscriptionAPI successful service', data);
+        // debugger;
+        return data;
+
+    } catch (error) {
+        console.error('deleteSubscriptionAPI failed:', error);
+        throw error;
+    }
+}
