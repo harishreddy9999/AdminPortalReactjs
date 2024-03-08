@@ -89,3 +89,32 @@
     cursor: pointer;
     padding: 0 15px;
 }
+
+.form-addnew-admin {
+    overflow-y: auto;
+    margin: 10px 20px;
+}
+
+.get-otp-btn {
+    text-align: center;
+    background-color: #fb0;
+    color: #fff !important;
+    font: 700 14px Roboto;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    opacity: 1;
+    width: auto;
+    padding: 5px 15px;
+    border-radius: 5px;
+}
+
+.add-new-admin-btn {
+    background-color: #9A7FF5;
+    color: #fff !important;
+    border-radius: 5px;
+    font-size: 12px;
+    text-align: center;
+    min-width: 100px;
+    height: 30px;
+    border: none;
+}

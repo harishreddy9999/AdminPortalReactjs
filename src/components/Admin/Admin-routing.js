@@ -12,6 +12,8 @@ import AdminUsersList from './Admin-UsersList.js';
 import AdminSubscripions from './Admin-Subscriptions.js';
 import AdminTests from './Admin-Tests.js';
 import AddSingleParameterTest from './Admin-AddSingleParameterTest.js'
+import AdminsList from './Admin-AdminsList.js';
+import SubscriptionPackages from './Admin-SubscriptionPackages.js';
 
 
 export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
@@ -65,6 +67,12 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
             case 'AddSingleParameterTest':
                 componentToRender = <AddSingleParameterTest />;
                 break;
+        case 'Admins':
+            componentToRender = <AdminsList />;
+            break;
+        case 'SubscriptionPackages':
+            componentToRender = <SubscriptionPackages />;
+            break;
 
         default:
             componentToRender = null;
