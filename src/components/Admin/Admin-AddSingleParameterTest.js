@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../../App.css';
-import '../../Styles/Admin-AddPanels.css';
+import '../../Styles/test.css';
 import { getDefaultSamplesAPI, getunitsArrayAPI,savepaneltestAPI } from '../../services/adminPortalPanelsService';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -405,13 +405,13 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                             />
                         </div>
 
-                        <div className='col-12 mt-4'>
+                        <div className='col-12'>
                             <h5 className='page-subheading'>Bio Logical Reference</h5>
                         </div>
-                        <div className='col-12 mt-2'>
+                        <div className='col-12'>
 
                             {biologicalReferenceForm.map((biological, index) => (
-                                <div key={index} className='row'>
+                                <div key={index} className='row singlebioCompleteArray'>
                                     <div className='col-2 mt-2 test-name-row'>
                                         <select
                                             type="text"
@@ -469,8 +469,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                             required
                                         >
                                             <option value="" selected disabled>
-                                                Result
-                                                Type
+                                               Reference Value
                                             </option>
                                             {/* <option value="Number"  disabled="paneltestForm.resultType=='Text'">Number </option>
                                             <option value="Text" disabled="paneltestForm.resultType=='Number'">Text </option>
@@ -576,7 +575,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
 
 
                         <div className='col-12 row'>
-                            <div className='col-12 mt-4 px-2'>
+                            <div className='col-12 px-2'>
                                 <label className='add-panel-lbl'>Notes</label>
                                 <textarea
                                     type="text"

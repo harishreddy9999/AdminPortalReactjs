@@ -12,3 +12,20 @@
     margin: 5px !important;
     cursor: pointer;
 }
+.bioCompleteArray{
+    padding: 0px 8px !important;
+    border: 1px solid rgb(207, 201, 201);
+    margin: 0px 8px !important;
+    border-radius: 5px !important;
+
+}
+.bioCompleteArray>div , .singlebioCompleteArray>div{
+   padding: 0px 5px !important;
+}
+.multibioCompleteArray>div{
+    padding: 0px 5px 0px 0px!important;
+}
+.singlebioCompleteArray{
+    padding: 0px 8px !important;
+    margin: 0px 8px !important;
+}

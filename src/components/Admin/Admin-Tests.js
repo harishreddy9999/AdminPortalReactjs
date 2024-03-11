@@ -115,6 +115,10 @@ const AdminTests = ({handleComponentSelect}) => {
         navigate('/admin-dashboard/AddSingleParameterTest')
         handleComponentSelect('AddSingleParameterTest');
     }
+    const multiParamenterTest = () => {
+        navigate('/admin-dashboard/AddMultiParameterTest')
+        handleComponentSelect('AddMultiParameterTest');
+    }
     return (
         <div className='wellness-main-screen'>
             <div className='row'>
@@ -258,7 +262,7 @@ const AdminTests = ({handleComponentSelect}) => {
                                     <div className='select-lbl'>Ex: Haemoglobin</div>
                                
                                 </div>
-                                <div className='row tests'>
+                                <div className='row tests' onClick={multiParamenterTest}>
                                     <div className='select-lbl'>Multi Parameter Test</div>
                                     <div className='select-lbl'>Ex: Urine Routine Test</div>
                                
