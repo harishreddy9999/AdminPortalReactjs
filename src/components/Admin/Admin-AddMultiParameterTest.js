@@ -257,7 +257,8 @@ const AddMultiParameterTest = ({ handleComponentSelect }) => {
     };
     const removesubbiologicalReferenceForm= (index,j) => {
         debugger
-        // setbiologicalReferenceForm((prevForms) => prevForms[index].parametervalues.filter((_, i) => i !== j));
+        console.log(biologicalReferenceForm[index])
+        setbiologicalReferenceForm((prevForms) => prevForms[index].parametervalues.filter((_, i) => i !== j));
     };
     const onSubmit = async () => {
         debugger
