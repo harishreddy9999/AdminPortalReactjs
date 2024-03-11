@@ -246,7 +246,8 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                     value: '>' + biologicalReferenceForm[index].referenceMaxValue,
                     text: '',
                 };
-                setcomments[index] = [obj1, obj2, obj3];
+                comment[index] = [obj1, obj2, obj3];
+                // setcomments[index] = [obj1, obj2, obj3];
             }
             else if (biologicalReferenceForm[index].rangeType == 'Number') {
                 // biologicalReferenceForm[index].referenceValueSymbol == 'GE' ? '>=' : (biologicalReferenceForm[index].referenceValueSymbol == 'LE') ? '<=' : (biologicalReferenceForm[index].referenceValueSymbol == 'G') ? '>' : (biologicalReferenceForm[index].referenceValueSymbol == 'L') ? '<' : ''
@@ -259,7 +260,8 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                     value: (biologicalReferenceForm[index].referenceValueSymbol == 'GE' ? '<' : (biologicalReferenceForm[index].referenceValueSymbol == 'LE') ? '>' : (biologicalReferenceForm[index].referenceValueSymbol == 'G') ? '<=' : (biologicalReferenceForm[index].referenceValueSymbol == 'L') ? '>=' : '') + biologicalReferenceForm[index].referenceValue,
                     text: ''
                 }
-                setcomments[index] = [obj1, obj2];
+                comment[index] = [obj1, obj2];
+                // setcomments[index] = [obj1, obj2];
             }
             else if (biologicalReferenceForm[index].rangeType == 'Text') {
                 obj1 = { value: biologicalReferenceForm[index].rangeValueText, text: '' };
@@ -329,7 +331,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
     const comments = (index) => {
         console.log(comment, index);
         debugger;
-        return;
+        // return;
         setcommentsModel(true);
         setcommentsindex(index)
     }
