@@ -265,7 +265,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
             }
             else if (biologicalReferenceForm[index].rangeType == 'Text') {
                 obj1 = { value: biologicalReferenceForm[index].rangeValueText, text: '' };
-                comment[index] = obj1;
+                comment[index] = [obj1];
                 // setcomments
             }
             console.log(comment)
@@ -337,6 +337,14 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
     }
     const closecommentsModel = () => {
         setcommentsModel(false);
+    }
+    
+    const handlecommentChange = (value, index) => {
+        debugger
+        const newcomment = [...comment]; 
+        newcomment[index] = { ...newcomment[index], value: value }; 
+        setcomments(newcomment);
+        // console.log(doctorConsultationForm);
     }
 
     return (
@@ -765,7 +773,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                                 <div className="col-6 table-header-text px-2">Comments</div>
                                             </div>
                                             <div>
-                                                {/* {console.log(comment)} */}
+                                                {console.log(comment,commentsindex)} 
                                                 {comment[commentsindex] && comment[commentsindex].map((c, cindex) => (
                                                     <div key={cindex} className="d-flex p-2 align-items-center">
                                                         <div className="col-2 px-2">{cindex + 1}</div>
@@ -774,7 +782,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                                             (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex > 0)) && (
                                                                 <div className="col-2 px-2">
                                                                     {/* <input type="text" className="form-control" value={c.value} onChange={(event) => onCommentValueChange(cindex, event)} /> */}
-                                                                    <input type="text" className="form-control" value={c.value} />
+                                                                    <input type="text" className="form-control" value={c.value}    onChange={(e) => handlecommentChange(e.target.value, cindex)} />
                                                                 </div>
                                                             )}
                                                         {((biologicalReferenceForm[commentsindex].rangeType === 'Number' && cindex <= 1) ||
