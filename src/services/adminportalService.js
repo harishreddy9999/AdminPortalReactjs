@@ -1118,3 +1118,21 @@ export async function deleteSubscriptionAPI(obj) {
         throw error;
     }
 }
+export async function addSubscriptionAPI(obj) {
+
+
+    try {
+        const response = await adminAPIURL.post('/subscription/addSubscription', obj);
+        const addSubscriptionRes = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('addSubscriptionRes request failed');
+        }
+
+        return addSubscriptionRes;
+
+    } catch (error) {
+        console.error('addSubscriptionRes failed:', error);
+        throw error;
+    }
+}
