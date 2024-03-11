@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../../App.css';
 import '../../Styles/test.css';
-import { getDefaultSamplesAPI, getunitsArrayAPI,savepaneltestAPI } from '../../services/adminPortalPanelsService';
+import { getDefaultSamplesAPI, getunitsArrayAPI, savepaneltestAPI } from '../../services/adminPortalPanelsService';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import Switch from '@material-ui/core/Switch';
@@ -22,7 +22,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
         resultType: 'Number',
         units: '',
         catagory: '',
-        finalprice:'',
+        finalprice: '',
         analysisTime: '',
         notes: '',
         comments: '',
@@ -30,9 +30,9 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
     const [biologicalReferenceForm, setbiologicalReferenceForm] = useState([{
         gender: '', age: '',
         rangeType: '', referenceMinValue: '', referenceMaxValue: '', referenceValue: '',
-        referenceValueSymbol: '', rangeValueText: '', toggle: false, comments:[]
+        referenceValueSymbol: '', rangeValueText: '', toggle: false, comments: []
     }]);
-    const {handleSubmit } = useForm();
+    const { handleSubmit } = useForm();
     const [isbiologicalreferenceValueSymbol, setisbiologicalreferenceValueSymbol] = useState([])
     const [isbiologicalreferenceValue, setisbiologicalreferenceValue] = useState([])
     const [isbiologicalrangeValueText, setisbiologicalrangeValueText] = useState([])
@@ -42,7 +42,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
     const [showMinutes, setShowMinutes] = useState(true);
     const [showHours, setShowHours] = useState(true);
     const [showDays, setShowDays] = useState(true);
-    const [comment,setcomments]=useState([]);
+    const [comment, setcomments] = useState([]);
     const [commentsModel, setcommentsModel] = useState(false);
     const [commentsindex, setcommentsindex] = useState();
 
@@ -57,7 +57,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
     }, [comment]);
 
     const handleChange = (e) => {
-        debugger
+        // debugger
         const { name, value, type, checked } = e.target;
         // debugger;
         setPanelTestFormData({ ...paneltestForm, [name]: value });
@@ -65,38 +65,38 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
             // debugger
             analysisTime(value);
         }
-      
+
 
     }
     const analysisTime = async (value) => {
         if (value.includes("H") || value.includes("M") || value.includes("D")) {
             setEnableDurationDisplay(false);
             return;
-          }
-          if (value !== "" && value !== undefined) {
+        }
+        if (value !== "" && value !== undefined) {
             setEnableDurationDisplay(true);
             if (paneltestForm.analysisTime > 23 && paneltestForm.analysisTime < 60) {
-              setShowMinutes(true);
-              setShowDays(true);
-              setShowHours(false);
+                setShowMinutes(true);
+                setShowDays(true);
+                setShowHours(false);
             } else if (paneltestForm.analysisTime > 59) {
-              setShowMinutes(false);
-              setShowDays(true);
-              setShowHours(false);
+                setShowMinutes(false);
+                setShowDays(true);
+                setShowHours(false);
             } else {
-              setShowMinutes(true);
-              setShowDays(true);
-              setShowHours(true);
+                setShowMinutes(true);
+                setShowDays(true);
+                setShowHours(true);
             }
-          } else {
+        } else {
             setEnableDurationDisplay(false);
-          }
+        }
     }
     const durationselect = async (duration) => {
         const newAnalysisTime = paneltestForm.analysisTime + duration;
-        paneltestForm.analysisTime =newAnalysisTime;
+        paneltestForm.analysisTime = newAnalysisTime;
         setEnableDurationDisplay(false);
-      };
+    };
     const getDefaultSamples = async () => {
         const getDefaultSamplesRes = await getDefaultSamplesAPI();
         console.log(getDefaultSamplesRes, "getDefaultSamples")
@@ -113,7 +113,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
         setbiologicalReferenceForm([...biologicalReferenceForm, {
             gender: '', age: '',
             rangeType: '', referenceMinValue: '', referenceMaxValue: '', referenceValue: '',
-            referenceValueSymbol: '', rangeValueText: '', toggle: false, comments:''
+            referenceValueSymbol: '', rangeValueText: '', toggle: false, comments: ''
         }]);
         // testRef.current.push(React.createRef());
     };
@@ -131,7 +131,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
         setbiologicalReferenceForm(newbiologicalReferenceForm); // Update the state with the new array
 
     };
-    
+
     const handlebiologicalrangeValueTextChange = (value, index) => {
         const newbiologicalReferenceForm = [...biologicalReferenceForm]; // Create a copy of the testForms array
         newbiologicalReferenceForm[index] = { ...newbiologicalReferenceForm[index], rangeValueText: value }; // Update the specific testShortCode at the given index
@@ -151,6 +151,8 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
 
     };
     const handlebiologicalrangeTypeChange = (value, index) => {
+        // debugger;
+        console.log("handlebiologicalrangeTypeChange", value, index)
         const newbiologicalReferenceForm = [...biologicalReferenceForm]; // Create a copy of the testForms array
         newbiologicalReferenceForm[index] = { ...newbiologicalReferenceForm[index], rangeType: value }; // Update the specific testShortCode at the given index
         setbiologicalReferenceForm(newbiologicalReferenceForm); // Update the state with the new array
@@ -188,7 +190,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
             updatedisbiologicalreferenceMinValue[index] = false;
             setisbiologicalreferenceMinValue(updatedisbiologicalreferenceMinValue);
         }
-        else if (value == 'Range'){
+        else if (value == 'Range') {
             const updatedisbiologicalreferenceValueSymbol = [...isbiologicalreferenceValueSymbol];
             updatedisbiologicalreferenceValueSymbol[index] = false;
             setisbiologicalreferenceValueSymbol(updatedisbiologicalreferenceValueSymbol);
@@ -222,56 +224,60 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
     const removebiologicalReferenceForm = (index) => {
         setbiologicalReferenceForm((prevForms) => prevForms.filter((_, i) => i !== index));
     };
-     const commentToggle =(index,event,biological)=>{
-        debugger
-        const newbiologicalReferenceForm = [...biologicalReferenceForm]; // Create a copy of the testForms array
-        newbiologicalReferenceForm[index] = { ...newbiologicalReferenceForm[index], toggle:  event.target.checked }; // Update the specific testShortCode at the given index
-        setbiologicalReferenceForm(newbiologicalReferenceForm);
-    if(event.target.checked==true){
-        let obj1, obj2, obj3;
+    const commentToggle = (index, event, biological) => {
 
-        if(biologicalReferenceForm[index].rangeType=='Range'){
-            obj1 = {
-                value: biologicalReferenceForm[index].referenceMinValue+ '-' +biologicalReferenceForm[index].referenceMaxValue,
-                text: '',
-              };
-              obj2 = {
-                value: '<'+biologicalReferenceForm[index].referenceMinValue,
-                text: '',
-              };
-              obj3 = {
-                value: '>'+biologicalReferenceForm[index].referenceMaxValue,
-                text: '',
-              };
-              setcomments[index] = [obj1, obj2, obj3];
-        }
-        else if(biologicalReferenceForm[index].rangeType=='Number'){
-            // biologicalReferenceForm[index].referenceValueSymbol == 'GE' ? '>=' : (biologicalReferenceForm[index].referenceValueSymbol == 'LE') ? '<=' : (biologicalReferenceForm[index].referenceValueSymbol == 'G') ? '>' : (biologicalReferenceForm[index].referenceValueSymbol == 'L') ? '<' : ''
-            obj1 = {
-              value: (biologicalReferenceForm[index].referenceValueSymbol == 'GE' ? '>=' : (biologicalReferenceForm[index].referenceValueSymbol == 'LE') ? '<=' : (biologicalReferenceForm[index].referenceValueSymbol == 'G') ? '>' : (biologicalReferenceForm[index].referenceValueSymbol == 'L') ? '<' : '') + biologicalReferenceForm[index].referenceValue,
-              text: ''
+        const newbiologicalReferenceForm = [...biologicalReferenceForm]; // Create a copy of the testForms array
+        newbiologicalReferenceForm[index] = { ...newbiologicalReferenceForm[index], toggle: event.target.checked }; // Update the specific testShortCode at the given index
+        setbiologicalReferenceForm(newbiologicalReferenceForm);
+        debugger;
+        if (event.target.checked == true) {
+            let obj1, obj2, obj3;
+
+            if (biologicalReferenceForm[index].rangeType == 'Range') {
+                obj1 = {
+                    value: biologicalReferenceForm[index].referenceMinValue + '-' + biologicalReferenceForm[index].referenceMaxValue,
+                    text: '',
+                };
+                obj2 = {
+                    value: '<' + biologicalReferenceForm[index].referenceMinValue,
+                    text: '',
+                };
+                obj3 = {
+                    value: '>' + biologicalReferenceForm[index].referenceMaxValue,
+                    text: '',
+                };
+                comment[index] = [obj1, obj2, obj3];
+                // setcomments[index] = [obj1, obj2, obj3];
             }
-          
-            obj2 = {
-              value: (biologicalReferenceForm[index].referenceValueSymbol == 'GE' ? '<' : (biologicalReferenceForm[index].referenceValueSymbol == 'LE') ? '>' : (biologicalReferenceForm[index].referenceValueSymbol == 'G') ? '<=' : (biologicalReferenceForm[index].referenceValueSymbol == 'L') ? '>=' : '') + biologicalReferenceForm[index].referenceValue,
-              text: ''
+            else if (biologicalReferenceForm[index].rangeType == 'Number') {
+                // biologicalReferenceForm[index].referenceValueSymbol == 'GE' ? '>=' : (biologicalReferenceForm[index].referenceValueSymbol == 'LE') ? '<=' : (biologicalReferenceForm[index].referenceValueSymbol == 'G') ? '>' : (biologicalReferenceForm[index].referenceValueSymbol == 'L') ? '<' : ''
+                obj1 = {
+                    value: (biologicalReferenceForm[index].referenceValueSymbol == 'GE' ? '>=' : (biologicalReferenceForm[index].referenceValueSymbol == 'LE') ? '<=' : (biologicalReferenceForm[index].referenceValueSymbol == 'G') ? '>' : (biologicalReferenceForm[index].referenceValueSymbol == 'L') ? '<' : '') + biologicalReferenceForm[index].referenceValue,
+                    text: ''
+                }
+
+                obj2 = {
+                    value: (biologicalReferenceForm[index].referenceValueSymbol == 'GE' ? '<' : (biologicalReferenceForm[index].referenceValueSymbol == 'LE') ? '>' : (biologicalReferenceForm[index].referenceValueSymbol == 'G') ? '<=' : (biologicalReferenceForm[index].referenceValueSymbol == 'L') ? '>=' : '') + biologicalReferenceForm[index].referenceValue,
+                    text: ''
+                }
+                comment[index] = [obj1, obj2];
+                // setcomments[index] = [obj1, obj2];
             }
-            setcomments[index] = [obj1, obj2];
+            else if (biologicalReferenceForm[index].rangeType == 'Text') {
+                obj1 = { value: biologicalReferenceForm[index].rangeValueText, text: '' };
+                comment[index] = obj1;
+                // setcomments
+            }
+            console.log(comment)
+            // const newbiologicalReferenceForm = [...biologicalReferenceForm]; // Create a copy of the testForms array
+            // newbiologicalReferenceForm[index] = { ...newbiologicalReferenceForm[index], comments: comment }; // Update the specific testShortCode at the given index
+            // setbiologicalReferenceForm(newbiologicalReferenceForm); 
         }
-        else if(biologicalReferenceForm[index].rangeType=='Text'){
-            obj1={ value: biologicalReferenceForm[index].rangeValueText, text: '' };
-            setcomments[index] = [obj1];
+        else {
+            setcomments[index] = [{ value: '', text: '' }]
         }
-        console.log(comment)
-        // const newbiologicalReferenceForm = [...biologicalReferenceForm]; // Create a copy of the testForms array
-        // newbiologicalReferenceForm[index] = { ...newbiologicalReferenceForm[index], comments: comment }; // Update the specific testShortCode at the given index
-        // setbiologicalReferenceForm(newbiologicalReferenceForm); 
+
     }
-    else{
-        setcomments[index] = [{ value: '', text: '' }]
-    }
-     
-     }
     const onSubmit = async () => {
         debugger
         console.log(paneltestForm)
@@ -292,10 +298,10 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
             notes: paneltestForm.notes,
             comments: paneltestForm.comments,
             biologicalIntervals: biologicalReferenceForm
-          }
-          const savepaneltestRes = await savepaneltestAPI(reqObj);
-          console.log(savepaneltestRes);
-          if (savepaneltestRes.message.includes('Succes')) {
+        }
+        const savepaneltestRes = await savepaneltestAPI(reqObj);
+        console.log(savepaneltestRes);
+        if (savepaneltestRes.message.includes('Succes')) {
             setPanelTestFormData({
                 testName: '',
                 department: "CLINICAL PATHOLOGY",
@@ -310,8 +316,8 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                 analysisTime: '',
                 notes: '',
                 comments: '',
-              });
-              setbiologicalReferenceForm([...biologicalReferenceForm, {
+            });
+            setbiologicalReferenceForm([...biologicalReferenceForm, {
                 gender: '', age: '',
                 rangeType: '', referenceMinValue: '', referenceMaxValue: '', referenceValue: '',
                 referenceValueSymbol: '', rangeValueText: ''
@@ -319,14 +325,17 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
             navigate('/admin-dashboard/Tests');
 
             handleComponentSelect('Tests');
-          
-          }
+
+        }
     }
-    const comments =  (index) => {
+    const comments = (index) => {
+        console.log(comment, index);
+        debugger;
+        // return;
         setcommentsModel(true);
         setcommentsindex(index)
     }
-    const closecommentsModel =() =>{
+    const closecommentsModel = () => {
         setcommentsModel(false);
     }
 
@@ -420,28 +429,28 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                 required
                             />
                             {
-                             enableDurationDisplay ? (
-                                    <div class="list d-flex  flex-column">
+                                enableDurationDisplay ? (
+                                    <div className="list d-flex  flex-column">
                                         {
                                             showMinutes &&
-                                            <div onClick={()=>durationselect('M')} className="durationcolumn" >
+                                            <div onClick={() => durationselect('M')} className="durationcolumn" >
                                                 {paneltestForm.analysisTime} Minutes</div>
                                         }{
                                             showHours &&
-                                    
-                                            <div onClick={()=>durationselect('H')} className="durationcolumn" >
-                                            {paneltestForm.analysisTime} Hours</div>
+
+                                            <div onClick={() => durationselect('H')} className="durationcolumn" >
+                                                {paneltestForm.analysisTime} Hours</div>
                                         }
-                                    {
-                                        showDays &&
-                                        <div  onClick={()=>durationselect('D')} className="durationcolumn" >
-                                        {paneltestForm.analysisTime} Days</div>
-                                    }
-                                        
+                                        {
+                                            showDays &&
+                                            <div onClick={() => durationselect('D')} className="durationcolumn" >
+                                                {paneltestForm.analysisTime} Days</div>
+                                        }
+
                                     </div>
-                            ) : ('')
+                                ) : ('')
                             }
-                            
+
                         </div>
                         <div className='col-lg-2 col-md-2 px-2'>
                             <label className='add-panel-lbl'>Catagory</label>
@@ -464,7 +473,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                 onChange={handleChange}
                                 required
                             >
-                                <option value="" selected disabled>
+                                <option value="" disabled>
                                     Result
                                     type
                                 </option>
@@ -589,8 +598,8 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                             onChange={(e) => handlebiologicalrangeTypeChange(e.target.value, index)}
                                             required
                                         >
-                                            <option value="" selected disabled>
-                                               Reference Value
+                                            <option value="" disabled>
+                                                Reference Value
                                             </option>
                                             {/* <option value="Number"  disabled="paneltestForm.resultType=='Text'">Number </option>
                                             <option value="Text" disabled="paneltestForm.resultType=='Number'">Text </option>
@@ -614,7 +623,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                                     // onChange={handleChange}
                                                     required
                                                 >
-                                                    <option value="" disabled selected>Select an operator</option>
+                                                    <option value="" disabled>Select an operator</option>
                                                     <option value="G">{'>'}</option>
                                                     <option value="GE">{'>='}</option>
                                                     <option value="L">{'<'}</option>
@@ -640,10 +649,10 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
 
                                         ) : ('')
                                     }
-                                                {
+                                    {
                                         isbiologicalrangeValueText[index] ? (
                                             <div className='col-2 mt-2 test-name-row'>
-                                                <input placeholder='Range Value Text' className='form-control' type="text" name={biological.rangeValueText}
+                                                <input placeholder='Reference Value Text' className='form-control' type="text" name={biological.rangeValueText}
                                                     value={biological.rangeValueText} onChange={(e) => handlebiologicalrangeValueTextChange(e.target.value, index)} />
 
 
@@ -652,7 +661,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
 
                                         ) : ('')
                                     }
-                                      {
+                                    {
                                         isbiologicalreferenceMaxValue[index] ? (
                                             <div className='col-2 mt-2 test-name-row'>
                                                 <input placeholder='Reference Max Value' className='form-control' type="text" name={biological.referenceMaxValue}
@@ -664,7 +673,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
 
                                         ) : ('')
                                     }
-                                      {
+                                    {
                                         isbiologicalreferenceMinValue[index] ? (
                                             <div className='col-2 mt-2 test-name-row'>
                                                 <input placeholder='Reference Min Value' className='form-control' type="text" name={biological.referenceMinValue}
@@ -677,25 +686,25 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                         ) : ('')
                                     }
                                     <div className='col-2 mt-3'>
-                                        {console.log(biological)}
+
                                         {
-                                        biological.toggle==true ? ( 
-                                        <a  className="m-0 comments"  onClick={()=>comments(index)}
-                                        disabled={biological.gender=='' ||biological.age=='' || (isbiologicalreferenceValueSymbol[index]&&isbiologicalreferenceValue)?(biological.referenceValueSymbol==''||biological.referenceValue==''):
-                                        (isbiologicalreferenceMaxValue[index]&&isbiologicalreferenceMinValue[index])?(biological.referenceMinValue==''||biological.referenceMaxValue==''):
-                                        isbiologicalrangeValueText[index]?(biological.rangeValueText==''):false}
-                                        >Comments</a>
-                                        ):(<label className="m-0 tabelValue" >Comments</label>)
+                                            biological.toggle == true ? (
+                                                <a className="m-0 comments" onClick={() => comments(index)}
+                                                    disabled={biological.gender == '' || biological.age == '' || (isbiologicalreferenceValueSymbol[index] && isbiologicalreferenceValue) ? (biological.referenceValueSymbol == '' || biological.referenceValue == '') :
+                                                        (isbiologicalreferenceMaxValue[index] && isbiologicalreferenceMinValue[index]) ? (biological.referenceMinValue == '' || biological.referenceMaxValue == '') :
+                                                            isbiologicalrangeValueText[index] ? (biological.rangeValueText == '') : false}
+                                                >Comments</a>
+                                            ) : (<label className="m-0 tabelValue" >Comments</label>)
                                         }
-                                    
-                                 
+
+
                                         <Switch
-                                            checked={biological.toggle} 
-                                            onChange={(event) => commentToggle(index,event,biological)} 
+                                            checked={biological.toggle}
+                                            onChange={(event) => commentToggle(index, event, biological)}
                                             name={`toggle-${index}`}
-                                            disabled={biological.gender=='' ||biological.age=='' || (isbiologicalreferenceValueSymbol[index]&&isbiologicalreferenceValue)?(biological.referenceValueSymbol==''||biological.referenceValue==''):
-                                            (isbiologicalreferenceMaxValue[index]&&isbiologicalreferenceMinValue[index])?(biological.referenceMinValue==''||biological.referenceMaxValue==''):
-                                            isbiologicalrangeValueText[index]?(biological.rangeValueText==''):false}
+                                            disabled={biological.gender == '' || biological.age == '' || (isbiologicalreferenceValueSymbol[index] && isbiologicalreferenceValue) ? (biological.referenceValueSymbol == '' || biological.referenceValue == '') :
+                                                (isbiologicalreferenceMaxValue[index] && isbiologicalreferenceMinValue[index]) ? (biological.referenceMinValue == '' || biological.referenceMaxValue == '') :
+                                                    isbiologicalrangeValueText[index] ? (biological.rangeValueText == '') : false}
                                             color="primary"
                                         />
                                     </div>
@@ -738,75 +747,75 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                 </form>
             </div>
             {
-            commentsModel ?(
-                <div className='initiateComp-popup'>
-                <div className='initiateComp-overlay'>
-                    <div className='row popup-content'>
+                commentsModel ? (
+                    <div className='initiateComp-popup'>
+                        <div className='initiateComp-overlay'>
+                            <div className='row popup-content'>
 
-                        <div className='row'>
-                        <div className="h-100 d-flex flex-column">
-            <div className="p-2 hc-header d-flex justify-content-between align-items-center">
-                {/* <label htmlFor="" className="heading">Comments set for observations</label> */}
-                {/* <img src="./assets/images/crossmark.png" alt="" onClick={() => cancelComments(i)} /> */}
-            </div>
-            <div className=" d-flex flex-column border h-100">
-                <div className="d-flex table-header p-2">
-                    <div className="col-2 table-header-text px-2">S.No</div>
-                    <div className="col-4 table-header-text px-2">Value</div>
-                    <div className="col-6 table-header-text px-2">Comments</div>
-                </div>
-                <div>
-                    {console.log(comment)}
-                    {comment[commentsindex] && comment[commentsindex].map((c, cindex) => (
-                        <div key={cindex} className="d-flex p-2 align-items-center">
-                            <div className="col-2 px-2">{cindex + 1}</div>
-                            {((biologicalReferenceForm[commentsindex].rangeType === 'Number' && cindex > 1) ||
-                                (biologicalReferenceForm[commentsindex].rangeType === 'Range' && cindex > 2) ||
-                                (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex > 0)) && (
-                                    <div className="col-2 px-2">
-                                        {/* <input type="text" className="form-control" value={c.value} onChange={(event) => onCommentValueChange(cindex, event)} /> */}
-                                        <input type="text" className="form-control" value={c.value}  />
-                                    </div>
-                                )}
-                            {((biologicalReferenceForm[commentsindex].rangeType === 'Number' && cindex <= 1) ||
-                                (biologicalReferenceForm[commentsindex].rangeType=== 'Range' && cindex <= 2) ||
-                                (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex === 0)) && (
-                                    <div className="col-2 px-2">{c.value}</div>
-                                )}
-                            <div className="col-6">
-                                {/* <input type="text" className="form-control" value={c.text} onChange={(event) => onCommentChange(cindex, event)} /> */}
-                            </div>
-                            <div className="col-2 d-flex align-items-center">
-                                {/* {commentsindex === comment[i].length - 1 && <button className="add-btn ms-2" onClick={addComment}>+</button>} */}
-                                {((biologicalReferenceForm[commentsindex].rangeType === 'Number' && cindex > 1) ||
-                                    (biologicalReferenceForm[commentsindex].rangeType === 'Range' && cindex > 2) ||
-                                    (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex > 0)) && (
-                                        // <img src="./assets/images/delete.png" className="remove-img ms-2" onClick={() => removeComment(cindex)} />
-                                        <img src="./assets/images/delete.png" className="remove-img ms-2"  />
-                                    )}
-                            </div>
-                        </div>
-                    ))}
-                </div>
-                <div className="d-flex justify-content-end mt-auto mb-2 mx-2">
-                    {/* <button className="btn provider-cancel-btn me-2" onClick={() => cancelComments(i)}>Cancel</button>
+                                <div className='row'>
+                                    <div className="h-100 d-flex flex-column">
+                                        <div className="p-2 hc-header d-flex justify-content-between align-items-center">
+                                            {/* <label htmlFor="" className="heading">Comments set for observations</label> */}
+                                            {/* <img src="./assets/images/crossmark.png" alt="" onClick={() => cancelComments(i)} /> */}
+                                        </div>
+                                        <div className=" d-flex flex-column border h-100">
+                                            <div className="d-flex table-header p-2">
+                                                <div className="col-2 table-header-text px-2">S.No</div>
+                                                <div className="col-4 table-header-text px-2">Value</div>
+                                                <div className="col-6 table-header-text px-2">Comments</div>
+                                            </div>
+                                            <div>
+                                                {/* {console.log(comment)} */}
+                                                {comment[commentsindex] && comment[commentsindex].map((c, cindex) => (
+                                                    <div key={cindex} className="d-flex p-2 align-items-center">
+                                                        <div className="col-2 px-2">{cindex + 1}</div>
+                                                        {((biologicalReferenceForm[commentsindex].rangeType === 'Number' && cindex > 1) ||
+                                                            (biologicalReferenceForm[commentsindex].rangeType === 'Range' && cindex > 2) ||
+                                                            (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex > 0)) && (
+                                                                <div className="col-2 px-2">
+                                                                    {/* <input type="text" className="form-control" value={c.value} onChange={(event) => onCommentValueChange(cindex, event)} /> */}
+                                                                    <input type="text" className="form-control" value={c.value} />
+                                                                </div>
+                                                            )}
+                                                        {((biologicalReferenceForm[commentsindex].rangeType === 'Number' && cindex <= 1) ||
+                                                            (biologicalReferenceForm[commentsindex].rangeType === 'Range' && cindex <= 2) ||
+                                                            (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex === 0)) && (
+                                                                <div className="col-2 px-2">{c.value}</div>
+                                                            )}
+                                                        <div className="col-6">
+                                                            {/* <input type="text" className="form-control" value={c.text} onChange={(event) => onCommentChange(cindex, event)} /> */}
+                                                        </div>
+                                                        <div className="col-2 d-flex align-items-center">
+                                                            {/* {commentsindex === comment[i].length - 1 && <button className="add-btn ms-2" onClick={addComment}>+</button>} */}
+                                                            {((biologicalReferenceForm[commentsindex].rangeType === 'Number' && cindex > 1) ||
+                                                                (biologicalReferenceForm[commentsindex].rangeType === 'Range' && cindex > 2) ||
+                                                                (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex > 0)) && (
+                                                                    // <img src="./assets/images/delete.png" className="remove-img ms-2" onClick={() => removeComment(cindex)} />
+                                                                    <img src="./assets/images/delete.png" className="remove-img ms-2" />
+                                                                )}
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <div className="d-flex justify-content-end mt-auto mb-2 mx-2">
+                                                {/* <button className="btn provider-cancel-btn me-2" onClick={() => cancelComments(i)}>Cancel</button>
                     <button className="btn provider-submit-btn" onClick={() => submitComments(i)}>Submit</button> */}
-                </div>
-            </div>
-        </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className='d-flex justify-content-end mt-4'>
+                                    <button className='submit-btn' >Submit</button>
+                                    <button className='cancel-btn' onClick={closecommentsModel}>Cancel</button>
+                                </div>
+                            </div>
                         </div>
-                        <div className='d-flex justify-content-end mt-4'>
-                            <button className='submit-btn' >Submit</button>
-                            <button className='cancel-btn' onClick={closecommentsModel}>Cancel</button>
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-            ):('')
-           }
+                    </div>
+                ) : ('')
+            }
         </div>
-      
+
     )
 }
 
