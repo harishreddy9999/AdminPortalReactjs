@@ -229,7 +229,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
         const newbiologicalReferenceForm = [...biologicalReferenceForm]; // Create a copy of the testForms array
         newbiologicalReferenceForm[index] = { ...newbiologicalReferenceForm[index], toggle: event.target.checked }; // Update the specific testShortCode at the given index
         setbiologicalReferenceForm(newbiologicalReferenceForm);
-        debugger;
+        // debugger;
         if (event.target.checked == true) {
             let obj1, obj2, obj3;
 
@@ -330,7 +330,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
     }
     const comments = (index) => {
         console.log(comment, index);
-        debugger;
+        // debugger;
         // return;
         setcommentsModel(true);
         setcommentsindex(index)
@@ -338,25 +338,25 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
     const closecommentsModel = () => {
         setcommentsModel(false);
     }
-    const submitComments =() =>{
+    const submitComments = () => {
         setcommentsModel(false);
     }
-    
+
     const handlecommentChange = (value, index) => {
         debugger
-        comment[index].value= value;
+        comment[index].value = value;
         // console.log(doctorConsultationForm);
     }
-    const onCommentChange= (value, index) => {
+    const onCommentChange = (value, index) => {
         debugger
         // comment[index].text= value;
         this.comment[commentsindex][index].text = value
     }
-     const addComment =()=>{
+    const addComment = () => {
         debugger
-        comment[commentsindex].push({ value: '', text: ''} )
-      
-     }
+        comment[commentsindex].push({ value: '', text: '' })
+
+    }
 
     return (
         <div className='row'>
@@ -784,7 +784,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                                 <div className="col-6 table-header-text px-2">Comments</div>
                                             </div>
                                             <div>
-                                                {console.log(comment,commentsindex)} 
+                                                {console.log(comment, commentsindex)}
                                                 {comment[commentsindex] && comment[commentsindex].map((c, cindex) => (
                                                     <div key={cindex} className="d-flex p-2 align-items-center">
                                                         <div className="col-2 px-2">{cindex + 1}</div>
@@ -792,7 +792,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                                             (biologicalReferenceForm[commentsindex].rangeType === 'Range' && cindex > 2) ||
                                                             (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex > 0)) && (
                                                                 <div className="col-2 px-2">
-                                                                    <input type="text" className="form-control" value={c.value}    onChange={(e) => handlecommentChange(e.target.value, cindex)} />
+                                                                    <input type="text" className="form-control" value={c.value} onChange={(e) => handlecommentChange(e.target.value, cindex)} />
                                                                 </div>
                                                             )}
                                                         {((biologicalReferenceForm[commentsindex].rangeType === 'Number' && cindex <= 1) ||
@@ -804,8 +804,8 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                                             <input type="text" className="form-control" value={c.text} onChange={(event) => onCommentChange(event.target.value, cindex)} />
                                                         </div>
                                                         <div className="col-2 d-flex align-items-center">
-                                                            { cindex == comment.length   && 
-                                                            <button className="add-btn ms-2" onClick={addComment}>+</button>}
+                                                            {cindex == comment.length &&
+                                                                <button className="add-btn ms-2" onClick={addComment}>+</button>}
                                                             {((biologicalReferenceForm[commentsindex].rangeType === 'Number' && cindex > 1) ||
                                                                 (biologicalReferenceForm[commentsindex].rangeType === 'Range' && cindex > 2) ||
                                                                 (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex > 0)) && (
@@ -816,12 +816,12 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                                     </div>
                                                 ))}
                                             </div>
-                                         
+
                                         </div>
                                     </div>
                                 </div>
                                 <div className='d-flex justify-content-end mt-4'>
-                                    <button className='submit-btn' onClick={()=>submitComments}>Submit</button>
+                                    <button className='submit-btn' onClick={() => submitComments}>Submit</button>
                                     <button className='cancel-btn' onClick={closecommentsModel}>Cancel</button>
                                 </div>
                             </div>
