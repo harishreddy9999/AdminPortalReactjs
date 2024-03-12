@@ -52,7 +52,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
         // debugger;
         getDefaultSamples();
         getunitsArray();
-
+        setcomments(comment)
         // addbiologicalReferenceForm();
     }, [comment]);
 
@@ -338,14 +338,25 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
     const closecommentsModel = () => {
         setcommentsModel(false);
     }
+    const submitComments =() =>{
+        setcommentsModel(false);
+    }
     
     const handlecommentChange = (value, index) => {
         debugger
-        const newcomment = [...comment]; 
-        newcomment[index] = { ...newcomment[index], value: value }; 
-        setcomments(newcomment);
+        comment[index].value= value;
         // console.log(doctorConsultationForm);
     }
+    const onCommentChange= (value, index) => {
+        debugger
+        // comment[index].text= value;
+        this.comment[commentsindex][index].text = value
+    }
+     const addComment =()=>{
+        debugger
+        comment[commentsindex].push({ value: '', text: ''} )
+      
+     }
 
     return (
         <div className='row'>
@@ -757,7 +768,7 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
             {
                 commentsModel ? (
                     <div className='initiateComp-popup'>
-                        <div className='initiateComp-overlay'>
+                        <div className='overlay'>
                             <div className='row popup-content'>
 
                                 <div className='row'>
@@ -781,7 +792,6 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                                             (biologicalReferenceForm[commentsindex].rangeType === 'Range' && cindex > 2) ||
                                                             (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex > 0)) && (
                                                                 <div className="col-2 px-2">
-                                                                    {/* <input type="text" className="form-control" value={c.value} onChange={(event) => onCommentValueChange(cindex, event)} /> */}
                                                                     <input type="text" className="form-control" value={c.value}    onChange={(e) => handlecommentChange(e.target.value, cindex)} />
                                                                 </div>
                                                             )}
@@ -791,29 +801,27 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
                                                                 <div className="col-2 px-2">{c.value}</div>
                                                             )}
                                                         <div className="col-6">
-                                                            {/* <input type="text" className="form-control" value={c.text} onChange={(event) => onCommentChange(cindex, event)} /> */}
+                                                            <input type="text" className="form-control" value={c.text} onChange={(event) => onCommentChange(event.target.value, cindex)} />
                                                         </div>
                                                         <div className="col-2 d-flex align-items-center">
-                                                            {/* {commentsindex === comment[i].length - 1 && <button className="add-btn ms-2" onClick={addComment}>+</button>} */}
+                                                            { cindex == comment.length   && 
+                                                            <button className="add-btn ms-2" onClick={addComment}>+</button>}
                                                             {((biologicalReferenceForm[commentsindex].rangeType === 'Number' && cindex > 1) ||
                                                                 (biologicalReferenceForm[commentsindex].rangeType === 'Range' && cindex > 2) ||
                                                                 (biologicalReferenceForm[commentsindex].rangeType === 'Text' && cindex > 0)) && (
                                                                     // <img src="./assets/images/delete.png" className="remove-img ms-2" onClick={() => removeComment(cindex)} />
-                                                                    <img src="./assets/images/delete.png" className="remove-img ms-2" />
+                                                                    <img src="../images/delete.png" className="remove-img ms-2" />
                                                                 )}
                                                         </div>
                                                     </div>
                                                 ))}
                                             </div>
-                                            <div className="d-flex justify-content-end mt-auto mb-2 mx-2">
-                                                {/* <button className="btn provider-cancel-btn me-2" onClick={() => cancelComments(i)}>Cancel</button>
-                    <button className="btn provider-submit-btn" onClick={() => submitComments(i)}>Submit</button> */}
-                                            </div>
+                                         
                                         </div>
                                     </div>
                                 </div>
                                 <div className='d-flex justify-content-end mt-4'>
-                                    <button className='submit-btn' >Submit</button>
+                                    <button className='submit-btn' onClick={()=>submitComments}>Submit</button>
                                     <button className='cancel-btn' onClick={closecommentsModel}>Cancel</button>
                                 </div>
                             </div>
