@@ -153,9 +153,10 @@ function NewVerifications() {
         setIsClinicDetailsOpen(true);
     }
     const viewPharmacyDetails = (pharmacy) => {
-        // debugger;
+         debugger;
         setSelectedPharmacy(pharmacy);
         setIsPharmacyDetailsOpen(true);
+        console.log(selectedPharmacy)
     }
     const viewIndependentClinicDetails = (independentClinic) => {
         // debugger;
@@ -543,7 +544,7 @@ function NewVerifications() {
                     }
                 </div>
             </div>
-            
+
 
             {
                 selectedLab ? (<AdminLabDetails isOpen={isLabDetailsOpen} onClose={closeAllModals} lab={selectedLab} />) : ''

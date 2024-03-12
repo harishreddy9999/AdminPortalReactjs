@@ -265,5 +265,44 @@ export async function deleteRadiologyTestAPI(obj) {
         throw error;
     }
 }
+export async function getunitsArrayAPI() {
+
+
+    try {
+        const response = await labAPIURL.get('/units/getUnits');
+        const getunitsArrayRes = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('getunitsArrayRes request failed');
+        }
+
+
+        // Handle the response data
+        // console.log('getDefaultPanelsRes successful service', getDefaultPanelsRes);
+        // debugger;
+        return getunitsArrayRes;
+
+    } catch (error) {
+        console.error('getunitsArrayRes failed:', error);
+        throw error;
+    }
+}
+export async function savepaneltestAPI(obj) {
+
+
+    try {
+        const response = await labAPIURL.post('/admin/addDefaultIndependentTests', obj);
+        const savepaneltestRes = response.data;
+
+        if (!response.statusText === "OK") {
+            throw new Error('savepaneltestRes request failed');
+        }
+        return savepaneltestRes;
+
+    } catch (error) {
+        console.error('savepaneltestRes failed:', error);
+        throw error;
+    }
+}
 
 

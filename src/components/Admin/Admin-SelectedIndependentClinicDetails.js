@@ -22,6 +22,7 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
     const rejectindependentclinic = () => {
         debugger
         setisRejectOpenModel(true);
+        console.log(isRejectOpenModel)
     }
 
     const verify = async (approve, id) => {
@@ -136,22 +137,22 @@ const AdminSelectedIndependentClinicDetails = ({ isOpen, onClose, independentCli
                                 </div>
                                 <div className='row popup-content'>
 
-                                    <div className='row'>
-                                        <label className='select-lbl'>Reason For Rejection</label>
-                                        <input className='form-control' type="text"
-                                            value={resonforrejection}
-
-                                            onChange={(e) => setresonforrejection(e.target.value)}
-                                            required
-                                        />
-                                    </div>
-                                    <div className='d-flex justify-content-end mt-4'>
-                                        <button className='submit-btn' onClick={() => verify('REJECTED', independentClinicDetails._id)}>Reject</button>
-                                        <button className='cancel-btn' onClick={closePopup}>Cancel</button>
-                                    </div>
+                                <div className='row'>
+                                    <label className='select-lbl'>Reason For Rejection</label>
+                                    <input className='form-control' type="text"
+                                        value={resonforrejection}
+                                        
+                                        onChange={(e) => setresonforrejection(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <div className='d-flex justify-content-end mt-4'>
+                                    <button className='submit-btn' onClick={()=>verify('REJECTED',independentClinicDetails._id)}>Reject</button>
+                                    <button className='cancel-btn' onClick={closePopup}>Cancel</button>
                                 </div>
                             </div>
 
+                        </div>
                         </div>
                     ) : ''
                 }

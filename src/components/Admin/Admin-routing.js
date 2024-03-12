@@ -11,8 +11,10 @@ import WellnessGoals from './Admin-WellnessGoals.js';
 import AdminUsersList from './Admin-UsersList.js';
 import AdminSubscripions from './Admin-Subscriptions.js';
 import AdminTests from './Admin-Tests.js';
+import AddSingleParameterTest from './Admin-AddSingleParameterTest.js'
 import AdminsList from './Admin-AdminsList.js';
 import SubscriptionPackages from './Admin-SubscriptionPackages.js';
+import AddMultiParameterTest from './Admin-AddMultiParameterTest.js'
 
 
 export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
@@ -61,8 +63,14 @@ export function AdminMainContent({ selectedComponent, handleComponentSelect }) {
             componentToRender = <AdminSubscripions />;
             break;
         case 'Tests':
-            componentToRender = <AdminTests />;
+            componentToRender = <AdminTests handleComponentSelect={handleComponentSelect} />;
             break;
+            case 'AddSingleParameterTest':
+                componentToRender = <AddSingleParameterTest />;
+                break;
+                case 'AddMultiParameterTest':
+                    componentToRender = <AddMultiParameterTest />;
+                    break;
         case 'Admins':
             componentToRender = <AdminsList />;
             break;
