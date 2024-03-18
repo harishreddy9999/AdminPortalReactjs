@@ -343,12 +343,12 @@ const AddSingleParameterTest = ({ handleComponentSelect }) => {
     }
 
     const handlecommentChange = (value, index) => {
-        debugger
+        // debugger
         comment[index].value = value;
         // console.log(doctorConsultationForm);
     }
     const onCommentChange = (value, index) => {
-        debugger
+        // debugger
         // comment[index].text= value;
         this.comment[commentsindex][index].text = value
     }
